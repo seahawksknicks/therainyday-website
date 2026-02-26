@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — The Rainy Day Company</title>
+  <meta name="description" content="Terms of Service for Libations and other apps by The Rainy Day Company." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161e28;
+      --border:    rgba(255,255,255,0.07);
+      --amber:     #c8913a;
+      --gold:      #e8c470;
+      --text:      #e8e0d4;
+      --muted:     #8a8078;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    nav {
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--text); }
+
+    .doc-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .doc-header {
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+
+    .doc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .doc-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text);
+      margin: 2.75rem 0 0.9rem;
+      padding-top: 2.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    h2:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin: 1.75rem 0 0.5rem;
+    }
+
+    p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+
+    p strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    ul, ol {
+      margin: 0.75rem 0 1.1rem 1.5rem;
+    }
+
+    li {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232,196,112,0.3);
+      transition: border-color 0.2s;
+    }
+
+    a:hover { border-color: rgba(232,196,112,0.7); }
+
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      border-radius: 2px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+    }
+
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0 1.5rem;
+      font-size: 0.88rem;
+    }
+
+    .pricing-table th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-table td {
+      padding: 0.7rem 1rem;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      vertical-align: top;
+    }
+
+    .pricing-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .pricing-table td:first-child {
+      color: var(--text);
+      width: 30%;
+    }
+
+    footer {
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(138,128,120,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">The Rainy Day Co.</a>
+    <a class="nav-back" href="index.html">← Back</a>
+  </nav>
+
+  <div class="doc-wrap">
+
+    <div class="doc-header">
+      <p class="doc-label">Legal</p>
+      <h1 class="doc-title">Terms of Service</h1>
+      <p class="doc-meta">Effective Date: February 26, 2026 &nbsp;·&nbsp; Last Updated: February 26, 2026</p>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Plain English summary:</strong> Use the app responsibly, don't do anything illegal, and understand that AI recommendations are for fun — not professional advice. If you subscribe, you can cancel anytime and you won't be charged for the next period.</p>
+    </div>
+
+    <h2>1. Acceptance of Terms</h2>
+    <p>These Terms of Service ("Terms") govern your access to and use of the <strong>Libations</strong> app and website, and any other apps or services ("Services") offered by <strong>The Rainy Day Company</strong> ("Company," "we," "us," or "our").</p>
+    <p>By creating an account or using the Services, you agree to these Terms. If you do not agree, please do not use the Services.</p>
+    <p>You must be at least <strong>13 years old</strong> (or the minimum age of digital consent in your country) to use the Services. By using the Services, you represent that you meet this age requirement.</p>
+
+    <h2>2. Description of Services</h2>
+    <p>Libations is a personal drink journal and AI recommendation app. It allows you to:</p>
+    <ul>
+      <li>Track drinks you've tried, with ratings, notes, and photos</li>
+      <li>Maintain a wish list of drinks you want to try</li>
+      <li>Get personalized drink recommendations powered by AI</li>
+      <li>Share recommendations with other users (by sharing your profile)</li>
+    </ul>
+    <p>Features and functionality may change over time. We reserve the right to add, modify, or remove features at any time, with or without notice.</p>
+
+    <h2>3. Accounts</h2>
+    <p>You must create an account to use most features. You are responsible for maintaining the confidentiality of your login credentials and for all activity that occurs under your account.</p>
+    <p>You agree to provide accurate information when creating your account and to keep it up to date. We reserve the right to suspend or terminate accounts that violate these Terms or that have been inactive for an extended period.</p>
+    <p>You may not create an account on behalf of another person without their consent, or use automated means to create accounts.</p>
+
+    <h2>4. Subscription Plans &amp; Billing</h2>
+
+    <h3>Free Tier</h3>
+    <p>The free tier of Libations includes core features including your drink library and a limited number of AI-powered recommendations per month. Limits may be adjusted at our discretion with reasonable notice.</p>
+
+    <h3>Premium Subscription</h3>
+    <p>Premium subscriptions provide unlimited AI recommendations and may include additional features as they are developed.</p>
+
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th>Plan</th>
+          <th>Price</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monthly</td>
+          <td>$2.99 / month</td>
+          <td>Billed monthly. Cancel anytime.</td>
+        </tr>
+        <tr>
+          <td>Annual</td>
+          <td>$29.99 / year</td>
+          <td>Billed annually. Equivalent to ~$2.50/month.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Apple In-App Purchases</h3>
+    <p>Subscriptions purchased through the iOS App Store are billed and managed by Apple. Payment is charged to your Apple ID account. Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current billing period. To manage or cancel, go to <strong>Settings → Apple ID → Subscriptions</strong> on your device. We do not handle billing or refunds for App Store purchases — those are governed by <a href="https://www.apple.com/legal/internet-services/itunes/us/terms.html">Apple's Terms of Service</a>.</p>
+
+    <h3>Cancellation</h3>
+    <p>You may cancel your subscription at any time. Cancellation takes effect at the end of the current billing period — you retain access to premium features until then. We do not offer partial refunds for unused subscription time, except where required by law.</p>
+
+    <h3>Price Changes</h3>
+    <p>We may change subscription prices with at least 30 days' prior notice. Price changes take effect on your next renewal date.</p>
+
+    <h2>5. Acceptable Use</h2>
+    <p>You agree to use the Services only for lawful purposes and in accordance with these Terms. You may not:</p>
+    <ul>
+      <li>Use the Services in any way that violates applicable law or regulation</li>
+      <li>Attempt to gain unauthorized access to any part of the Services or its infrastructure</li>
+      <li>Upload content that is defamatory, obscene, or infringes on a third party's intellectual property rights</li>
+      <li>Use automated scripts, bots, or scraping tools to access the Services</li>
+      <li>Reverse engineer, decompile, or attempt to extract source code from the Services</li>
+      <li>Abuse the AI recommendation system by submitting misleading or inappropriate content</li>
+      <li>Impersonate any person or entity, or misrepresent your affiliation with any person or entity</li>
+    </ul>
+
+    <h2>6. User Content</h2>
+    <p>You retain ownership of all content you submit to the Services, including drink entries, ratings, notes, and photos ("User Content").</p>
+    <p>By submitting User Content, you grant us a limited, non-exclusive, royalty-free license to store, display, and process your content solely as necessary to provide the Services to you. We do not claim ownership of your content and do not share it publicly without your consent.</p>
+    <p>You are responsible for ensuring that any User Content you submit does not violate the rights of third parties or applicable law.</p>
+
+    <h2>7. AI Recommendations — Important Disclaimer</h2>
+    <div class="highlight-box">
+      <p><strong>AI recommendations are for entertainment and personal guidance only.</strong> They are not professional advice of any kind — not medical, dietary, financial, or otherwise. Always drink responsibly and in accordance with the laws of your jurisdiction. The Company is not responsible for any decisions you make based on AI-generated recommendations.</p>
+    </div>
+    <p>AI recommendations are generated by a third-party AI model (Anthropic's Claude). While we work to provide high-quality suggestions tailored to your profile, we make no guarantee that any recommendation will be accurate, available, or suitable for your individual circumstances.</p>
+
+    <h2>8. Intellectual Property</h2>
+    <p>The Services, including their design, code, branding, and non-user-generated content, are the intellectual property of The Rainy Day Company and are protected by applicable copyright, trademark, and other laws. You may not use our trademarks, logos, or brand assets without our written permission.</p>
+    <p>Nothing in these Terms grants you any ownership interest in the Services beyond the limited right to use them as described herein.</p>
+
+    <h2>9. Disclaimer of Warranties</h2>
+    <p>The Services are provided <strong>"as is" and "as available"</strong> without warranties of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose, or non-infringement. We do not warrant that the Services will be uninterrupted, error-free, or free of harmful components.</p>
+
+    <h2>10. Limitation of Liability</h2>
+    <p>To the fullest extent permitted by applicable law, The Rainy Day Company shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of data or profits, arising from your use of or inability to use the Services.</p>
+    <p>Our total liability to you for any claims arising from these Terms or the Services shall not exceed the amount you paid us in the 12 months preceding the claim, or $50, whichever is greater.</p>
+    <p>Some jurisdictions do not allow limitations on implied warranties or exclusions of certain damages, so the above limitations may not apply to you.</p>
+
+    <h2>11. Termination</h2>
+    <p>You may stop using the Services and delete your account at any time by contacting us at <a href="mailto:greg@therainyday.co">greg@therainyday.co</a>.</p>
+    <p>We reserve the right to suspend or terminate your access to the Services, with or without notice, if we believe you have violated these Terms, or for any other reason in our sole discretion. If we terminate your account without cause, we will provide a prorated refund of any prepaid subscription fees.</p>
+
+    <h2>12. Changes to These Terms</h2>
+    <p>We may update these Terms from time to time. We will notify you of material changes by email or through a notice in the app at least 14 days before the changes take effect. Your continued use of the Services after the effective date of the changes constitutes acceptance of the new Terms.</p>
+    <p>If you do not agree to the updated Terms, you must stop using the Services and may request account deletion.</p>
+
+    <h2>13. Governing Law</h2>
+    <p>These Terms are governed by the laws of the <strong>State of Washington, United States</strong>, without regard to conflict-of-law principles. Any disputes arising from these Terms shall be resolved in the state or federal courts located in Washington State, and you consent to the exclusive jurisdiction of those courts.</p>
+
+    <h2>14. Contact Us</h2>
+    <p>Questions about these Terms? We're easy to reach:</p>
+    <p>
+      <strong>The Rainy Day Company</strong><br />
+      <a href="mailto:greg@therainyday.co">greg@therainyday.co</a><br />
+      <a href="https://therainyday.co">therainyday.co</a>
+    </p>
+
+  </div>
+
+  <footer>
+    <a href="index.html" style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--muted);text-decoration:none;">The Rainy Day Company</a>
+    <ul class="footer-links">
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+      <li><a href="mailto:greg@therainyday.co">Contact</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 The Rainy Day Company.</p>
+  </footer>
+
+</body>
+</html>
