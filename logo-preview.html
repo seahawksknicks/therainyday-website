@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logo Preview — The Rainy Day Company</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; font-weight: 300; background: #f5f2ee; }
+
+    .page { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400;
+         color: #333; margin-bottom: 0.25rem; }
+    .sub { font-size: 0.82rem; color: #999; margin-bottom: 3rem; }
+
+    .swatch {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 3rem 2rem;
+      border-radius: 6px;
+      gap: 2.5rem;
+    }
+
+    .swatch-light { background: #ffffff; border: 1px solid #e8e4de; }
+    .swatch-dark  { background: #0d1117; }
+    .swatch-email { background: #f0ede8; border: 1px solid #e0dcd6; }
+
+    .size-row { display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; justify-content: center; }
+    .size-label { font-size: 0.65rem; color: #888; letter-spacing: 0.1em; margin-top: 0.5rem; text-align: center; }
+    .card-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+                  color: #888; margin-bottom: 0.75rem; }
+    .section-gap { margin-top: 2.5rem; }
+
+    /* Logo component */
+    .logo-inline {
+      display: flex;
+      align-items: center;
+    }
+    .logo-drop { flex-shrink: 0; }
+    .logo-rule { flex-shrink: 0; opacity: 0.5; background: #c8913a; }
+    .logo-text { display: flex; flex-direction: column; justify-content: center; }
+
+    /* "The Rainy Day" — large italic serif — PRIMARY */
+    .logo-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    /* "COMPANY" — tiny spaced caps — secondary */
+    .logo-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    /* Sizes */
+    .logo-xl { --drop-w:42px; --drop-h:54px; --gap:14px; --rule-h:44px; --name:24px; --eye:10px; --text-gap:5px; }
+    .logo-md { --drop-w:30px; --drop-h:38px; --gap:10px; --rule-h:30px; --name:17px; --eye:7.5px; --text-gap:4px; }
+    .logo-sm { --drop-w:21px; --drop-h:27px; --gap:7px;  --rule-h:22px; --name:12px; --eye:6px; --text-gap:3px; }
+
+    .logo-inline { gap: var(--gap); }
+    .logo-rule   { width: 1px; height: var(--rule-h); }
+    .logo-text   { gap: var(--text-gap); }
+    .logo-name   { font-size: var(--name); }
+    .logo-eyebrow{ font-size: var(--eye); }
+
+    /* Colors */
+    .logo-on-light .logo-name    { color: #1c1207; }
+    .logo-on-light .logo-eyebrow { color: #6b5a3e; }
+    .logo-on-dark  .logo-name    { color: #e8c470; }
+    .logo-on-dark  .logo-eyebrow { color: #8a7a65; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <h1>The Rainy Day Company — Logo</h1>
+  <p class="sub">Two variants · Three sizes · Preview on all backgrounds</p>
+
+  <!-- Light backgrounds -->
+  <p class="card-label">On light backgrounds</p>
+  <div class="swatch swatch-light">
+    <div class="size-row">
+
+      <div>
+        <div class="logo-inline logo-on-light logo-xl">
+          <svg class="logo-drop" width="42" height="54" viewBox="0 0 42 54">
+            <path d="M21,4 C31,17 36,24 36,35 A15,15 0 0,1 6,35 C6,24 11,17 21,4 Z" fill="#c8913a"/>
+            <path d="M17,10 C19,16 20,20 20,26 A4,4 0 0,1 13,26 C13,21 15,16 17,10 Z" fill="rgba(255,255,255,0.2)"/>
+          </svg>
+          <div class="logo-rule"></div>
+          <div class="logo-text">
+            <span class="logo-name">The Rainy Day</span>
+            <span class="logo-eyebrow">Company</span>
+          </div>
+        </div>
+        <p class="size-label">Large</p>
+      </div>
+
+      <div>
+        <div class="logo-inline logo-on-light logo-md">
+          <svg class="logo-drop" width="30" height="38" viewBox="0 0 30 38">
+            <path d="M15,3 C22,13 26,18 26,25 A11,11 0 0,1 4,25 C4,18 8,13 15,3 Z" fill="#c8913a"/>
+            <path d="M12,8 C14,12 14,15 14,19 A3,3 0 0,1 9,19 C9,15 10,11 12,8 Z" fill="rgba(255,255,255,0.2)"/>
+          </svg>
+          <div class="logo-rule"></div>
+          <div class="logo-text">
+            <span class="logo-name">The Rainy Day</span>
+            <span class="logo-eyebrow">Company</span>
+          </div>
+        </div>
+        <p class="size-label">Medium</p>
+      </div>
+
+      <div>
+        <div class="logo-inline logo-on-light logo-sm">
+          <svg class="logo-drop" width="21" height="27" viewBox="0 0 21 27">
+            <path d="M10.5,2 C15,9 18,13 18,17 A7.5,7.5 0 0,1 3,17 C3,13 6,9 10.5,2 Z" fill="#c8913a"/>
+          </svg>
+          <div class="logo-rule"></div>
+          <div class="logo-text">
+            <span class="logo-name">The Rainy Day</span>
+            <span class="logo-eyebrow">Company</span>
+          </div>
+        </div>
+        <p class="size-label">Small</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Dark backgrounds -->
+  <p class="card-label section-gap">On dark backgrounds</p>
+  <div class="swatch swatch-dark">
+    <div class="size-row">
+
+      <div>
+        <div class="logo-inline logo-on-dark logo-xl">
+          <svg class="logo-drop" width="42" height="54" viewBox="0 0 42 54">
+            <path d="M21,4 C31,17 36,24 36,35 A15,15 0 0,1 6,35 C6,24 11,17 21,4 Z" fill="#c8913a"/>
+            <path d="M17,10 C19,16 20,20 20,26 A4,4 0 0,1 13,26 C13,21 15,16 17,10 Z" fill="rgba(255,255,255,0.2)"/>
+          </svg>
+          <div class="logo-rule"></div>
+          <div class="logo-text">
+            <span class="logo-name">The Rainy Day</span>
+            <span class="logo-eyebrow">Company</span>
+          </div>
+        </div>
+        <p class="size-label" style="color:#555">Large</p>
+      </div>
+
+      <div>
+        <div class="logo-inline logo-on-dark logo-md">
+          <svg class="logo-drop" width="30" height="38" viewBox="0 0 30 38">
+            <path d="M15,3 C22,13 26,18 26,25 A11,11 0 0,1 4,25 C4,18 8,13 15,3 Z" fill="#c8913a"/>
+            <path d="M12,8 C14,12 14,15 14,19 A3,3 0 0,1 9,19 C9,15 10,11 12,8 Z" fill="rgba(255,255,255,0.2)"/>
+          </svg>
+          <div class="logo-rule"></div>
+          <div class="logo-text">
+            <span class="logo-name">The Rainy Day</span>
+            <span class="logo-eyebrow">Company</span>
+          </div>
+        </div>
+        <p class="size-label" style="color:#555">Medium</p>
+      </div>
+
+      <div>
+        <div class="logo-inline logo-on-dark logo-sm">
+          <svg class="logo-drop" width="21" height="27" viewBox="0 0 21 27">
+            <path d="M10.5,2 C15,9 18,13 18,17 A7.5,7.5 0 0,1 3,17 C3,13 6,9 10.5,2 Z" fill="#c8913a"/>
+          </svg>
+          <div class="logo-rule"></div>
+          <div class="logo-text">
+            <span class="logo-name">The Rainy Day</span>
+            <span class="logo-eyebrow">Company</span>
+          </div>
+        </div>
+        <p class="size-label" style="color:#555">Small</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Email signature -->
+  <p class="card-label section-gap">Email signature preview</p>
+  <div class="swatch swatch-email" style="align-items:flex-start; padding:2rem;">
+    <div style="font-family:'DM Sans',sans-serif; font-size:14px; color:#333; line-height:1.6;">
+      <div class="logo-inline logo-on-light logo-md" style="margin-bottom:1rem;">
+        <svg class="logo-drop" width="30" height="38" viewBox="0 0 30 38">
+          <path d="M15,3 C22,13 26,18 26,25 A11,11 0 0,1 4,25 C4,18 8,13 15,3 Z" fill="#c8913a"/>
+          <path d="M12,8 C14,12 14,15 14,19 A3,3 0 0,1 9,19 C9,15 10,11 12,8 Z" fill="rgba(255,255,255,0.2)"/>
+        </svg>
+        <div class="logo-rule" style="height:30px;"></div>
+        <div class="logo-text" style="gap:4px;">
+          <span class="logo-name" style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:20px;color:#1c1207;">The Rainy Day</span>
+          <span class="logo-eyebrow" style="font-family:'DM Sans',sans-serif;font-size:6px;letter-spacing:0.28em;text-transform:uppercase;color:#6b5a3e;">Company</span>
+        </div>
+      </div>
+      <div style="border-top:1px solid #ddd; padding-top:0.75rem; color:#555; font-size:13px;">
+        <strong style="color:#333;">Greg Lubetkin</strong><br/>
+        Founder, The Rainy Day Company<br/>
+        <a href="mailto:contact@therainyday.co" style="color:#c8913a; text-decoration:none;">contact@therainyday.co</a>
+        &nbsp;·&nbsp;
+        <a href="https://therainyday.co" style="color:#c8913a; text-decoration:none;">therainyday.co</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

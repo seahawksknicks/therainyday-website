@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 56" width="230" height="56" role="img" aria-label="The Rainy Day Company">
+
+  <!-- Raindrop -->
+  <path d="M20,6 C29,17 33,23 33,32 A13,13 0 0,1 7,32 C7,23 11,17 20,6 Z" fill="#c8913a"/>
+  <path d="M16,12 C18,17 19,20 19,24 A3.5,3.5 0 0,1 12,24 C12,20 14,16 16,12 Z" fill="rgba(255,255,255,0.2)"/>
+
+  <!-- Vertical rule -->
+  <line x1="48" y1="12" x2="48" y2="44" stroke="#c8913a" stroke-width="0.75" opacity="0.5"/>
+
+  <!-- The Rainy Day — large italic gold -->
+  <text x="61" y="36"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="24"
+        fill="#e8c470"
+        font-style="italic"
+        font-weight="400">The Rainy Day</text>
+
+  <!-- COMPANY — small spaced caps muted -->
+  <text x="63" y="48"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="7"
+        fill="#6b7a65"
+        letter-spacing="3.5"
+        font-weight="400">COMPANY</text>
+
+</svg>
