@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libations — Shared Drink</title>
+
+  <!-- Open Graph tags for iMessage / social previews -->
+  <meta property="og:title" content="Check out this drink on Libations" />
+  <meta property="og:description" content="Tap to view and save this drink in the Libations app" />
+  <meta property="og:image" content="https://www.therainyday.co/libations-icon.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.therainyday.co/drink.html" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Check out this drink on Libations" />
+  <meta name="twitter:description" content="Tap to view and save this drink in the Libations app" />
+  <meta name="twitter:image" content="https://www.therainyday.co/libations-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161e28;
+      --border: rgba(255,255,255,0.07);
+      --amber: #c8913a;
+      --text: #e8e0d4;
+      --muted: #8a8078;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(200, 145, 58, 0.2);
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--amber);
+      opacity: 0.8;
+      margin-bottom: 12px;
+    }
+
+    .divider {
+      width: 60%;
+      height: 1px;
+      background: rgba(200, 145, 58, 0.25);
+      margin: 0 auto 20px;
+    }
+
+    .drink-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .drink-detail {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .open-btn {
+      display: inline-block;
+      background: var(--amber);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .open-btn:hover { opacity: 0.9; }
+
+    .fallback {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--muted);
+      opacity: 0.6;
+    }
+
+    .loading {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 32px;
+      font-size: 12px;
+      color: var(--muted);
+      opacity: 0.4;
+    }
+
+    .footer a {
+      color: var(--amber);
+      text-decoration: none;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="drink-card">
+    <div class="loading" id="loading">Loading drink...</div>
+
+    <div id="drink-content" style="display: none;">
+      <div class="brand">Libations</div>
+      <div class="divider"></div>
+      <div class="drink-name" id="drink-name"></div>
+      <div class="drink-detail" id="drink-detail"></div>
+      <a class="open-btn" id="open-btn" href="#">Open in Libations</a>
+      <div class="fallback">Don't have the app? Coming soon to the App Store.</div>
+    </div>
+
+    <div id="error-content" style="display: none;">
+      <div class="brand">Libations</div>
+      <div class="divider"></div>
+      <div class="drink-name">Drink not found</div>
+      <div class="drink-detail">This shared drink may have expired or the link is invalid.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="https://www.therainyday.co">The Rainy Day Company</a>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://oyerthppmxvcgtldljwi.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_ZgFIAFshfU0qsCd8McuJAg_QsWRZMDj';
+
+    async function loadDrink() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+
+      if (!id) {
+        showError();
+        return;
+      }
+
+      try {
+        const res = await fetch(
+          `${SUPABASE_URL}/rest/v1/shared_drinks?id=eq.${id}&select=*&limit=1`,
+          {
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+            }
+          }
+        );
+
+        const data = await res.json();
+
+        if (!data || data.length === 0) {
+          showError();
+          return;
+        }
+
+        const drink = data[0];
+        showDrink(drink);
+
+      } catch (err) {
+        console.error('Error loading drink:', err);
+        showError();
+      }
+    }
+
+    function showDrink(drink) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('drink-content').style.display = 'block';
+
+      // Set drink name
+      document.getElementById('drink-name').textContent = drink.drink_name;
+
+      // Build detail line
+      const parts = [];
+      if (drink.brewery) parts.push(drink.brewery);
+      else if (drink.winery) parts.push(drink.winery);
+      else if (drink.distillery) parts.push(drink.distillery);
+      parts.push(drink.category);
+      document.getElementById('drink-detail').textContent = parts.join(' · ');
+
+      // Update page title
+      document.title = `${drink.drink_name} — Libations`;
+
+      // Build deep link
+      const deepLink = `libations://drink?d=${drink.encoded_payload}`;
+      document.getElementById('open-btn').href = deepLink;
+
+      // Auto-redirect on mobile (give a moment for the page to render)
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        setTimeout(() => {
+          window.location.href = deepLink;
+        }, 300);
+      }
+    }
+
+    function showError() {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error-content').style.display = 'block';
+    }
+
+    loadDrink();
+  </script>
+
+</body>
+</html>
