@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Logo Options 2 — The Rainy Day Company</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: #f5f2ed; padding: 3rem 2rem; }
+    h1 { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #999; margin-bottom: 3rem; }
+    .grid { display: flex; flex-direction: column; gap: 0; }
+    .option { display: flex; align-items: stretch; border-bottom: 1px solid #e0dbd4; }
+    .option:last-child { border-bottom: none; }
+    .num { width: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+           font-size: 10px; letter-spacing: 0.15em; color: #bbb; padding: 2rem 0; }
+    .light { background: #ffffff; flex: 1; display: flex; align-items: center; justify-content: center; padding: 2.5rem 3rem; }
+    .dark  { background: #1a1612; flex: 1; display: flex; align-items: center; justify-content: center; padding: 2.5rem 3rem; }
+    .divider { width: 1px; background: #e0dbd4; }
+  </style>
+</head>
+<body>
+<h1>Logo Options — Non-Traditional</h1>
+<div class="grid">
+
+  <!-- ── OPTION 6: Raindrop as the dot on the i in Rainy ── -->
+  <div class="option">
+    <div class="num">6</div>
+    <div class="light">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" width="280" height="60">
+        <!-- "the" small upright -->
+        <text x="0" y="22" font-family="Georgia,serif" font-size="10" fill="#999999" letter-spacing="2">the</text>
+        <!-- "Ra" -->
+        <text x="0" y="46" font-family="Georgia,serif" font-size="34" fill="#1c1207" font-style="italic">Ra</text>
+        <!-- "i" without dot -->
+        <text x="44" y="46" font-family="Georgia,serif" font-size="34" fill="#1c1207" font-style="italic">&#x131;</text>
+        <!-- Raindrop as the dot -->
+        <path d="M50,4 C53,9 55,12 55,16 A5,5 0 0,1 45,16 C45,12 47,9 50,4 Z" fill="#c8913a"/>
+        <!-- "ny Day" -->
+        <text x="58" y="46" font-family="Georgia,serif" font-size="34" fill="#1c1207" font-style="italic">ny Day</text>
+        <!-- "COMPANY" -->
+        <text x="1" y="58" font-family="Arial,sans-serif" font-size="6" fill="#6b5a3e" letter-spacing="5.5">COMPANY</text>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" width="280" height="60">
+        <text x="0" y="22" font-family="Georgia,serif" font-size="10" fill="#6b5a3e" letter-spacing="2">the</text>
+        <text x="0" y="46" font-family="Georgia,serif" font-size="34" fill="#e8c470" font-style="italic">Ra</text>
+        <text x="44" y="46" font-family="Georgia,serif" font-size="34" fill="#e8c470" font-style="italic">&#x131;</text>
+        <path d="M50,4 C53,9 55,12 55,16 A5,5 0 0,1 45,16 C45,12 47,9 50,4 Z" fill="#e8c470"/>
+        <text x="58" y="46" font-family="Georgia,serif" font-size="34" fill="#e8c470" font-style="italic">ny Day</text>
+        <text x="1" y="58" font-family="Arial,sans-serif" font-size="6" fill="#a08860" letter-spacing="5.5">COMPANY</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── OPTION 7: Circular badge / seal ── -->
+  <div class="option">
+    <div class="num">7</div>
+    <div class="light">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100" height="100">
+        <!-- Outer ring -->
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#c8913a" stroke-width="1"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="#c8913a" stroke-width="0.4" opacity="0.5"/>
+        <!-- Text on arc: THE RAINY DAY COMPANY -->
+        <path id="topArc" d="M 10,60 A 50,50 0 0,1 110,60" fill="none"/>
+        <path id="botArc" d="M 14,68 A 50,50 0 0,0 106,68" fill="none"/>
+        <text font-family="Arial,sans-serif" font-size="8" fill="#6b5a3e" letter-spacing="3">
+          <textPath href="#topArc" startOffset="8%">THE RAINY DAY COMPANY</textPath>
+        </text>
+        <!-- Center raindrop -->
+        <path d="M60,34 C67,44 71,50 71,58 A11,11 0 0,1 49,58 C49,50 53,44 60,34 Z" fill="#c8913a"/>
+        <path d="M57,39 C58,43 59,46 59,50 A3,3 0 0,1 53,50 C53,46 55,42 57,39 Z" fill="rgba(255,255,255,0.2)"/>
+        <!-- Est. year -->
+        <text x="60" y="84" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#c8913a" letter-spacing="2">EST. 2010</text>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100" height="100">
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#e8c470" stroke-width="1"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="#e8c470" stroke-width="0.4" opacity="0.4"/>
+        <path id="topArcD" d="M 10,60 A 50,50 0 0,1 110,60" fill="none"/>
+        <text font-family="Arial,sans-serif" font-size="8" fill="#a08860" letter-spacing="3">
+          <textPath href="#topArcD" startOffset="8%">THE RAINY DAY COMPANY</textPath>
+        </text>
+        <path d="M60,34 C67,44 71,50 71,58 A11,11 0 0,1 49,58 C49,50 53,44 60,34 Z" fill="#e8c470"/>
+        <path d="M57,39 C58,43 59,46 59,50 A3,3 0 0,1 53,50 C53,46 55,42 57,39 Z" fill="rgba(255,255,255,0.15)"/>
+        <text x="60" y="84" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#e8c470" letter-spacing="2">EST. 2010</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── OPTION 8: Diagonal rain lines through text ── -->
+  <div class="option">
+    <div class="num">8</div>
+    <div class="light">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" width="260" height="64">
+        <defs>
+          <clipPath id="textClip">
+            <text x="0" y="44" font-family="Georgia,serif" font-size="42" font-style="italic">The Rainy Day</text>
+          </clipPath>
+        </defs>
+        <!-- Rain lines clipped to text shape -->
+        <g clip-path="url(#textClip)">
+          <rect width="260" height="64" fill="#e8ddd0"/>
+          <line x1="0"   y1="0"  x2="-20" y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="18"  y1="0"  x2="-2"  y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="36"  y1="0"  x2="16"  y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="54"  y1="0"  x2="34"  y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="72"  y1="0"  x2="52"  y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="90"  y1="0"  x2="70"  y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="108" y1="0"  x2="88"  y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="126" y1="0"  x2="106" y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="144" y1="0"  x2="124" y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="162" y1="0"  x2="142" y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="180" y1="0"  x2="160" y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="198" y1="0"  x2="178" y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="216" y1="0"  x2="196" y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="234" y1="0"  x2="214" y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+          <line x1="252" y1="0"  x2="232" y2="64" stroke="#c8913a" stroke-width="4" opacity="0.35"/>
+        </g>
+        <!-- Text outline on top -->
+        <text x="0" y="44" font-family="Georgia,serif" font-size="42" font-style="italic"
+              fill="none" stroke="#1c1207" stroke-width="0.5">The Rainy Day</text>
+        <text x="2" y="58" font-family="Arial,sans-serif" font-size="7" fill="#6b5a3e" letter-spacing="5.5">COMPANY</text>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" width="260" height="64">
+        <defs>
+          <clipPath id="textClipD">
+            <text x="0" y="44" font-family="Georgia,serif" font-size="42" font-style="italic">The Rainy Day</text>
+          </clipPath>
+        </defs>
+        <g clip-path="url(#textClipD)">
+          <rect width="260" height="64" fill="#3a2e1e"/>
+          <line x1="0"   y1="0"  x2="-20" y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="18"  y1="0"  x2="-2"  y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="36"  y1="0"  x2="16"  y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="54"  y1="0"  x2="34"  y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="72"  y1="0"  x2="52"  y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="90"  y1="0"  x2="70"  y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="108" y1="0"  x2="88"  y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="126" y1="0"  x2="106" y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="144" y1="0"  x2="124" y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="162" y1="0"  x2="142" y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="180" y1="0"  x2="160" y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="198" y1="0"  x2="178" y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="216" y1="0"  x2="196" y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="234" y1="0"  x2="214" y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+          <line x1="252" y1="0"  x2="232" y2="64" stroke="#e8c470" stroke-width="4" opacity="0.3"/>
+        </g>
+        <text x="0" y="44" font-family="Georgia,serif" font-size="42" font-style="italic"
+              fill="none" stroke="#e8c470" stroke-width="0.5">The Rainy Day</text>
+        <text x="2" y="58" font-family="Arial,sans-serif" font-size="7" fill="#a08860" letter-spacing="5.5">COMPANY</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── OPTION 9: Stacked hierarchy — THE tiny, RAINY DAY huge, COMPANY small ── -->
+  <div class="option">
+    <div class="num">9</div>
+    <div class="light">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 72" width="220" height="72">
+        <!-- THE — tiny spaced caps -->
+        <text x="3" y="14" font-family="Arial,sans-serif" font-size="7" fill="#c8913a" letter-spacing="6">THE</text>
+        <!-- RAINY DAY — large, bold, upright -->
+        <text x="0" y="50" font-family="Georgia,serif" font-size="40" fill="#1c1207" font-weight="400" font-style="italic">Rainy Day</text>
+        <!-- Amber underline -->
+        <line x1="0" y1="56" x2="218" y2="56" stroke="#c8913a" stroke-width="1.5"/>
+        <!-- COMPANY — right aligned, small -->
+        <text x="218" y="68" text-anchor="end" font-family="Arial,sans-serif" font-size="6.5" fill="#6b5a3e" letter-spacing="4">COMPANY</text>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 72" width="220" height="72">
+        <text x="3" y="14" font-family="Arial,sans-serif" font-size="7" fill="#e8c470" letter-spacing="6">THE</text>
+        <text x="0" y="50" font-family="Georgia,serif" font-size="40" fill="#e8c470" font-weight="400" font-style="italic">Rainy Day</text>
+        <line x1="0" y1="56" x2="218" y2="56" stroke="#e8c470" stroke-width="1.5"/>
+        <text x="218" y="68" text-anchor="end" font-family="Arial,sans-serif" font-size="6.5" fill="#a08860" letter-spacing="4">COMPANY</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── OPTION 10: Window pane with rain drops on glass ── -->
+  <div class="option">
+    <div class="num">10</div>
+    <div class="light">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 60" width="260" height="60">
+        <!-- Window frame icon -->
+        <rect x="2" y="4" width="36" height="52" rx="2" fill="none" stroke="#c8913a" stroke-width="1.5"/>
+        <!-- Window cross -->
+        <line x1="20" y1="4" x2="20" y2="56" stroke="#c8913a" stroke-width="0.8"/>
+        <line x1="2"  y1="30" x2="38" y2="30" stroke="#c8913a" stroke-width="0.8"/>
+        <!-- Rain drops on glass (teardrop shapes) -->
+        <path d="M10,10 C11,13 12,14 12,16 A2,2 0 0,1 8,16 C8,14 9,13 10,10 Z" fill="#c8913a" opacity="0.6"/>
+        <path d="M28,18 C29,21 30,22 30,24 A2,2 0 0,1 26,24 C26,22 27,21 28,18 Z" fill="#c8913a" opacity="0.5"/>
+        <path d="M14,36 C15,39 16,40 16,42 A2,2 0 0,1 12,42 C12,40 13,39 14,36 Z" fill="#c8913a" opacity="0.7"/>
+        <path d="M26,40 C27,43 28,44 28,46 A2,2 0 0,1 24,46 C24,44 25,43 26,40 Z" fill="#c8913a" opacity="0.45"/>
+        <path d="M8,44 C9,46 10,47 10,48 A1.5,1.5 0 0,1 6,48 C6,47 7,46 8,44 Z" fill="#c8913a" opacity="0.5"/>
+        <!-- Vertical rule -->
+        <line x1="50" y1="12" x2="50" y2="48" stroke="#c8913a" stroke-width="0.75" opacity="0.4"/>
+        <!-- Text -->
+        <text x="62" y="33" font-family="Georgia,serif" font-size="22" fill="#1c1207" font-style="italic">The Rainy Day</text>
+        <text x="63" y="46" font-family="Arial,sans-serif" font-size="6.5" fill="#6b5a3e" letter-spacing="4">COMPANY</text>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 60" width="260" height="60">
+        <rect x="2" y="4" width="36" height="52" rx="2" fill="none" stroke="#e8c470" stroke-width="1.5"/>
+        <line x1="20" y1="4" x2="20" y2="56" stroke="#e8c470" stroke-width="0.8"/>
+        <line x1="2"  y1="30" x2="38" y2="30" stroke="#e8c470" stroke-width="0.8"/>
+        <path d="M10,10 C11,13 12,14 12,16 A2,2 0 0,1 8,16 C8,14 9,13 10,10 Z" fill="#e8c470" opacity="0.6"/>
+        <path d="M28,18 C29,21 30,22 30,24 A2,2 0 0,1 26,24 C26,22 27,21 28,18 Z" fill="#e8c470" opacity="0.5"/>
+        <path d="M14,36 C15,39 16,40 16,42 A2,2 0 0,1 12,42 C12,40 13,39 14,36 Z" fill="#e8c470" opacity="0.7"/>
+        <path d="M26,40 C27,43 28,44 28,46 A2,2 0 0,1 24,46 C24,44 25,43 26,40 Z" fill="#e8c470" opacity="0.45"/>
+        <path d="M8,44 C9,46 10,47 10,48 A1.5,1.5 0 0,1 6,48 C6,47 7,46 8,44 Z" fill="#e8c470" opacity="0.5"/>
+        <line x1="50" y1="12" x2="50" y2="48" stroke="#e8c470" stroke-width="0.75" opacity="0.35"/>
+        <text x="62" y="33" font-family="Georgia,serif" font-size="22" fill="#e8c470" font-style="italic">The Rainy Day</text>
+        <text x="63" y="46" font-family="Arial,sans-serif" font-size="6.5" fill="#a08860" letter-spacing="4">COMPANY</text>
+      </svg>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Signature — contact@therainyday.co</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #f0ebe3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+  }
+
+  /* ── Preview wrapper ── */
+  .preview-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 40px;
+    gap: 16px;
+  }
+  .preview-section.light { background: #f7f3ed; }
+  .preview-section.dark  { background: #1a1816; }
+
+  .preview-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.35;
+    margin-bottom: 8px;
+  }
+  .preview-section.light .preview-label { color: #1c1207; }
+  .preview-section.dark  .preview-label { color: #f7f3ed; }
+
+  /* ── Divider between previews ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,145,58,0.4), transparent);
+  }
+
+  /* ─────────────────────────────────────
+     THE ACTUAL SIGNATURE STYLES
+     (these are what go into Neo)
+  ───────────────────────────────────── */
+  .sig-wrap {
+    display: inline-block;
+  }
+
+  /* Name — italic serif, personal & warm */
+  .sig-name {
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 500;
+    color: #1c1207;
+    letter-spacing: 0.2px;
+    line-height: 1.2;
+  }
+
+  /* Company — tracked amber caps, the brand stamp */
+  .sig-company {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #c8913a;
+  }
+
+  /* Title — muted, very small, understated */
+  .sig-title {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 8px;
+    font-weight: 400;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #9a8570;
+  }
+
+  /* Thin amber rule separating identity from contact */
+  .sig-rule {
+    border: none;
+    border-top: 1px solid rgba(200,145,58,0.25);
+    margin: 8px 0 7px;
+    width: 100%;
+  }
+
+  /* Contact links */
+  .sig-contact {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 10.5px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+  }
+  .sig-contact a {
+    color: #c8913a;
+    text-decoration: none;
+  }
+
+  /* ── Dark mode overrides (preview + Neo) ── */
+  .preview-section.dark .sig-name    { color: #f0ebe3; }
+  .preview-section.dark .sig-company { color: #d4a55a; }
+  .preview-section.dark .sig-title   { color: rgba(240,235,227,0.45); }
+  .preview-section.dark .sig-rule    { border-top-color: rgba(200,145,58,0.2); }
+  .preview-section.dark .sig-contact a { color: #d4a55a; }
+
+  /* ── Copy section ── */
+  .copy-section {
+    width: 100%;
+    background: #fff;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .copy-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #1c1207;
+    opacity: 0.5;
+  }
+  .code-block {
+    width: 100%;
+    max-width: 640px;
+    background: #faf8f5;
+    border: 1px solid rgba(200,145,58,0.2);
+    border-radius: 8px;
+    padding: 20px 24px;
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.7;
+    color: #6b5a3e;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .instructions {
+    max-width: 640px;
+    width: 100%;
+  }
+  .instructions ol {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: #6b5a3e;
+    line-height: 2;
+    padding-left: 20px;
+  }
+  .instructions strong { color: #1c1207; }
+</style>
+</head>
+<body>
+
+<!-- ── Light mode preview ── -->
+<div class="preview-section light">
+  <div class="preview-label">Light mode</div>
+  <div class="sig-wrap">
+    <div><span class="sig-company">The Rainy Day Company</span></div>
+    <hr class="sig-rule">
+    <div class="sig-contact">
+      <a href="mailto:contact@therainyday.co">contact@therainyday.co</a><br>
+      <a href="https://therainyday.co">therainyday.co</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ── Dark mode preview ── -->
+<div class="preview-section dark">
+  <div class="preview-label">Dark mode</div>
+  <div class="sig-wrap">
+    <div><span class="sig-company">The Rainy Day Company</span></div>
+    <hr class="sig-rule">
+    <div class="sig-contact">
+      <a href="mailto:contact@therainyday.co">contact@therainyday.co</a><br>
+      <a href="https://therainyday.co">therainyday.co</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── Instructions ── -->
+<div class="copy-section">
+  <p class="copy-title">How to install in Neo</p>
+  <div class="instructions">
+    <ol>
+      <li>Open <strong>Neo → Settings → Account → Signature</strong></li>
+      <li>Look for an <strong>HTML / Source</strong> toggle or button</li>
+      <li>Delete everything in the editor and paste the code below</li>
+      <li>Save — you're done</li>
+    </ol>
+  </div>
+  <div class="code-block" id="sigCode">&lt;table cellpadding="0" cellspacing="0" border="0"&gt;
+&lt;tr&gt;&lt;td&gt;
+  &lt;span style="font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:500;letter-spacing:3.5px;text-transform:uppercase;color:#c8913a;"&gt;The Rainy Day Company&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;
+  &lt;hr style="border:none;border-top:1px solid rgba(200,145,58,0.25);margin:8px 0 7px;"&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;
+  &lt;a href="mailto:contact@therainyday.co" style="font-family:Arial,Helvetica,sans-serif;font-size:10.5px;font-weight:300;letter-spacing:0.5px;color:#c8913a;text-decoration:none;display:block;"&gt;contact@therainyday.co&lt;/a&gt;
+  &lt;a href="https://therainyday.co" style="font-family:Arial,Helvetica,sans-serif;font-size:10.5px;font-weight:300;letter-spacing:0.5px;color:#c8913a;text-decoration:none;display:block;margin-top:1px;"&gt;therainyday.co&lt;/a&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</div>
+</div>
+
+</body>
+</html>
