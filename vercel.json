@@ -1,3 +1,6 @@
 {
-  "cleanUrls": true
+  "rewrites": [
+    { "source": "/drink", "destination": "/api/drink" },
+    { "source": "/drink.html", "destination": "/api/drink" }
+  ]
 }
