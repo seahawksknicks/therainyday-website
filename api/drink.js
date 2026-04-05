@@ -50,7 +50,7 @@ export default async function handler(req, res) {
 
   const ogTitle = drinkName;
   const ogUrl = `https://www.therainyday.co/drink?id=${id}`;
-  const ogImage = 'https://www.therainyday.co/libations-icon.png';
+  const ogImage = `https://www.therainyday.co/api/og-card?id=${id}`;
 
   // Build the encoded payload for the client-side JS
   const encodedPayload = drink?.encoded_payload || '';
@@ -74,7 +74,7 @@ export default async function handler(req, res) {
   <meta property="og:site_name" content="Libations">
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(ogTitle)}">
   <meta name="twitter:description" content="${escapeHtml(ogDescription)}">
   <meta name="twitter:image" content="${ogImage}">
