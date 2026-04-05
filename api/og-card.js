@@ -190,47 +190,6 @@ export default async function handler(req) {
             </div>
           ) : null}
 
-          {/* Flavor tags */}
-          {flavorTags.length > 0 ? (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                width: '100%',
-                marginBottom: '16px',
-              }}
-            >
-              <div
-                style={{
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  color: amber,
-                  letterSpacing: '0.5px',
-                  marginBottom: '8px',
-                }}
-              >
-                FLAVOR PROFILE
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {flavorTags.slice(0, 5).map((tag) => (
-                  <div
-                    key={tag}
-                    style={{
-                      fontSize: '12px',
-                      color: amber,
-                      background: 'rgba(200, 145, 58, 0.12)',
-                      border: '1px solid rgba(200, 145, 58, 0.3)',
-                      borderRadius: '12px',
-                      padding: '4px 12px',
-                    }}
-                  >
-                    {tag}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null}
-
           {/* Footer divider */}
           <div
             style={{
