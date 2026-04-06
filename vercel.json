@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/app", "destination": "/libations", "statusCode": 301 }
+  ],
   "rewrites": [
     { "source": "/drink", "destination": "/api/drink" },
     { "source": "/drink.html", "destination": "/api/drink" }
