@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Your Account — The Rainy Day Company</title>
+  <meta name="description" content="How to delete your Libations account and all associated data." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161e28;
+      --border:    rgba(255,255,255,0.07);
+      --amber:     #c8913a;
+      --gold:      #e8c470;
+      --text:      #e8e0d4;
+      --muted:     #8a8078;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    nav {
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--text); }
+
+    .doc-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .doc-header {
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+
+    .doc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .doc-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text);
+      margin: 2.75rem 0 0.9rem;
+      padding-top: 2.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    h2:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin: 1.75rem 0 0.5rem;
+    }
+
+    p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+
+    p strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    ul, ol {
+      margin: 0.75rem 0 1.1rem 1.5rem;
+    }
+
+    li {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232,196,112,0.3);
+      transition: border-color 0.2s;
+    }
+
+    a:hover { border-color: rgba(232,196,112,0.7); }
+
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      border-radius: 2px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2.75rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    footer {
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(138,128,120,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">The Rainy Day Co.</a>
+    <a class="nav-back" href="index.html">← Back</a>
+  </nav>
+
+  <div class="doc-wrap">
+
+    <div class="doc-header">
+      <p class="doc-label">Libations</p>
+      <h1 class="doc-title">Delete Your Account</h1>
+      <p class="doc-meta">Last Updated: April 21, 2026</p>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>The short version:</strong> You can delete your Libations account at any time from inside the app, or by emailing us. All of your personal data is removed within 30 days.</p>
+    </div>
+
+    <h2>Delete from Inside the App</h2>
+    <p>This is the fastest way to delete your account. The option is available on both iOS and Android:</p>
+
+    <ol class="steps">
+      <li>Open the <strong>Libations</strong> app on your device.</li>
+      <li>Sign in to your account if you aren't already.</li>
+      <li>Tap the <strong>Profile</strong> tab at the bottom.</li>
+      <li>Tap <strong>Settings</strong> (gear icon in the top-right).</li>
+      <li>Scroll to the bottom of the screen and tap <strong>Delete Account</strong>.</li>
+      <li>Confirm the action. Your account and all associated data will be deleted immediately.</li>
+    </ol>
+
+    <h2>Delete by Email</h2>
+    <p>If you can no longer sign in to the app — for example, because you lost access to your email address — you can request deletion by contacting us.</p>
+
+    <p>Send an email to <a href="mailto:contact@therainyday.co">contact@therainyday.co</a> from the email address associated with your account, with the subject line <strong>"Delete My Account"</strong>.</p>
+
+    <p>We will process the request within 7 business days. We may ask for additional information to verify you own the account before deleting it.</p>
+
+    <h2>What Gets Deleted</h2>
+    <p>When you delete your account, we permanently remove the following from our systems:</p>
+    <ul>
+      <li>Your email address and display name</li>
+      <li>Your entire drink library, including all ratings, tasting notes, photos, and wish list</li>
+      <li>Your taste profile and preferences</li>
+      <li>Your friend connections</li>
+      <li>Your subscription status on our servers (see note below about Google Play)</li>
+      <li>All authentication tokens and session data</li>
+    </ul>
+
+    <h2>What We Keep</h2>
+    <p>We may retain a small amount of data after your account is deleted, but only where we are required to by law or for a legitimate business reason:</p>
+    <ul>
+      <li><strong>Financial transaction records</strong> — required for tax and accounting purposes. This is limited to the payment amount, date, and an anonymized user ID. We do not retain your email address or personal details here.</li>
+      <li><strong>Anonymized analytics events</strong> — general app usage statistics that are not tied to your identity and cannot be traced back to you.</li>
+    </ul>
+
+    <p>All personal data tied to your identity is deleted or fully anonymized within <strong>30 days</strong> of your account deletion request.</p>
+
+    <h2>Subscriptions</h2>
+    <p>Deleting your account does <strong>not</strong> automatically cancel your active Libations Premium subscription, because subscriptions are managed by Apple or Google, not by us.</p>
+    <p>To cancel your subscription:</p>
+    <ul>
+      <li><strong>iOS:</strong> Settings → [Your Name] → Subscriptions → Libations → Cancel Subscription</li>
+      <li><strong>Android:</strong> Google Play Store → Menu → Subscriptions → Libations → Cancel</li>
+    </ul>
+    <p>We recommend canceling your subscription <em>before</em> deleting your account.</p>
+
+    <h2>Questions?</h2>
+    <p>If you have any questions about account deletion or data retention, email us at <a href="mailto:contact@therainyday.co">contact@therainyday.co</a>. For full details on how we handle your data, see our <a href="privacy.html">Privacy Policy</a>.</p>
+
+  </div>
+
+  <footer>
+    <a class="nav-logo" href="index.html" style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--muted);text-decoration:none;">The Rainy Day Company</a>
+    <ul class="footer-links">
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+      <li><a href="mailto:contact@therainyday.co">Contact</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 The Rainy Day Company.</p>
+  </footer>
+
+</body>
+</html>
