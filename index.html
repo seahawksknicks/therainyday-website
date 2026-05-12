@@ -238,6 +238,33 @@
       transition: border-color 0.3s, box-shadow 0.3s;
     }
 
+    .app-card + .app-card {
+      margin-top: 2.5rem;
+    }
+
+    /* Level Up — alternate visual treatment */
+    .app-visual--levelup {
+      background: linear-gradient(135deg, #15243a 0%, #0f1a2a 55%, #1a2f1a 100%);
+    }
+
+    .app-visual--levelup::before {
+      background: radial-gradient(circle at 50% 55%, rgba(105,160,220,0.14), transparent 65%);
+    }
+
+    .app-badge--soon {
+      color: var(--gold);
+      border-color: rgba(232,196,112,0.4);
+    }
+
+    .btn-disabled {
+      background: rgba(200,145,58,0.18);
+      color: rgba(232,196,112,0.7);
+      cursor: default;
+      pointer-events: none;
+      font-weight: 500;
+      border: 1px solid rgba(200,145,58,0.25);
+    }
+
     .app-card:hover {
       border-color: rgba(200,145,58,0.25);
       box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(200,145,58,0.1);
@@ -500,6 +527,7 @@
       display: flex;
       gap: 1.75rem;
       list-style: none;
+      flex-wrap: wrap;
     }
 
     .footer-links a {
@@ -606,6 +634,35 @@
           </div>
         </div>
       </div>
+
+      <div class="app-card reveal">
+        <div class="app-visual app-visual--levelup">
+          <div class="app-icon-wrap">
+            <img src="levelup-icon.png"
+                 alt="Level Up app icon"
+                 style="width:120px; height:120px; border-radius:26px; display:block; margin:0 auto 1rem; box-shadow:0 12px 40px rgba(0,0,0,0.5); border: 1px solid rgba(200,145,58,0.35); outline: 1px solid rgba(255,255,255,0.06);" />
+            <span class="app-badge app-badge--soon">Coming Soon</span>
+          </div>
+        </div>
+        <div class="app-info">
+          <p class="app-category">Health &amp; Fitness</p>
+          <h3 class="app-name">Level Up</h3>
+          <p class="app-tagline">Train like an athlete.</p>
+          <p class="app-desc">A sports training app for young athletes (ages 12+). Strength, power, speed, endurance, and sport-specific skill drills for basketball, football, soccer, and baseball — wrapped in a daily mission and game-like reward system. No accounts, no ads, no tracking. Just training.</p>
+          <ul class="app-features">
+            <li>Daily Mission, Weekly Challenge, and combo XP rewards</li>
+            <li>30+ bodyweight drills with form cues and safety guidance</li>
+            <li>Sport-specific skill libraries (basketball, football, soccer, baseball)</li>
+            <li>Custom drills you can add yourself</li>
+            <li>Coach Bolt mascot keeps it fun, parent controls keep it appropriate</li>
+            <li>100% on-device — no account, no data leaves your phone</li>
+          </ul>
+          <div class="app-links">
+            <span class="btn btn-disabled">Coming Soon to App Store</span>
+            <a href="mailto:contact@therainyday.co?subject=Level Up Feedback" class="btn btn-ghost">Send Feedback</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -641,7 +698,8 @@
   <footer>
     <a class="footer-logo" href="#">The Rainy Day Company</a>
     <ul class="footer-links">
-      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="privacy.html">Libations Privacy</a></li>
+      <li><a href="levelup-privacy.html">Level Up Privacy</a></li>
       <li><a href="terms.html">Terms of Service</a></li>
       <li><a href="mailto:contact@therainyday.co">Contact</a></li>
     </ul>
