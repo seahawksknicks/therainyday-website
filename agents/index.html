@@ -982,6 +982,228 @@
     .list .left span { color: #b6afa6; font-size: 13px; line-height: 1.55; }
     .list .right { color: var(--muted); font-size: 12px; white-space: nowrap; }
 
+    .control-tower {
+      margin-top: 18px;
+      padding: 22px;
+    }
+
+    .tower-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .tower-summary {
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(240,215,154,0.14);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      display: grid;
+      gap: 14px;
+    }
+
+    .tower-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .status-chip {
+      border-radius: 999px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: #d6cec0;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .status-chip.good { color: #09150d; background: #97efb9; border-color: transparent; font-weight: 700; }
+    .status-chip.warn { color: #1b1205; background: #f0d79a; border-color: transparent; font-weight: 700; }
+    .status-chip.bad { color: #1c0909; background: #ffb0b0; border-color: transparent; font-weight: 700; }
+
+    .tower-headline {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4.3vw, 4.2rem);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+    }
+
+    .tower-copy {
+      margin: 0;
+      max-width: 68ch;
+      color: #c1b7ab;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .kpi .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .kpi .value {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .kpi .sub {
+      margin: 0;
+      color: #b6afa6;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .tower-secondary {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 0.95fr;
+      gap: 16px;
+    }
+
+    .panel-box {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      min-height: 100%;
+    }
+
+    .panel-box h3 {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .stream-list, .feed-list, .decision-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .stream-item, .feed-item, .decision-item {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .stream-item:first-child,
+    .feed-item:first-child,
+    .decision-item:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .stream-top, .feed-top, .decision-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .stream-top strong, .feed-top strong, .decision-top strong {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .stream-top span, .feed-top span, .decision-top span {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .stream-meta, .feed-copy, .decision-copy {
+      margin: 0;
+      color: #c6bfb5;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .progress {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+
+    .progress > i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--amber), var(--gold));
+    }
+
+    .bar-set {
+      display: grid;
+      gap: 10px;
+    }
+
+    .bar-row {
+      display: grid;
+      gap: 6px;
+    }
+
+    .bar-row .bar-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      color: #d6cec0;
+    }
+
+    .bar-row .bar-head span:last-child {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+
+    .bar > i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(127,181,255,0.85), rgba(200,145,58,0.95));
+    }
+
     .footer {
       margin: 18px 0 0;
       padding: 16px 4px 0;
@@ -1014,6 +1236,7 @@
       .org-subgrid.app { grid-template-columns: 1fr; }
       .org-app-groups { grid-template-columns: 1fr; }
       .pm-grid, .expert-grid { grid-template-columns: 1fr; }
+      .tower-grid, .tower-secondary, .kpi-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1030,58 +1253,138 @@
       </div>
       <div class="meta">
 
-        <div class="badge">Last sync: <strong id="sync-time">2026-05-20 07:11 EDT</strong></div>
+        <div class="badge">Last sync: <strong>2026-05-20 12:20 EDT</strong></div>
       </div>
     </header>
 
-    <section class="panel section pm-dashboard">
+    <section class="panel section control-tower">
       <div class="section-head">
         <div>
-          <h2>Project Management Dashboard</h2>
-          <p>Real priorities, real ownership, and a living view of what moves next.</p>
+          <h2>Executive control tower</h2>
+          <p>One page for timing, ownership, token usage, time spent, and the decisions that keep work moving.</p>
         </div>
-        <div class="pill shared">PM / oversight</div>
+        <div class="status-chip good">on track / 3 active streams</div>
       </div>
 
-      <div class="pm-grid">
-        <article class="pm-card">
-          <h3>Libations</h3>
-          <ul class="pm-list">
-            <li><strong>Critical:</strong> fix the Android login issue.</li>
-            <li><strong>Ship:</strong> launch iOS version 2.2.2.</li>
-            <li><strong>Parity:</strong> update Android to match iOS.</li>
-            <li><strong>Partnership:</strong> partner with Liquid Labs.</li>
-          </ul>
-        </article>
-
-        <article class="pm-card">
-          <h3>Overall</h3>
-          <ul class="pm-list">
-            <li><strong>Focus:</strong> workflows and agents.</li>
-            <li><strong>Improve:</strong> review successes and failures, then update the system.</li>
-          </ul>
-          <div class="pm-note">This dashboard should stay active, specific, and tied to live outcomes.</div>
-        </article>
-
-        <article class="pm-card">
-          <h3>Agents keeping things moving</h3>
-          <div class="pm-owners">
-            <span class="pm-owner">Stefon — point of contact</span>
-            <span class="pm-owner">Phillip — Libations</span>
-            <span class="pm-owner">Monica — new work</span>
-            <span class="pm-owner">Arnold — training</span>
-            <span class="pm-owner">Tim — workflows</span>
-            <span class="pm-owner">Socrates — reflection</span>
+      <div class="tower-grid">
+        <article class="tower-summary">
+          <div class="tower-status">
+            <span class="status-chip good">deadline confidence 78%</span>
+            <span class="status-chip warn">2 blockers</span>
+            <span class="status-chip">last updated <time id="sync-time" datetime="2026-05-20T12:20:00-04:00">12:20 PM EDT</time></span>
           </div>
-          <div class="pm-note">Agents should keep ownership visible, surface blockers early, and push work forward.</div>
+
+          <h3 class="tower-headline">The work is visible, the timing is visible, and the next move is obvious.</h3>
+          <p class="tower-copy">This is the view I’d show an executive: what is in flight right now, how expensive it is, what is at risk, and what decision is needed next. The page stays honest by keeping active items, progress, and follow-ups on the surface.</p>
+
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="label">Tokens this week</div>
+              <div class="value">42.8k</div>
+              <p class="sub">Mostly review, synthesis, and PM updates. No wasted busywork hiding underneath.</p>
+            </div>
+            <div class="kpi">
+              <div class="label">Time spent</div>
+              <div class="value">11h 35m</div>
+              <p class="sub">Spending shows where the effort went, not just where the conversation went.</p>
+            </div>
+            <div class="kpi">
+              <div class="label">Updates today</div>
+              <div class="value">7</div>
+              <p class="sub">Enough cadence to catch drift without turning the page into noise.</p>
+            </div>
+            <div class="kpi">
+              <div class="label">Next review</div>
+              <div class="value">Fri</div>
+              <p class="sub">The page should make it clear when the next executive check-in happens.</p>
+            </div>
+          </div>
         </article>
 
-        <article class="pm-card">
-          <h3>PM cadence</h3>
-          <ul class="pm-list">
-            <li>Check status every time something ships.</li>
-            <li>Mark what worked, what failed, and what needs a follow-up.</li>
-            <li>Keep the page honest: unfinished work stays visible.</li>
+        <aside class="panel-box">
+          <h3>What changed since the last update</h3>
+          <ul class="feed-list">
+            <li class="feed-item">
+              <div class="feed-top"><strong>Android login issue isolated</strong><span>10:15</span></div>
+              <p class="feed-copy">The failure path is narrower now, which makes the next fix more surgical.</p>
+            </li>
+            <li class="feed-item">
+              <div class="feed-top"><strong>iOS 2.2.2 ready for release</strong><span>11:00</span></div>
+              <p class="feed-copy">The ship path is clear. The page should keep that status easy to spot.</p>
+            </li>
+            <li class="feed-item">
+              <div class="feed-top"><strong>Workflow review added</strong><span>11:42</span></div>
+              <p class="feed-copy">Successes and failures are being captured so the system can improve instead of guess.</p>
+            </li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="tower-secondary">
+        <article class="panel-box">
+          <h3>Active workstreams</h3>
+          <ul class="stream-list">
+            <li class="stream-item">
+              <div class="stream-top"><strong>Android login recovery</strong><span>Owner: Phillip</span></div>
+              <div class="progress"><i style="width: 58%;"></i></div>
+              <p class="stream-meta">Status: blocked. Fix the auth path, then verify on device before closing the loop.</p>
+            </li>
+            <li class="stream-item">
+              <div class="stream-top"><strong>iOS v2.2.2 launch</strong><span>Owner: Phillip</span></div>
+              <div class="progress"><i style="width: 88%;"></i></div>
+              <p class="stream-meta">Status: ready. This should be the cleanest path to a visible win.</p>
+            </li>
+            <li class="stream-item">
+              <div class="stream-top"><strong>Android parity</strong><span>Owner: Monica</span></div>
+              <div class="progress"><i style="width: 61%;"></i></div>
+              <p class="stream-meta">Status: in motion. Keep Android aligned with the iOS release so the story stays consistent.</p>
+            </li>
+            <li class="stream-item">
+              <div class="stream-top"><strong>Workflows and agents</strong><span>Owner: Tim</span></div>
+              <div class="progress"><i style="width: 47%;"></i></div>
+              <p class="stream-meta">Status: ongoing. Tighten the loop around review, lessons learned, and next action.</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="panel-box">
+          <h3>Token and time burn</h3>
+          <div class="bar-set">
+            <div class="bar-row">
+              <div class="bar-head"><span>Review + synthesis</span><span>18.4k tokens</span></div>
+              <div class="bar"><i style="width: 79%;"></i></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-head"><span>Implementation</span><span>13.9k tokens</span></div>
+              <div class="bar"><i style="width: 60%;"></i></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-head"><span>Testing + verification</span><span>6.1k tokens</span></div>
+              <div class="bar"><i style="width: 28%;"></i></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-head"><span>Planning + status</span><span>4.4k tokens</span></div>
+              <div class="bar"><i style="width: 19%;"></i></div>
+            </div>
+          </div>
+          <p class="stream-meta">The point is not just usage. The point is seeing whether effort is going into progress, or into churn.</p>
+        </article>
+
+        <article class="panel-box">
+          <h3>Decisions / risks</h3>
+          <ul class="decision-list">
+            <li class="decision-item">
+              <div class="decision-top"><strong>Decision: keep scope tight</strong><span>needed today</span></div>
+              <p class="decision-copy">Do not widen the release until the login fix is verified and the release path is clean.</p>
+            </li>
+            <li class="decision-item">
+              <div class="decision-top"><strong>Risk: hidden blockers</strong><span>watch</span></div>
+              <p class="decision-copy">Any task that slips out of the feed should be surfaced here so it does not disappear quietly.</p>
+            </li>
+            <li class="decision-item">
+              <div class="decision-top"><strong>Need: final sign-off</strong><span>Friday</span></div>
+              <p class="decision-copy">A single clear approval point keeps the page useful to executives instead of ornamental.</p>
+            </li>
           </ul>
         </article>
       </div>
