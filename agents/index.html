@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agents — The Rainy Day Company</title>
+  <meta name="description" content="Agent control room for Monica, Phillip, Socrates, and the functional expert bench." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg2: #101720;
+      --surface: #161e28;
+      --surface2: #1c2533;
+      --surface3: #202a39;
+      --border: rgba(255,255,255,0.08);
+      --text: #ece4d8;
+      --muted: #8d847b;
+      --amber: #c8913a;
+      --amber-2: #e2bb66;
+      --gold: #f0d79a;
+      --green: #64d68a;
+      --blue: #7fb5ff;
+      --red: #ff8a8a;
+      --shadow: 0 24px 60px rgba(0,0,0,0.28);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(200,145,58,0.14), transparent 55%),
+        radial-gradient(900px 600px at 100% 10%, rgba(127,181,255,0.09), transparent 45%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1280px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .crest {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--amber), #8a5d1f);
+      display: grid;
+      place-items: center;
+      color: #111;
+      font-size: 28px;
+      box-shadow: 0 10px 30px rgba(200,145,58,0.25);
+    }
+
+    .brand-copy .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+      margin-bottom: 4px;
+    }
+
+    .brand-copy h1 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1;
+    }
+
+    .brand-copy p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 54ch;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .badge {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(8px);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(100,214,138,0.12);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.45fr 0.9fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-main {
+      padding: 28px;
+      position: relative;
+    }
+
+    .hero-main::after {
+      content: '';
+      position: absolute;
+      inset: auto -30px -40px auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,145,58,0.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      margin: 0 0 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: clamp(2.3rem, 5vw, 4.6rem);
+      line-height: 0.96;
+      letter-spacing: -0.02em;
+      max-width: 11ch;
+    }
+
+    .hero-title em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-copy {
+      margin: 0;
+      max-width: 66ch;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #b9b2a9;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 16px;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.16); }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--amber), #9b6a26);
+      color: #130f07;
+      font-weight: 700;
+      border-color: transparent;
+    }
+
+    .hero-side {
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .mini-stat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .mini-stat .kicker {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .mini-stat .value {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .mini-stat .note {
+      margin: 0;
+      color: #b6afa6;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .section {
+      margin-top: 18px;
+      padding: 22px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .section-head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .filters input {
+      width: min(320px, 100%);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 16px;
+      font: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .filters input::placeholder { color: #7c7369; }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 160ms ease;
+    }
+
+    .chip[aria-pressed="true"] {
+      color: #130f07;
+      background: var(--gold);
+      border-color: transparent;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      grid-column: span 4;
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .card.wide { grid-column: span 6; }
+    .card.slim { grid-column: span 3; }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .name {
+      margin: 0;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .role {
+      margin: 4px 0 0;
+      color: var(--amber-2);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .pill.shared { color: #1a1608; background: var(--gold); border-color: transparent; font-weight: 700; }
+    .pill.testing { color: #0d1a12; background: #9cf0bf; border-color: transparent; font-weight: 700; }
+    .pill.standalone { color: #08111a; background: #a7c6ff; border-color: transparent; font-weight: 700; }
+
+    .card p {
+      margin: 0;
+      color: #c6bfb5;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: #d0c7ba;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .two-up {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .list {
+      padding: 18px;
+    }
+
+    .list h3 {
+      margin: 0 0 14px;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .list ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .list li:first-child { border-top: 0; padding-top: 0; }
+    .list .left strong { display: block; margin-bottom: 4px; }
+    .list .left span { color: #b6afa6; font-size: 13px; line-height: 1.55; }
+    .list .right { color: var(--muted); font-size: 12px; white-space: nowrap; }
+
+    .footer {
+      margin: 18px 0 0;
+      padding: 16px 4px 0;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr; }
+      .card { grid-column: span 6; }
+      .card.wide { grid-column: span 12; }
+      .card.slim { grid-column: span 6; }
+    }
+
+    @media (max-width: 720px) {
+      .shell { width: min(100% - 24px, 1280px); padding-top: 16px; }
+      .topbar, .section-head, .two-up { grid-template-columns: 1fr; flex-direction: column; align-items: start; }
+      .meta, .filters { justify-content: flex-start; }
+      .card, .card.slim, .card.wide { grid-column: span 12; }
+      .hero-main, .hero-side, .section { padding: 18px; }
+      .section-head h2 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="crest">☂</div>
+        <div class="brand-copy">
+          <div class="eyebrow">The Rainy Day Company</div>
+          <h1>Agent Control Room</h1>
+          <p>Monica handles new apps. Phillip handles Libations. Socrates stands apart. The expert bench is shared where it should be and separate where it must be.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="badge"><span class="dot"></span> Dashboard live</div>
+        <div class="badge">Last sync: <strong id="sync-time">2026-05-20 07:11 EDT</strong></div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="panel hero-main">
+        <div class="hero-label">Current operating model</div>
+        <h2 class="hero-title">A focused team for <em>building</em>, <em>testing</em>, and <em>thinking</em>.</h2>
+        <p class="hero-copy">
+          This dashboard is the roster view for the Rainy Day agent system. It keeps the core personas visible, separates the shared app-function experts from the testing experts, and makes the standalone philosophy agent easy to find. Update this page whenever the agent roster changes, then restart the gateway after the profiles are in place.
+        </p>
+        <div class="hero-actions">
+          <button class="btn primary" data-filter="all">Show all teams</button>
+          <button class="btn" data-filter="coordinator">Core personas</button>
+          <button class="btn" data-filter="app">App function experts</button>
+          <button class="btn" data-filter="testing">Testing experts</button>
+          <button class="btn" data-filter="philosophy">Socrates</button>
+        </div>
+      </div>
+
+      <aside class="panel hero-side">
+        <div class="mini-stat">
+          <div class="kicker">Core personas</div>
+          <div class="value">5</div>
+          <p class="note">Monica, Phillip, Socrates, Arnold, and Tim. Monica and Phillip are the active app coordinators.</p>
+        </div>
+        <div class="mini-stat">
+          <div class="kicker">Shared app experts</div>
+          <div class="value">7</div>
+          <p class="note">UX, Design, Security, Marketing, Database, Apple App, Android App. Shared by Monica and Phillip.</p>
+        </div>
+        <div class="mini-stat">
+          <div class="kicker">Testing bench</div>
+          <div class="value">6</div>
+          <p class="note">Mixologist, Craft Beer, Scotch, Sommelier, Bourbon, and Travel. Use for QA and product realism.</p>
+        </div>
+        <div class="mini-stat">
+          <div class="kicker">Standalone philosopher</div>
+          <div class="value">1</div>
+          <p class="note">Socrates is outside Monica and Phillip’s team. He is the calm, reflective philosophy expert.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel section" id="roster-section">
+      <div class="section-head">
+        <div>
+          <h2>Roster</h2>
+          <p>Browse the roster by group or search by name, remit, or influence. Cards are tagged so the team structure stays legible at a glance.</p>
+        </div>
+        <div class="filters">
+          <input id="search" type="search" placeholder="Search agents, roles, or skills…" />
+          <button class="chip" aria-pressed="true" data-filter="all">All</button>
+          <button class="chip" aria-pressed="false" data-filter="coordinator">Core</button>
+          <button class="chip" aria-pressed="false" data-filter="app">App</button>
+          <button class="chip" aria-pressed="false" data-filter="testing">Testing</button>
+          <button class="chip" aria-pressed="false" data-filter="philosophy">Philosophy</button>
+        </div>
+      </div>
+      <div class="grid" id="cards"></div>
+    </section>
+
+    <div class="two-up">
+      <section class="panel list">
+        <h3>Routing rules</h3>
+        <ul>
+          <li>
+            <div class="left">
+              <strong>Monica</strong>
+              <span>Use for new apps, early product work, and app-development coordination.</span>
+            </div>
+            <div class="right">Coordinator</div>
+          </li>
+          <li>
+            <div class="left">
+              <strong>Phillip</strong>
+              <span>Use for Libations app work, beverage-domain judgment, and release stewardship.</span>
+            </div>
+            <div class="right">Coordinator</div>
+          </li>
+          <li>
+            <div class="left">
+              <strong>Socrates</strong>
+              <span>Use for reflection, perspective, discipline, and non-religious philosophy.</span>
+            </div>
+            <div class="right">Standalone</div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel list">
+        <h3>Update checklist</h3>
+        <ul>
+          <li>
+            <div class="left">
+              <strong>1. Change profiles first</strong>
+              <span>Create or edit the profile personality files before touching the dashboard.</span>
+            </div>
+            <div class="right">Profiles</div>
+          </li>
+          <li>
+            <div class="left">
+              <strong>2. Update this dashboard</strong>
+              <span>Keep the roster and labels aligned so the control room matches reality.</span>
+            </div>
+            <div class="right">Website</div>
+          </li>
+          <li>
+            <div class="left">
+              <strong>3. Restart the gateway</strong>
+              <span>Do this after the roster is correct so messaging picks up the new personas.</span>
+            </div>
+            <div class="right">Gateway</div>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div>Route: <strong>/agents</strong></div>
+      <div>Built for Monica, Phillip, Socrates, and the functional expert bench.</div>
+    </footer>
+  </div>
+
+  <script>
+    const roster = [
+      { name: 'Monica', role: 'App development coordinator', group: 'coordinator', pill: 'Core', summary: 'Main specialist for new apps and early-stage product work.', tags: ['new apps', 'planning', 'coordination', 'security-conscious'] },
+      { name: 'Phillip', role: 'Libations steward', group: 'coordinator', pill: 'Core', summary: 'Specialist for Libations, beverage-domain decisions, and production safety.', tags: ['Libations', 'release', 'Supabase', 'beverage domain'] },
+      { name: 'Socrates', role: 'Philosophy expert', group: 'philosophy', pill: 'Standalone', summary: 'Stoicism, non-religious spirituality, and Buddhism applied to real life.', tags: ['Stoicism', 'presence', 'compassion', 'clarity'] },
+      { name: 'Arnold', role: 'Fitness coach', group: 'coordinator', pill: 'Core', summary: 'Standalone fitness-minded agent for training, recovery, and athletic planning.', tags: ['fitness', 'training', 'recovery', 'discipline'] },
+      { name: 'Tim', role: 'Experimentation / high-agency guide', group: 'coordinator', pill: 'Core', summary: 'Standalone high-agency experimentation persona for focused, practical work.', tags: ['experiments', 'goals', 'focus', 'systems'] },
+
+      { name: 'UX Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Finds friction, ambiguity, and broken flows before users do.', tags: ['flows', 'states', 'accessibility'] },
+      { name: 'Design Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Keeps the product premium, restrained, and visually coherent.', tags: ['hierarchy', 'spacing', 'visual polish'] },
+      { name: 'Security Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Identifies risk, protects data, and keeps production systems safe.', tags: ['auth', 'blast radius', 'least privilege'] },
+      { name: 'Marketing Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Shapes positioning, launch messaging, and App Store language.', tags: ['positioning', 'copy', 'launch'] },
+      { name: 'Database Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Reviews schema, migrations, queries, and data integrity.', tags: ['schema', 'migrations', 'integrity'] },
+      { name: 'Apple App Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Handles iOS, Xcode, TestFlight, and App Store workflows.', tags: ['Swift', 'Xcode', 'TestFlight'] },
+      { name: 'Android App Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Handles Android, Play Store, and platform-parity concerns.', tags: ['Kotlin', 'Play Store', 'parity'] },
+
+      { name: 'Mixologist', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'World-class cocktail-bar judgment inspired by the best modern bars.', tags: ['cocktails', 'balance', 'technique'] },
+      { name: 'Craft Beer Expert', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'Beer-style accuracy, freshness, pour, and pairing awareness.', tags: ['beer', 'freshness', 'style'] },
+      { name: 'Scotch Expert', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'Region, peat, cask influence, and whisky authenticity.', tags: ['Scotch', 'peat', 'cask'] },
+      { name: 'Sommelier', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'Wine accuracy, service, storage, pairing, and elegance.', tags: ['wine', 'pairing', 'service'] },
+      { name: 'Bourbon Expert', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'Mash bills, proof, oak, and classic bourbon character.', tags: ['bourbon', 'oak', 'proof'] },
+      { name: 'Travel Expert', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'Family-friendly travel judgment with texture, culture, and realism.', tags: ['travel', 'food', 'family friendly'] },
+    ];
+
+    const cards = document.getElementById('cards');
+    const chips = Array.from(document.querySelectorAll('.chip[data-filter]'));
+    const heroFilters = Array.from(document.querySelectorAll('.hero-actions .btn[data-filter]'));
+    const search = document.getElementById('search');
+    let active = 'all';
+
+    function cardClass(group) {
+      if (group === 'coordinator' || group === 'philosophy') return 'wide';
+      if (group === 'testing') return 'slim';
+      return '';
+    }
+
+    function render() {
+      const q = search.value.trim().toLowerCase();
+      cards.innerHTML = '';
+
+      roster
+        .filter(agent => active === 'all' || agent.group === active)
+        .filter(agent => {
+          if (!q) return true;
+          const hay = [agent.name, agent.role, agent.summary, ...(agent.tags || [])].join(' ').toLowerCase();
+          return hay.includes(q);
+        })
+        .forEach(agent => {
+          const el = document.createElement('article');
+          el.className = `card ${cardClass(agent.group)}`.trim();
+          el.dataset.group = agent.group;
+          el.innerHTML = `
+            <div class="card-top">
+              <div>
+                <h3 class="name">${agent.name}</h3>
+                <div class="role">${agent.role}</div>
+              </div>
+              <div class="pill ${agent.pill.toLowerCase()}">${agent.pill}</div>
+            </div>
+            <p>${agent.summary}</p>
+            <div class="tags">${agent.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+          `;
+          cards.appendChild(el);
+        });
+
+      if (!cards.children.length) {
+        const empty = document.createElement('article');
+        empty.className = 'card wide';
+        empty.innerHTML = `<div class="name">No matches</div><p>Try a broader search or switch the filter back to All.</p>`;
+        cards.appendChild(empty);
+      }
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        active = chip.dataset.filter;
+        chips.forEach(btn => btn.setAttribute('aria-pressed', String(btn === chip)));
+        render();
+      });
+    });
+
+    heroFilters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        active = btn.dataset.filter;
+        chips.forEach(chip => chip.setAttribute('aria-pressed', String(chip.dataset.filter === active)));
+        render();
+      });
+    });
+
+    search.addEventListener('input', render);
+    render();
+  </script>
+</body>
+</html>
