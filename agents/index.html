@@ -133,7 +133,7 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.45fr 0.9fr;
+      grid-template-columns: 1fr;
       gap: 18px;
       margin-bottom: 18px;
     }
@@ -749,31 +749,28 @@
         <div class="crest">☂</div>
         <div class="brand-copy">
           <div class="eyebrow">The Rainy Day Company</div>
-          <h1>Agent Control Room</h1>
-          <p>Greg sits at the top. Monica handles new apps. Phillip handles Libations. Arnold, Tim, and Socrates sit in the Life team. Stefon handles archive, signing, and structure. The expert bench stays shared where it should be and separate where it must be.</p>
+          <h1>Agents</h1>
+
         </div>
       </div>
       <div class="meta">
-        <div class="badge"><span class="dot"></span> Org chart live</div>
+
         <div class="badge">Last sync: <strong id="sync-time">2026-05-20 07:11 EDT</strong></div>
       </div>
     </header>
 
     <section class="hero">
       <div class="panel hero-main">
-        <div class="hero-label">Visual hierarchy</div>
-        <h2 class="hero-title">Greg is <em>CEO</em>. Everyone else sits beneath the structure.</h2>
-        <p class="hero-copy">
-          This page is the operating chart. I use it to see who belongs where, keep the structure honest, and change the roster fast when the team changes. The chart keeps the app team, life team, and archive support separated so the model stays legible at a glance.
-        </p>
+        <h2 class="hero-title">Structure</h2>
+
         <div class="org-tree">
           <div class="org-ceo">
             <div class="org-ceo-card">
-              <div class="org-ceo-kicker">Chief executive</div>
+              <div class="org-ceo-kicker">Top level</div>
               <div class="org-ceo-name">Greg</div>
-              <div class="org-ceo-role">CEO</div>
+              <div class="org-ceo-role">Direct oversight</div>
             </div>
-            <p class="org-ceo-note">Top-level decision maker. Everyone below reports to Greg. Stefon is cross-functional support, not the boss of every other agent.</p>
+            <p class="org-ceo-note">Direct reports sit below this node. Stefon is support, not a manager over the rest.</p>
           </div>
 
           <div class="org-level">
@@ -783,7 +780,7 @@
                   <h3>App Team</h3>
                   <span class="org-count">reports to Greg</span>
                 </div>
-                <p class="org-branch-note">Monica and Phillip both report to Greg. Their functional benches sit beneath them so the reporting line stays obvious.</p>
+                <p class="org-branch-note">Monica and Phillip sit directly beneath Greg. Their functional benches stay grouped under the same line.</p>
 
                 <div class="org-subgrid app">
                   <div class="org-person-block">
@@ -818,7 +815,7 @@
                   <h3>Life Team</h3>
                   <span class="org-count">reports to Greg</span>
                 </div>
-                <p class="org-branch-note">Arnold, Tim, and Socrates report to Greg as a bundled team. The grouping is about visibility, not a higher manager.</p>
+                <p class="org-branch-note">Arnold, Tim, and Socrates sit directly beneath Greg. The grouping is for readability, not extra management.</p>
 
                 <div class="org-subgrid life">
                   <div class="org-node person">
@@ -846,7 +843,7 @@
                   <h3>Stefon</h3>
                   <span class="org-count">cross-functional</span>
                 </div>
-                <p class="org-branch-note">Stefon reports to Greg. He is a supporting ops/archive/signing role that serves the whole system, not a manager above the rest.</p>
+                <p class="org-branch-note">Stefon sits under Greg as archive and signing support for the whole system.</p>
                 <div class="org-node team" style="margin-top: 4px;">
                   <span class="kicker">Ops</span>
                   <span class="name">Archive + signing</span>
@@ -857,44 +854,17 @@
           </div>
         </div>
 
-        <div class="hero-actions">
-          <button class="btn primary" data-filter="all">Show all agents</button>
-          <button class="btn" data-filter="coordinator">App team</button>
-          <button class="btn" data-filter="testing">Testing experts</button>
-          <button class="btn" data-filter="philosophy">Socrates</button>
-          <button class="btn" data-filter="ops">Stefon</button>
-        </div>
+
       </div>
 
-      <aside class="panel hero-side">
-        <div class="mini-stat">
-          <div class="kicker">CEO</div>
-          <div class="value">1</div>
-          <p class="note">Greg sits at the top and decides when the structure changes.</p>
-        </div>
-        <div class="mini-stat">
-          <div class="kicker">App team</div>
-          <div class="value">9</div>
-          <p class="note">Monica, Phillip, and seven shared experts keep app work coordinated and safe.</p>
-        </div>
-        <div class="mini-stat">
-          <div class="kicker">Life team</div>
-          <div class="value">3</div>
-          <p class="note">Arnold, Tim, and Socrates cover the personal and reflective side of the structure.</p>
-        </div>
-        <div class="mini-stat">
-          <div class="kicker">Ops / archive</div>
-          <div class="value">1</div>
-          <p class="note">Stefon handles archive, signing, and the Mac profile layer.</p>
-        </div>
-      </aside>
+
     </section>
 
     <section class="panel section" id="roster-section">
       <div class="section-head">
         <div>
           <h2>Roster</h2>
-          <p>Browse the full roster by group or search by name, remit, or influence. Cards are tagged so the structure stays legible at a glance.</p>
+          <p>Roster by group. Search by name or remit.</p>
         </div>
         <div class="filters">
           <input id="search" type="search" placeholder="Search agents, roles, or skills…" />
@@ -909,74 +879,7 @@
       <div class="grid" id="cards"></div>
     </section>
 
-    <div class="two-up">
-      <section class="panel list">
-        <h3>Routing rules</h3>
-        <ul>
-          <li>
-            <div class="left">
-              <strong>Monica</strong>
-              <span>Use for new apps, early product work, and app-development coordination.</span>
-            </div>
-            <div class="right">Coordinator</div>
-          </li>
-          <li>
-            <div class="left">
-              <strong>Phillip</strong>
-              <span>Use for Libations app work, beverage-domain judgment, and release stewardship.</span>
-            </div>
-            <div class="right">Coordinator</div>
-          </li>
-          <li>
-            <div class="left">
-              <strong>Socrates</strong>
-              <span>Use for reflection, perspective, discipline, and non-religious philosophy.</span>
-            </div>
-            <div class="right">Standalone</div>
-          </li>
-          <li>
-            <div class="left">
-              <strong>Stefon</strong>
-              <span>Use for archive structure, signing workflow, and Mac profile stewardship.</span>
-            </div>
-            <div class="right">Ops</div>
-          </li>
-        </ul>
-      </section>
 
-      <section class="panel list">
-        <h3>Update checklist</h3>
-        <ul>
-          <li>
-            <div class="left">
-              <strong>1. Change profiles first</strong>
-              <span>Create or edit the profile personality files before touching the dashboard.</span>
-            </div>
-            <div class="right">Profiles</div>
-          </li>
-          <li>
-            <div class="left">
-              <strong>2. Update this dashboard</strong>
-              <span>Keep the roster and labels aligned so the control room matches reality.</span>
-            </div>
-            <div class="right">Website</div>
-          </li>
-          <li>
-            <div class="left">
-              <strong>3. Restart the gateway</strong>
-              <span>Do this after the roster is correct so messaging picks up the new personas.</span>
-            </div>
-            <div class="right">Gateway</div>
-          </li>
-        </ul>
-      </section>
-    </div>
-
-    <footer class="footer">
-      <div>Route: <strong>/agents</strong></div>
-      <div>Built for Greg, Monica, Phillip, Arnold, Tim, Socrates, Stefon, and the functional expert bench.</div>
-    </footer>
-  </div>
 
   <script>
     const roster = [
