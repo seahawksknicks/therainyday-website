@@ -263,26 +263,29 @@
 
     .org-level {
       display: grid;
-      grid-template-columns: 1.15fr 1fr 0.8fr;
-      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
       align-items: start;
       position: relative;
-      padding-top: 18px;
+      padding-top: 24px;
+      margin-top: 8px;
     }
 
     .org-level::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 8%;
-      right: 8%;
-      height: 1px;
-      background: var(--border);
+      left: 7%;
+      right: 7%;
+      height: 2px;
+      background: rgba(255,255,255,0.12);
     }
 
     .org-branch {
       position: relative;
-      padding-top: 18px;
+      padding-top: 24px;
+      display: grid;
+      gap: 0;
     }
 
     .org-branch::before {
@@ -291,19 +294,20 @@
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 1px;
-      height: 18px;
-      background: var(--border);
+      width: 2px;
+      height: 24px;
+      background: rgba(255,255,255,0.12);
     }
 
     .org-branch-card {
       min-height: 100%;
       padding: 18px;
       border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
       display: grid;
       gap: 12px;
+      position: relative;
     }
 
     .org-branch-card.life { background: rgba(100,214,138,0.04); }
@@ -369,15 +373,39 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
       margin-top: 4px;
+      position: relative;
+      padding-top: 18px;
+    }
+
+    .org-app-groups::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: rgba(255,255,255,0.10);
     }
 
     .org-mini-group {
       border-radius: 16px;
       border: 1px solid var(--border);
       background: rgba(255,255,255,0.03);
-      padding: 14px;
+      padding: 18px 14px 14px;
       display: grid;
       gap: 8px;
+      position: relative;
+    }
+
+    .org-mini-group::before {
+      content: '';
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 18px;
+      background: rgba(255,255,255,0.10);
     }
 
     .org-mini-group strong {
@@ -839,30 +867,6 @@
                   </div>
                 </div>
 
-                <div class="org-subgrid app">
-                  <div class="org-person-block">
-                    <div class="org-node person">
-                      <span class="kicker">Lead</span>
-                      <span class="name">Monica</span>
-                      <span class="role">New apps, early product work, app-development coordination.</span>
-                    </div>
-                    <div class="org-bench">
-                      <strong>Functional bench</strong>
-                      UX, Design, Security, Marketing
-                    </div>
-                  </div>
-                  <div class="org-person-block">
-                    <div class="org-node person">
-                      <span class="kicker">Lead</span>
-                      <span class="name">Phillip</span>
-                      <span class="role">Libations stewardship, beverage-domain judgment, release safety.</span>
-                    </div>
-                    <div class="org-bench">
-                      <strong>Functional bench</strong>
-                      Database, Apple App, Android App, beverage-domain support
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
