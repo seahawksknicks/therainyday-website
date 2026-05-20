@@ -193,6 +193,103 @@
       color: #b9b2a9;
     }
 
+    .pm-dashboard {
+      margin-bottom: 18px;
+      padding: 22px;
+    }
+
+    .pm-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .pm-card {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 16px;
+      min-height: 132px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .pm-card h3 {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .pm-card p {
+      margin: 0;
+      color: #c6bfb5;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .org-func-team {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.025);
+    }
+
+    .org-func-team-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      flex-wrap: wrap;
+    }
+
+    .org-func-team-head strong {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .org-func-team-head span {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .expert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .expert-card {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      padding: 10px 12px;
+    }
+
+    .expert-card .mini-name {
+      display: block;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .expert-card .mini-role {
+      margin: 4px 0 0;
+      color: #c8bfaf;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
     .org-tree {
       margin-top: 22px;
       display: grid;
@@ -864,6 +961,7 @@
       .card { grid-column: span 6; }
       .card.wide { grid-column: span 12; }
       .card.slim { grid-column: span 6; }
+      .pm-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 720px) {
@@ -876,6 +974,7 @@
       .org-level { grid-template-columns: 1fr; }
       .org-subgrid.app { grid-template-columns: 1fr; }
       .org-app-groups { grid-template-columns: 1fr; }
+      .pm-grid, .expert-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -896,9 +995,39 @@
       </div>
     </header>
 
+    <section class="panel section pm-dashboard">
+      <div class="section-head">
+        <div>
+          <h2>Project Management Dashboard</h2>
+          <p>Coordination, ownership, and live-verification rules for the whole system.</p>
+        </div>
+        <div class="pill shared">PM / oversight</div>
+      </div>
+
+      <div class="pm-grid">
+        <article class="pm-card">
+          <h3>Now</h3>
+          <p>Keep the page readable, ship changes live, and verify them before calling them done.</p>
+        </article>
+        <article class="pm-card">
+          <h3>Point of Contact</h3>
+          <p>Stefon is the Telegram gateway and project coordination contact for all agents.</p>
+        </article>
+        <article class="pm-card">
+          <h3>Structure</h3>
+          <p>App Team, Life Team, and Functional Experts are the main workstreams beneath Greg.</p>
+        </article>
+        <article class="pm-card">
+          <h3>Watch</h3>
+          <p>Preserve production safety, premium feel, and clear ownership boundaries.</p>
+        </article>
+      </div>
+    </section>
+
     <section class="hero">
       <div class="panel hero-main">
-        <h2 class="hero-title">Structure</h2>
+        <h2 class="hero-title">Org Chart</h2>
+        <p class="hero-copy">The org chart below keeps the agent stack legible: who owns what, who reports where, and where the functional experts sit.</p>
 
         <div class="org-tree">
           <div class="org-ceo">
@@ -916,7 +1045,7 @@
                   <h3>App Team</h3>
                   <span class="org-count">reports to Greg</span>
                 </div>
-                <p class="org-branch-note">Monica handles new apps. Phillip handles established apps.</p>
+                <p class="org-branch-note">Monica handles new apps. Phillip handles established apps. Functional Experts support both.</p>
 
                 <div class="org-app-groups">
                   <div class="org-app-team">
@@ -975,6 +1104,43 @@
                   </div>
                 </div>
 
+                <div class="org-func-team">
+                  <div class="org-func-team-head">
+                    <strong>Functional Experts</strong>
+                    <span>supporting App Team</span>
+                  </div>
+                  <div class="expert-grid">
+                    <div class="expert-card">
+                      <span class="mini-name">UX Expert</span>
+                      <p class="mini-role">Finds friction, ambiguity, and broken flows before users do.</p>
+                    </div>
+                    <div class="expert-card">
+                      <span class="mini-name">Design Expert</span>
+                      <p class="mini-role">Keeps the product premium, restrained, and visually coherent.</p>
+                    </div>
+                    <div class="expert-card">
+                      <span class="mini-name">Security Expert</span>
+                      <p class="mini-role">Identifies risk, protects data, and keeps production systems safe.</p>
+                    </div>
+                    <div class="expert-card">
+                      <span class="mini-name">Marketing Expert</span>
+                      <p class="mini-role">Shapes positioning, launch messaging, and App Store language.</p>
+                    </div>
+                    <div class="expert-card">
+                      <span class="mini-name">Database Expert</span>
+                      <p class="mini-role">Reviews schema, migrations, queries, and data integrity.</p>
+                    </div>
+                    <div class="expert-card">
+                      <span class="mini-name">Apple App Expert</span>
+                      <p class="mini-role">Handles iOS, Xcode, TestFlight, and App Store workflows.</p>
+                    </div>
+                    <div class="expert-card">
+                      <span class="mini-name">Android App Expert</span>
+                      <p class="mini-role">Handles Android, Play Store, and platform-parity concerns.</p>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -1029,119 +1195,5 @@
 
     </section>
 
-    <section class="panel section" id="roster-section">
-      <div class="section-head">
-        <div>
-          <h2>Roster</h2>
-          <p>Roster by group. Search by name or remit.</p>
-        </div>
-        <div class="filters">
-          <input id="search" type="search" placeholder="Search agents, roles, or skills…" />
-          <button class="chip" aria-pressed="true" data-filter="all">All</button>
-          <button class="chip" aria-pressed="false" data-filter="coordinator">Core</button>
-          <button class="chip" aria-pressed="false" data-filter="app">App</button>
-          <button class="chip" aria-pressed="false" data-filter="testing">Testing</button>
-          <button class="chip" aria-pressed="false" data-filter="philosophy">Philosophy</button>
-          <button class="chip" aria-pressed="false" data-filter="ops">Ops</button>
-        </div>
-      </div>
-      <div class="grid" id="cards"></div>
-    </section>
-
-
-
-  <script>
-    const roster = [
-      { name: 'Monica', role: 'New apps', group: 'coordinator', pill: 'Core', summary: 'Main specialist for new apps and early-stage product work.', tags: ['new apps', 'planning', 'coordination', 'security-conscious'] },
-      { name: 'Phillip', role: 'Established apps', group: 'coordinator', pill: 'Core', summary: 'Specialist for Libations, beverage-domain decisions, and production safety.', tags: ['Libations', 'release', 'Supabase', 'beverage domain'] },
-      { name: 'Socrates', role: 'Philosophy', group: 'philosophy', pill: 'Standalone', summary: 'Stoicism, non-religious spirituality, and Buddhism applied to real life.', tags: ['Stoicism', 'presence', 'compassion', 'clarity'] },
-      { name: 'Arnold', role: 'Fitness', group: 'coordinator', pill: 'Core', summary: 'Standalone fitness-minded agent for training, recovery, and athletic planning.', tags: ['fitness', 'training', 'recovery', 'discipline'] },
-      { name: 'Tim', role: 'Entrepreneurship', group: 'coordinator', pill: 'Core', summary: 'Standalone high-agency experimentation persona for focused, practical work.', tags: ['experiments', 'goals', 'focus', 'systems'] },
-      { name: 'Stefon', role: 'Chief of Staff', group: 'ops', pill: 'Ops', summary: 'Handles archive structure, signing, and the Mac profile layer for the team.', tags: ['archive', 'signing', 'mac profile'] },
-
-      { name: 'UX Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Finds friction, ambiguity, and broken flows before users do.', tags: ['flows', 'states', 'accessibility'] },
-      { name: 'Design Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Keeps the product premium, restrained, and visually coherent.', tags: ['hierarchy', 'spacing', 'visual polish'] },
-      { name: 'Security Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Identifies risk, protects data, and keeps production systems safe.', tags: ['auth', 'blast radius', 'least privilege'] },
-      { name: 'Marketing Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Shapes positioning, launch messaging, and App Store language.', tags: ['positioning', 'copy', 'launch'] },
-      { name: 'Database Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Reviews schema, migrations, queries, and data integrity.', tags: ['schema', 'migrations', 'integrity'] },
-      { name: 'Apple App Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Handles iOS, Xcode, TestFlight, and App Store workflows.', tags: ['Swift', 'Xcode', 'TestFlight'] },
-      { name: 'Android App Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Handles Android, Play Store, and platform-parity concerns.', tags: ['Kotlin', 'Play Store', 'parity'] },
-
-      { name: 'Mixologist', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'World-class cocktail-bar judgment inspired by the best modern bars.', tags: ['cocktails', 'balance', 'technique'] },
-      { name: 'Craft Beer Expert', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'Beer-style accuracy, freshness, pour, and pairing awareness.', tags: ['beer', 'freshness', 'style'] },
-      { name: 'Scotch Expert', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'Region, peat, cask influence, and whisky authenticity.', tags: ['Scotch', 'peat', 'cask'] },
-      { name: 'Sommelier', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'Wine accuracy, service, storage, pairing, and elegance.', tags: ['wine', 'pairing', 'service'] },
-      { name: 'Bourbon Expert', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'Mash bills, proof, oak, and classic bourbon character.', tags: ['bourbon', 'oak', 'proof'] },
-      { name: 'Travel Expert', role: 'Testing expert', group: 'testing', pill: 'Testing', summary: 'Family-friendly travel judgment with texture, culture, and realism.', tags: ['travel', 'food', 'family friendly'] },
-    ];
-
-    const cards = document.getElementById('cards');
-    const chips = Array.from(document.querySelectorAll('.chip[data-filter]'));
-    const heroFilters = Array.from(document.querySelectorAll('.hero-actions .btn[data-filter]'));
-    const search = document.getElementById('search');
-    let active = 'all';
-
-    function cardClass(group) {
-      if (group === 'coordinator' || group === 'philosophy' || group === 'ops') return 'wide';
-      if (group === 'testing') return 'slim';
-      return '';
-    }
-
-    function render() {
-      const q = search.value.trim().toLowerCase();
-      cards.innerHTML = '';
-
-      roster
-        .filter(agent => active === 'all' || agent.group === active)
-        .filter(agent => {
-          if (!q) return true;
-          const hay = [agent.name, agent.role, agent.summary, ...(agent.tags || [])].join(' ').toLowerCase();
-          return hay.includes(q);
-        })
-        .forEach(agent => {
-          const el = document.createElement('article');
-          el.className = `card ${cardClass(agent.group)}`.trim();
-          el.dataset.group = agent.group;
-          el.innerHTML = `
-            <div class="card-top">
-              <div>
-                <h3 class="name">${agent.name}</h3>
-                <div class="role">${agent.role}</div>
-              </div>
-              <div class="pill ${agent.pill.toLowerCase()}">${agent.pill}</div>
-            </div>
-            <p>${agent.summary}</p>
-            <div class="tags">${agent.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-          `;
-          cards.appendChild(el);
-        });
-
-      if (!cards.children.length) {
-        const empty = document.createElement('article');
-        empty.className = 'card wide';
-        empty.innerHTML = `<div class="name">No matches</div><p>Try a broader search or switch the filter back to All.</p>`;
-        cards.appendChild(empty);
-      }
-    }
-
-    chips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        active = chip.dataset.filter;
-        chips.forEach(btn => btn.setAttribute('aria-pressed', String(btn === chip)));
-        render();
-      });
-    });
-
-    heroFilters.forEach(btn => {
-      btn.addEventListener('click', () => {
-        active = btn.dataset.filter;
-        chips.forEach(chip => chip.setAttribute('aria-pressed', String(chip.dataset.filter === active)));
-        render();
-      });
-    });
-
-    search.addEventListener('input', render);
-    render();
-  </script>
-</body>
+  </body>
 </html>
