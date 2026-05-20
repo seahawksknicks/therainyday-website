@@ -370,10 +370,12 @@
 
     .org-app-groups {
       display: grid;
-      gap: 16px;
-      margin-top: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 4px;
       position: relative;
       padding-top: 18px;
+      align-items: start;
     }
 
     .org-app-groups::before {
@@ -388,9 +390,9 @@
 
     .org-app-team {
       display: grid;
-      gap: 12px;
+      gap: 10px;
       position: relative;
-      padding-top: 18px;
+      padding-top: 14px;
     }
 
     .org-app-team::before {
@@ -400,17 +402,18 @@
       left: 50%;
       transform: translateX(-50%);
       width: 2px;
-      height: 18px;
+      height: 14px;
       background: rgba(255,255,255,0.10);
     }
 
     .org-app-team .org-node.team {
       text-align: left;
+      padding: 12px 12px 11px;
     }
 
     .org-app-team .org-node.team .name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 25px;
+      font-size: 21px;
       font-weight: 500;
       letter-spacing: 0.01em;
     }
@@ -418,10 +421,28 @@
     .org-app-team .org-node.team .role {
       color: #d7cdbd;
       max-width: 42ch;
+      font-size: 12px;
     }
 
     .org-app-team .org-subgrid.app-people {
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .org-app-team .org-node.person {
+      padding: 12px 12px 11px;
+    }
+
+    .org-app-team .org-node.person .kicker {
+      font-size: 9px;
+    }
+
+    .org-app-team .org-node.person .name {
+      font-size: 15px;
+    }
+
+    .org-app-team .org-node.person .role {
+      font-size: 12px;
+      line-height: 1.45;
     }
 
     .org-mini-group {
