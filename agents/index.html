@@ -1604,6 +1604,144 @@
 
     .hidden { display: none !important; }
 
+    /* Compact org chart override */
+    .org-level {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      align-items: start;
+      position: relative;
+      padding-top: 18px;
+      margin-top: 8px;
+    }
+
+    .org-level::before {
+      left: 3%;
+      right: 3%;
+      height: 1px;
+      background: rgba(255,255,255,0.10);
+    }
+
+    .org-column {
+      position: relative;
+      padding-top: 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .org-column::before {
+      height: 14px;
+      width: 1px;
+      background: rgba(255,255,255,0.10);
+    }
+
+    .org-column-card {
+      min-height: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      display: grid;
+      gap: 8px;
+    }
+
+    .org-column-card.coat { background: rgba(244,202,160,0.05); }
+    .org-column-card.apps { background: rgba(255,255,255,0.035); }
+    .org-column-card.func { background: rgba(127,181,255,0.05); }
+    .org-column-card.other { background: rgba(100,214,138,0.05); }
+    .org-column-card.life { background: rgba(100,214,138,0.04); }
+
+    .org-column-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .org-column-head h3 {
+      margin: 0;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .org-column-head span {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .org-column-note {
+      margin: 0;
+      color: #c8bfaf;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .stack {
+      display: grid;
+      gap: 7px;
+    }
+
+    .mini-card {
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      padding: 9px 10px;
+    }
+
+    .mini-card .mini-kicker {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+      margin-bottom: 4px;
+    }
+
+    .mini-card .mini-name {
+      display: block;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.1;
+    }
+
+    .mini-card .mini-role {
+      margin: 3px 0 0;
+      color: #c8bfaf;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .expert-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .expert-mini-grid .mini-card .mini-name,
+    .org-column-card.apps .mini-card .mini-name {
+      font-size: 12px;
+    }
+
+    .expert-mini-grid .mini-card .mini-role,
+    .org-column-card.apps .mini-card .mini-role,
+    .org-column-card.other .mini-card .mini-role,
+    .org-column-card.life .mini-card .mini-role {
+      font-size: 10px;
+    }
+
+    .org-column-card.apps .stack,
+    .org-column-card.other .stack,
+    .org-column-card.life .stack {
+      gap: 6px;
+    }
+
     @media (max-width: 1100px) {
       .hero { grid-template-columns: 1fr; }
       .card { grid-column: span 6; }
@@ -1818,153 +1956,109 @@
           </div>
 
           <div class="org-level">
-            <div class="org-branch">
-              <div class="org-branch-card">
-                <div class="org-branch-head">
-                  <h3>App Team</h3>
-                  <span class="org-count">reports to Greg</span>
-                </div>
-                <p class="org-branch-note">Monica handles new apps. Phillip handles established apps. Functional Experts support both.</p>
-
-                <div class="org-app-groups">
-                  <div class="org-app-team">
-                    <div class="org-node team">
-                      <span class="kicker">New Apps</span>
-                      <span class="name">Monica</span>
-                      <span class="role">Launches new apps, early product direction, and positioning.</span>
-                    </div>
-                    <div class="org-subgrid app-people">
-                      <div class="org-node person">
-                        <span class="kicker">UX</span>
-                        <span class="name">UX Expert</span>
-                        <span class="role">Finds friction, ambiguity, and broken flows before users do.</span>
-                      </div>
-                      <div class="org-node person">
-                        <span class="kicker">Design</span>
-                        <span class="name">Design Expert</span>
-                        <span class="role">Keeps the product premium, restrained, and visually coherent.</span>
-                      </div>
-                      <div class="org-node person">
-                        <span class="kicker">Marketing</span>
-                        <span class="name">Marketing Expert</span>
-                        <span class="role">Shapes positioning, launch messaging, and App Store language.</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="org-app-team">
-                    <div class="org-node team">
-                      <span class="kicker">Established Apps</span>
-                      <span class="name">Phillip</span>
-                      <span class="role">Owns Libations and the established app stack.</span>
-                    </div>
-                    <div class="org-subgrid app-people">
-                      <div class="org-node person">
-                        <span class="kicker">Security</span>
-                        <span class="name">Security Expert</span>
-                        <span class="role">Identifies risk, protects data, and keeps production systems safe.</span>
-                      </div>
-                      <div class="org-node person">
-                        <span class="kicker">Database</span>
-                        <span class="name">Database Expert</span>
-                        <span class="role">Reviews schema, migrations, queries, and data integrity.</span>
-                      </div>
-                      <div class="org-node person">
-                        <span class="kicker">iOS</span>
-                        <span class="name">Apple App Expert</span>
-                        <span class="role">Handles iOS, Xcode, TestFlight, and App Store workflows.</span>
-                      </div>
-                      <div class="org-node person">
-                        <span class="kicker">Android</span>
-                        <span class="name">Android App Expert</span>
-                        <span class="role">Handles Android, Play Store, and platform-parity concerns.</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="org-func-team">
-                  <div class="org-func-team-head">
-                    <strong>Functional Experts</strong>
-                    <span>supporting App Team</span>
-                  </div>
-                  <div class="expert-grid">
-                    <div class="expert-card">
-                      <span class="mini-name">Craft Beer Expert</span>
-                      <p class="mini-role">Knows styles, bitterness, aroma, freshness, and what actually tastes good.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Scotch Expert</span>
-                      <p class="mini-role">Understands malt character, peat, regions, age statements, and neat pours.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Wine Expert</span>
-                      <p class="mini-role">Helps with varietals, service, pairings, and what to buy without overthinking it.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Travel Expert</span>
-                      <p class="mini-role">Plans trips, finds the right neighborhood, and keeps logistics smooth.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Cocktail Expert</span>
-                      <p class="mini-role">Balances drinks, recipes, batching, and the little details that make a bar feel right.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Pairing Expert</span>
-                      <p class="mini-role">Matches food and drinks cleanly so the whole table feels considered.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Hospitality Expert</span>
-                      <p class="mini-role">Keeps service, pacing, and guest experience polished from start to finish.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="org-branch">
-              <div class="org-branch-card life">
-                <div class="org-branch-head">
-                  <h3>Life Team</h3>
-                  <span class="org-count">reports to Greg</span>
-                </div>
-                <p class="org-branch-note">Arnold, Tim, and Socrates sit directly beneath Greg. The grouping is for readability, not extra management.</p>
-
-                <div class="org-subgrid life">
-                  <div class="org-node team">
-                    <span class="kicker">Fitness</span>
-                    <span class="name">Arnold</span>
-                    <span class="role">Training, recovery, and athletic planning.</span>
-                  </div>
-                  <div class="org-node team">
-                    <span class="kicker">Entrepreneurship</span>
-                    <span class="name">Tim</span>
-                    <span class="role">High-agency experiments, goals, and practical focus.</span>
-                  </div>
-                  <div class="org-node team">
-                    <span class="kicker">Philosophy</span>
-                    <span class="name">Socrates</span>
-                    <span class="role">Reflection, perspective, discipline, and non-religious philosophy.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="org-branch">
-              <div class="org-branch-card ops">
-                <div class="org-branch-head">
+            <div class="org-column">
+              <div class="org-column-card coat">
+                <div class="org-column-head">
                   <h3>Chief of Staff</h3>
-                  <span class="org-count">cross-functional</span>
+                  <span>cross-functional</span>
                 </div>
-                <p class="org-branch-note">Stefon is the point of contact for all agents — the Telegram gateway and archive/signing support for the whole system.</p>
-                <div class="org-node team" style="margin-top: 4px;">
-                  <span class="kicker">Ops</span>
-                  <span class="name">Stefon</span>
-                  <span class="role">Point of contact for all agents; archive + signing, with Mac profile stewardship for Libations work.</span>
+                <p class="org-column-note">Stefon keeps the system legible and routes agent work.</p>
+                <div class="stack">
+                  <div class="mini-card">
+                    <span class="mini-kicker">Ops</span>
+                    <span class="mini-name">Stefon</span>
+                    <p class="mini-role">Point of contact for all agents; archive, signing, and Telegram support.</p>
+                  </div>
                 </div>
-                <div class="org-bench" style="margin-top: 10px;">
-                  <strong>Agent oversight</strong>
-                  Human-led now. Later: supervised autonomy, then exception-only review.
+              </div>
+            </div>
+
+            <div class="org-column">
+              <div class="org-column-card apps">
+                <div class="org-column-head">
+                  <h3>App Team</h3>
+                  <span>reports to Greg</span>
+                </div>
+                <p class="org-column-note">Monica handles new apps. Phillip handles established apps.</p>
+                <div class="stack">
+                  <div class="mini-card">
+                    <span class="mini-kicker">New Apps</span>
+                    <span class="mini-name">Monica</span>
+                    <p class="mini-role">Launches new apps, early product direction, and positioning.</p>
+                  </div>
+                  <div class="mini-card">
+                    <span class="mini-kicker">Established Apps</span>
+                    <span class="mini-name">Phillip</span>
+                    <p class="mini-role">Owns Libations and the established app stack.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="org-column">
+              <div class="org-column-card func">
+                <div class="org-column-head">
+                  <h3>Functional Experts</h3>
+                  <span>shared bench</span>
+                </div>
+                <p class="org-column-note">Support both app teams from the side, not underneath them.</p>
+                <div class="expert-mini-grid">
+                  <div class="mini-card"><span class="mini-name">UX Expert</span><p class="mini-role">Finds friction and broken flows.</p></div>
+                  <div class="mini-card"><span class="mini-name">Design Expert</span><p class="mini-role">Keeps the product premium and coherent.</p></div>
+                  <div class="mini-card"><span class="mini-name">Marketing Expert</span><p class="mini-role">Shapes launch messaging and App Store language.</p></div>
+                  <div class="mini-card"><span class="mini-name">Security Expert</span><p class="mini-role">Protects data and keeps production safe.</p></div>
+                  <div class="mini-card"><span class="mini-name">Database Expert</span><p class="mini-role">Reviews schema, queries, and integrity.</p></div>
+                  <div class="mini-card"><span class="mini-name">Apple App Expert</span><p class="mini-role">Handles iOS, Xcode, and TestFlight.</p></div>
+                  <div class="mini-card"><span class="mini-name">Android App Expert</span><p class="mini-role">Handles Android and parity.</p></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="org-column">
+              <div class="org-column-card other">
+                <div class="org-column-head">
+                  <h3>Others</h3>
+                  <span>agents</span>
+                </div>
+                <p class="org-column-note">Miscellaneous agents and operating roles that don't sit in App or Life.</p>
+                <div class="stack">
+                  <div class="mini-card">
+                    <span class="mini-kicker">Weather Desk</span>
+                    <span class="mini-name">Weather Trader</span>
+                    <p class="mini-role">Makes the daily paper bets and records the slate.</p>
+                  </div>
+                  <div class="mini-card">
+                    <span class="mini-kicker">Calibration</span>
+                    <span class="mini-name">Calibration Reviewer</span>
+                    <p class="mini-role">Reviews wins and losses and sharpens probability haircuts.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="org-column">
+              <div class="org-column-card life">
+                <div class="org-column-head">
+                  <h3>Life Team</h3>
+                  <span>reports to Greg</span>
+                </div>
+                <p class="org-column-note">Arnold, Tim, and Socrates sit directly beneath Greg.</p>
+                <div class="stack">
+                  <div class="mini-card">
+                    <span class="mini-kicker">Fitness</span>
+                    <span class="mini-name">Arnold</span>
+                    <p class="mini-role">Training, recovery, and athletic planning.</p>
+                  </div>
+                  <div class="mini-card">
+                    <span class="mini-kicker">Entrepreneurship</span>
+                    <span class="mini-name">Tim</span>
+                    <p class="mini-role">High-agency experiments, goals, and practical focus.</p>
+                  </div>
+                  <div class="mini-card">
+                    <span class="mini-kicker">Philosophy</span>
+                    <span class="mini-name">Socrates</span>
+                    <p class="mini-role">Reflection, perspective, discipline, and non-religious philosophy.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1972,6 +2066,7 @@
         </div>
       </div>
     </section>
+
   </div>
 </body>
 </html>
