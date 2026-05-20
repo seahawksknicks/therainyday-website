@@ -370,9 +370,8 @@
 
     .org-app-groups {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 4px;
+      gap: 16px;
+      margin-top: 8px;
       position: relative;
       padding-top: 18px;
     }
@@ -387,6 +386,44 @@
       background: rgba(255,255,255,0.10);
     }
 
+    .org-app-team {
+      display: grid;
+      gap: 12px;
+      position: relative;
+      padding-top: 18px;
+    }
+
+    .org-app-team::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 18px;
+      background: rgba(255,255,255,0.10);
+    }
+
+    .org-app-team .org-node.team {
+      text-align: left;
+    }
+
+    .org-app-team .org-node.team .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 25px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .org-app-team .org-node.team .role {
+      color: #d7cdbd;
+      max-width: 42ch;
+    }
+
+    .org-app-team .org-subgrid.app-people {
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    }
+
     .org-mini-group {
       border-radius: 16px;
       border: 1px solid var(--border);
@@ -395,17 +432,6 @@
       display: grid;
       gap: 8px;
       position: relative;
-    }
-
-    .org-mini-group::before {
-      content: '';
-      position: absolute;
-      top: -18px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 18px;
-      background: rgba(255,255,255,0.10);
     }
 
     .org-mini-group strong {
@@ -849,15 +875,59 @@
                 <p class="org-branch-note">Monica handles new apps. Phillip handles established apps.</p>
 
                 <div class="org-app-groups">
-                  <div class="org-mini-group">
-                    <strong>New Apps</strong>
-                    <div class="mini-name">Monica</div>
-                    <p class="mini-role">Early product work, UX, design, and launch positioning.</p>
+                  <div class="org-app-team">
+                    <div class="org-node team">
+                      <span class="kicker">New Apps</span>
+                      <span class="name">Monica</span>
+                      <span class="role">Launches new apps, early product direction, and positioning.</span>
+                    </div>
+                    <div class="org-subgrid app-people">
+                      <div class="org-node person">
+                        <span class="kicker">UX</span>
+                        <span class="name">UX Expert</span>
+                        <span class="role">Finds friction, ambiguity, and broken flows before users do.</span>
+                      </div>
+                      <div class="org-node person">
+                        <span class="kicker">Design</span>
+                        <span class="name">Design Expert</span>
+                        <span class="role">Keeps the product premium, restrained, and visually coherent.</span>
+                      </div>
+                      <div class="org-node person">
+                        <span class="kicker">Marketing</span>
+                        <span class="name">Marketing Expert</span>
+                        <span class="role">Shapes positioning, launch messaging, and App Store language.</span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="org-mini-group">
-                    <strong>Established Apps</strong>
-                    <div class="mini-name">Phillip</div>
-                    <p class="mini-role">Libations stewardship, beverage-domain judgment, database, and mobile platform work.</p>
+
+                  <div class="org-app-team">
+                    <div class="org-node team">
+                      <span class="kicker">Established Apps</span>
+                      <span class="name">Phillip</span>
+                      <span class="role">Owns Libations and the established app stack.</span>
+                    </div>
+                    <div class="org-subgrid app-people">
+                      <div class="org-node person">
+                        <span class="kicker">Security</span>
+                        <span class="name">Security Expert</span>
+                        <span class="role">Identifies risk, protects data, and keeps production systems safe.</span>
+                      </div>
+                      <div class="org-node person">
+                        <span class="kicker">Database</span>
+                        <span class="name">Database Expert</span>
+                        <span class="role">Reviews schema, migrations, queries, and data integrity.</span>
+                      </div>
+                      <div class="org-node person">
+                        <span class="kicker">iOS</span>
+                        <span class="name">Apple App Expert</span>
+                        <span class="role">Handles iOS, Xcode, TestFlight, and App Store workflows.</span>
+                      </div>
+                      <div class="org-node person">
+                        <span class="kicker">Android</span>
+                        <span class="name">Android App Expert</span>
+                        <span class="role">Handles Android, Play Store, and platform-parity concerns.</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
