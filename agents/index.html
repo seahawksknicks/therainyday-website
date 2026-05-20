@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agents — The Rainy Day Company</title>
-  <meta name="description" content="Agent control room for Monica, Phillip, Socrates, and the functional expert bench." />
+  <meta name="description" content="Org chart for Greg, Monica, Phillip, Arnold, Tim, Socrates, and Stefon at The Rainy Day Company." />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -191,6 +191,173 @@
       font-size: 15px;
       line-height: 1.8;
       color: #b9b2a9;
+    }
+
+    .org-chart {
+      margin-top: 22px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .org-root {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      position: relative;
+      padding-bottom: 14px;
+    }
+
+    .org-root::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 1px;
+      height: 18px;
+      background: var(--border);
+    }
+
+    .org-root-node {
+      width: min(100%, 360px);
+      padding: 18px 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(240,215,154,0.22);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+      text-align: center;
+    }
+
+    .org-root-kicker {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+      margin-bottom: 8px;
+    }
+
+    .org-root-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.8vw, 3rem);
+      line-height: 0.96;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .org-root-role {
+      margin-top: 8px;
+      color: var(--gold);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .org-root-note {
+      margin: 0;
+      text-align: center;
+      color: #b8b1a8;
+      font-size: 14px;
+      line-height: 1.75;
+      max-width: 64ch;
+    }
+
+    .org-branches {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .org-branch {
+      position: relative;
+      padding-top: 18px;
+    }
+
+    .org-branch::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 18px;
+      background: var(--border);
+    }
+
+    .org-branch-card {
+      height: 100%;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      display: grid;
+      gap: 12px;
+    }
+
+    .org-branch-card.life {
+      background: rgba(100,214,138,0.04);
+    }
+
+    .org-branch-card.ops {
+      background: rgba(244,202,160,0.05);
+    }
+
+    .org-branch-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .org-branch-head h3 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .org-count {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .org-member {
+      padding: 12px 0 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .org-member:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .org-member strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .org-member span {
+      display: block;
+      color: #c0b8ae;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .org-member.primary strong {
+      color: var(--gold);
+    }
+
+    .org-member.bench {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 12px;
     }
 
     .hero-actions {
@@ -389,6 +556,7 @@
     .pill.shared { color: #1a1608; background: var(--gold); border-color: transparent; font-weight: 700; }
     .pill.testing { color: #0d1a12; background: #9cf0bf; border-color: transparent; font-weight: 700; }
     .pill.standalone { color: #08111a; background: #a7c6ff; border-color: transparent; font-weight: 700; }
+    .pill.ops { color: #241307; background: #f4caa0; border-color: transparent; font-weight: 700; }
 
     .card p {
       margin: 0;
@@ -481,6 +649,7 @@
       .card, .card.slim, .card.wide { grid-column: span 12; }
       .hero-main, .hero-side, .section { padding: 18px; }
       .section-head h2 { font-size: 26px; }
+      .org-branches { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -492,51 +661,119 @@
         <div class="brand-copy">
           <div class="eyebrow">The Rainy Day Company</div>
           <h1>Agent Control Room</h1>
-          <p>Monica handles new apps. Phillip handles Libations. Socrates stands apart. The expert bench is shared where it should be and separate where it must be.</p>
+          <p>Greg sits at the top. Monica handles new apps. Phillip handles Libations. Arnold, Tim, and Socrates sit in the Life team. Stefon handles archive, signing, and structure. The expert bench stays shared where it should be and separate where it must be.</p>
         </div>
       </div>
       <div class="meta">
-        <div class="badge"><span class="dot"></span> Dashboard live</div>
+        <div class="badge"><span class="dot"></span> Org chart live</div>
         <div class="badge">Last sync: <strong id="sync-time">2026-05-20 07:11 EDT</strong></div>
       </div>
     </header>
 
     <section class="hero">
       <div class="panel hero-main">
-        <div class="hero-label">Current operating model</div>
-        <h2 class="hero-title">A focused team for <em>building</em>, <em>testing</em>, and <em>thinking</em>.</h2>
+        <div class="hero-label">Visual hierarchy</div>
+        <h2 class="hero-title">Greg is <em>CEO</em>. Everyone else sits beneath the structure.</h2>
         <p class="hero-copy">
-          This dashboard is the roster view for the Rainy Day agent system. It keeps the core personas visible, separates the shared app-function experts from the testing experts, and makes the standalone philosophy agent easy to find. Update this page whenever the agent roster changes, then restart the gateway after the profiles are in place.
+          This page is the operating chart. I use it to see who belongs where, keep the structure honest, and change the roster fast when the team changes. The chart keeps the app team, life team, and archive support separated so the model stays legible at a glance.
         </p>
+        <div class="org-chart">
+          <div class="org-root">
+            <div class="org-root-node">
+              <div class="org-root-kicker">Chief executive</div>
+              <div class="org-root-name">Greg</div>
+              <div class="org-root-role">CEO</div>
+            </div>
+            <p class="org-root-note">Top-level decision maker. Everything below flows through this structure so I can evaluate the team, not just the tasks.</p>
+          </div>
+
+          <div class="org-branches">
+            <div class="org-branch">
+              <div class="org-branch-card">
+                <div class="org-branch-head">
+                  <h3>App Team</h3>
+                  <span class="org-count">2 leads + 7 experts</span>
+                </div>
+                <div class="org-member primary">
+                  <strong>Monica</strong>
+                  <span>New apps, early product work, and app-development coordination.</span>
+                </div>
+                <div class="org-member primary">
+                  <strong>Phillip</strong>
+                  <span>Libations stewardship, beverage-domain judgment, and release safety.</span>
+                </div>
+                <div class="org-member bench">
+                  <strong>Functional bench</strong>
+                  <span>UX, Design, Security, Marketing, Database, Apple App, Android App.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="org-branch">
+              <div class="org-branch-card life">
+                <div class="org-branch-head">
+                  <h3>Life Team</h3>
+                  <span class="org-count">3 personas</span>
+                </div>
+                <div class="org-member">
+                  <strong>Arnold</strong>
+                  <span>Fitness, training, recovery, and athletic planning.</span>
+                </div>
+                <div class="org-member">
+                  <strong>Tim</strong>
+                  <span>High-agency experiments, goals, and practical focus.</span>
+                </div>
+                <div class="org-member">
+                  <strong>Socrates</strong>
+                  <span>Reflection, perspective, discipline, and non-religious philosophy.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="org-branch">
+              <div class="org-branch-card ops">
+                <div class="org-branch-head">
+                  <h3>Ops / Archive</h3>
+                  <span class="org-count">1 steward</span>
+                </div>
+                <div class="org-member">
+                  <strong>Stefon</strong>
+                  <span>Archive, signing, and Mac profile structure for Libations work.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="hero-actions">
-          <button class="btn primary" data-filter="all">Show all teams</button>
-          <button class="btn" data-filter="coordinator">Core personas</button>
-          <button class="btn" data-filter="app">App function experts</button>
+          <button class="btn primary" data-filter="all">Show all agents</button>
+          <button class="btn" data-filter="coordinator">App team</button>
           <button class="btn" data-filter="testing">Testing experts</button>
           <button class="btn" data-filter="philosophy">Socrates</button>
+          <button class="btn" data-filter="ops">Stefon</button>
         </div>
       </div>
 
       <aside class="panel hero-side">
         <div class="mini-stat">
-          <div class="kicker">Core personas</div>
-          <div class="value">5</div>
-          <p class="note">Monica, Phillip, Socrates, Arnold, and Tim. Monica and Phillip are the active app coordinators.</p>
-        </div>
-        <div class="mini-stat">
-          <div class="kicker">Shared app experts</div>
-          <div class="value">7</div>
-          <p class="note">UX, Design, Security, Marketing, Database, Apple App, Android App. Shared by Monica and Phillip.</p>
-        </div>
-        <div class="mini-stat">
-          <div class="kicker">Testing bench</div>
-          <div class="value">6</div>
-          <p class="note">Mixologist, Craft Beer, Scotch, Sommelier, Bourbon, and Travel. Use for QA and product realism.</p>
-        </div>
-        <div class="mini-stat">
-          <div class="kicker">Standalone philosopher</div>
+          <div class="kicker">CEO</div>
           <div class="value">1</div>
-          <p class="note">Socrates is outside Monica and Phillip’s team. He is the calm, reflective philosophy expert.</p>
+          <p class="note">Greg sits at the top and decides when the structure changes.</p>
+        </div>
+        <div class="mini-stat">
+          <div class="kicker">App team</div>
+          <div class="value">9</div>
+          <p class="note">Monica, Phillip, and seven shared experts keep app work coordinated and safe.</p>
+        </div>
+        <div class="mini-stat">
+          <div class="kicker">Life team</div>
+          <div class="value">3</div>
+          <p class="note">Arnold, Tim, and Socrates cover the personal and reflective side of the structure.</p>
+        </div>
+        <div class="mini-stat">
+          <div class="kicker">Ops / archive</div>
+          <div class="value">1</div>
+          <p class="note">Stefon handles archive, signing, and the Mac profile layer.</p>
         </div>
       </aside>
     </section>
@@ -545,7 +782,7 @@
       <div class="section-head">
         <div>
           <h2>Roster</h2>
-          <p>Browse the roster by group or search by name, remit, or influence. Cards are tagged so the team structure stays legible at a glance.</p>
+          <p>Browse the full roster by group or search by name, remit, or influence. Cards are tagged so the structure stays legible at a glance.</p>
         </div>
         <div class="filters">
           <input id="search" type="search" placeholder="Search agents, roles, or skills…" />
@@ -554,6 +791,7 @@
           <button class="chip" aria-pressed="false" data-filter="app">App</button>
           <button class="chip" aria-pressed="false" data-filter="testing">Testing</button>
           <button class="chip" aria-pressed="false" data-filter="philosophy">Philosophy</button>
+          <button class="chip" aria-pressed="false" data-filter="ops">Ops</button>
         </div>
       </div>
       <div class="grid" id="cards"></div>
@@ -583,6 +821,13 @@
               <span>Use for reflection, perspective, discipline, and non-religious philosophy.</span>
             </div>
             <div class="right">Standalone</div>
+          </li>
+          <li>
+            <div class="left">
+              <strong>Stefon</strong>
+              <span>Use for archive structure, signing workflow, and Mac profile stewardship.</span>
+            </div>
+            <div class="right">Ops</div>
           </li>
         </ul>
       </section>
@@ -617,7 +862,7 @@
 
     <footer class="footer">
       <div>Route: <strong>/agents</strong></div>
-      <div>Built for Monica, Phillip, Socrates, and the functional expert bench.</div>
+      <div>Built for Greg, Monica, Phillip, Arnold, Tim, Socrates, Stefon, and the functional expert bench.</div>
     </footer>
   </div>
 
@@ -628,6 +873,7 @@
       { name: 'Socrates', role: 'Philosophy expert', group: 'philosophy', pill: 'Standalone', summary: 'Stoicism, non-religious spirituality, and Buddhism applied to real life.', tags: ['Stoicism', 'presence', 'compassion', 'clarity'] },
       { name: 'Arnold', role: 'Fitness coach', group: 'coordinator', pill: 'Core', summary: 'Standalone fitness-minded agent for training, recovery, and athletic planning.', tags: ['fitness', 'training', 'recovery', 'discipline'] },
       { name: 'Tim', role: 'Experimentation / high-agency guide', group: 'coordinator', pill: 'Core', summary: 'Standalone high-agency experimentation persona for focused, practical work.', tags: ['experiments', 'goals', 'focus', 'systems'] },
+      { name: 'Stefon', role: 'Archive / signing steward', group: 'ops', pill: 'Ops', summary: 'Handles archive structure, signing, and the Mac profile layer for the team.', tags: ['archive', 'signing', 'mac profile'] },
 
       { name: 'UX Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Finds friction, ambiguity, and broken flows before users do.', tags: ['flows', 'states', 'accessibility'] },
       { name: 'Design Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Keeps the product premium, restrained, and visually coherent.', tags: ['hierarchy', 'spacing', 'visual polish'] },
@@ -652,7 +898,7 @@
     let active = 'all';
 
     function cardClass(group) {
-      if (group === 'coordinator' || group === 'philosophy') return 'wide';
+      if (group === 'coordinator' || group === 'philosophy' || group === 'ops') return 'wide';
       if (group === 'testing') return 'slim';
       return '';
     }
