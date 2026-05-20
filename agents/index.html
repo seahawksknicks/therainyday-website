@@ -370,7 +370,7 @@
 
     .org-app-groups {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       margin-top: 4px;
       position: relative;
@@ -837,7 +837,6 @@
               <div class="org-ceo-name">Greg</div>
               <div class="org-ceo-role">Direct oversight</div>
             </div>
-            <p class="org-ceo-note">Direct reports sit below this node. Stefon is support, not a manager over the rest.</p>
           </div>
 
           <div class="org-level">
@@ -847,23 +846,18 @@
                   <h3>App Team</h3>
                   <span class="org-count">reports to Greg</span>
                 </div>
-                <p class="org-branch-note">Monica leads Product. Phillip leads Platform. Security and release checks sit in a third lane so the app team stays clear.</p>
+                <p class="org-branch-note">Monica handles new apps. Phillip handles established apps.</p>
 
                 <div class="org-app-groups">
                   <div class="org-mini-group">
-                    <strong>Product</strong>
+                    <strong>New Apps</strong>
                     <div class="mini-name">Monica</div>
-                    <p class="mini-role">New apps, early product work, UX, design, and launch positioning.</p>
+                    <p class="mini-role">Early product work, UX, design, and launch positioning.</p>
                   </div>
                   <div class="org-mini-group">
-                    <strong>Platform</strong>
+                    <strong>Established Apps</strong>
                     <div class="mini-name">Phillip</div>
                     <p class="mini-role">Libations stewardship, beverage-domain judgment, database, and mobile platform work.</p>
-                  </div>
-                  <div class="org-mini-group">
-                    <strong>Release / Safety</strong>
-                    <div class="mini-name">Shared lane</div>
-                    <p class="mini-role">Security, QA, signing, and final checks before anything goes out.</p>
                   </div>
                 </div>
 
@@ -880,17 +874,17 @@
 
                 <div class="org-subgrid life">
                   <div class="org-node person">
-                    <span class="kicker">Life</span>
+                    <span class="kicker">Fitness</span>
                     <span class="name">Arnold</span>
-                    <span class="role">Fitness, training, recovery, and athletic planning.</span>
+                    <span class="role">Training, recovery, and athletic planning.</span>
                   </div>
                   <div class="org-node person">
-                    <span class="kicker">Life</span>
+                    <span class="kicker">Entrepreneurship</span>
                     <span class="name">Tim</span>
                     <span class="role">High-agency experiments, goals, and practical focus.</span>
                   </div>
                   <div class="org-node person">
-                    <span class="kicker">Life</span>
+                    <span class="kicker">Philosophy</span>
                     <span class="name">Socrates</span>
                     <span class="role">Reflection, perspective, discipline, and non-religious philosophy.</span>
                   </div>
@@ -901,14 +895,14 @@
             <div class="org-branch">
               <div class="org-branch-card ops">
                 <div class="org-branch-head">
-                  <h3>Stefon</h3>
+                  <h3>Chief of Staff</h3>
                   <span class="org-count">cross-functional</span>
                 </div>
                 <p class="org-branch-note">Stefon sits under Greg as archive and signing support for the whole system.</p>
                 <div class="org-node team" style="margin-top: 4px;">
                   <span class="kicker">Ops</span>
-                  <span class="name">Archive + signing</span>
-                  <span class="role">Mac profile stewardship and the structural layer for Libations work.</span>
+                  <span class="name">Stefon</span>
+                  <span class="role">Archive + signing, with Mac profile stewardship for Libations work.</span>
                 </div>
               </div>
             </div>
@@ -944,12 +938,12 @@
 
   <script>
     const roster = [
-      { name: 'Monica', role: 'App development coordinator', group: 'coordinator', pill: 'Core', summary: 'Main specialist for new apps and early-stage product work.', tags: ['new apps', 'planning', 'coordination', 'security-conscious'] },
-      { name: 'Phillip', role: 'Libations steward', group: 'coordinator', pill: 'Core', summary: 'Specialist for Libations, beverage-domain decisions, and production safety.', tags: ['Libations', 'release', 'Supabase', 'beverage domain'] },
-      { name: 'Socrates', role: 'Philosophy expert', group: 'philosophy', pill: 'Standalone', summary: 'Stoicism, non-religious spirituality, and Buddhism applied to real life.', tags: ['Stoicism', 'presence', 'compassion', 'clarity'] },
-      { name: 'Arnold', role: 'Fitness coach', group: 'coordinator', pill: 'Core', summary: 'Standalone fitness-minded agent for training, recovery, and athletic planning.', tags: ['fitness', 'training', 'recovery', 'discipline'] },
-      { name: 'Tim', role: 'Experimentation / high-agency guide', group: 'coordinator', pill: 'Core', summary: 'Standalone high-agency experimentation persona for focused, practical work.', tags: ['experiments', 'goals', 'focus', 'systems'] },
-      { name: 'Stefon', role: 'Archive / signing steward', group: 'ops', pill: 'Ops', summary: 'Handles archive structure, signing, and the Mac profile layer for the team.', tags: ['archive', 'signing', 'mac profile'] },
+      { name: 'Monica', role: 'New apps', group: 'coordinator', pill: 'Core', summary: 'Main specialist for new apps and early-stage product work.', tags: ['new apps', 'planning', 'coordination', 'security-conscious'] },
+      { name: 'Phillip', role: 'Established apps', group: 'coordinator', pill: 'Core', summary: 'Specialist for Libations, beverage-domain decisions, and production safety.', tags: ['Libations', 'release', 'Supabase', 'beverage domain'] },
+      { name: 'Socrates', role: 'Philosophy', group: 'philosophy', pill: 'Standalone', summary: 'Stoicism, non-religious spirituality, and Buddhism applied to real life.', tags: ['Stoicism', 'presence', 'compassion', 'clarity'] },
+      { name: 'Arnold', role: 'Fitness', group: 'coordinator', pill: 'Core', summary: 'Standalone fitness-minded agent for training, recovery, and athletic planning.', tags: ['fitness', 'training', 'recovery', 'discipline'] },
+      { name: 'Tim', role: 'Entrepreneurship', group: 'coordinator', pill: 'Core', summary: 'Standalone high-agency experimentation persona for focused, practical work.', tags: ['experiments', 'goals', 'focus', 'systems'] },
+      { name: 'Stefon', role: 'Chief of Staff', group: 'ops', pill: 'Ops', summary: 'Handles archive structure, signing, and the Mac profile layer for the team.', tags: ['archive', 'signing', 'mac profile'] },
 
       { name: 'UX Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Finds friction, ambiguity, and broken flows before users do.', tags: ['flows', 'states', 'accessibility'] },
       { name: 'Design Expert', role: 'Functional expert', group: 'app', pill: 'Shared', summary: 'Keeps the product premium, restrained, and visually coherent.', tags: ['hierarchy', 'spacing', 'visual polish'] },
