@@ -1029,10 +1029,11 @@
     .tower-headline {
       margin: 0;
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4.3vw, 4.2rem);
+      font-size: clamp(1.9rem, 3vw, 2.7rem);
       font-weight: 500;
-      line-height: 0.98;
+      line-height: 1.02;
       letter-spacing: -0.02em;
+      max-width: 16ch;
     }
 
     .tower-copy {
@@ -1260,10 +1261,10 @@
     <section class="panel section control-tower">
       <div class="section-head">
         <div>
-          <h2>Executive control tower</h2>
-          <p>One page for timing, ownership, token usage, time spent, and the decisions that keep work moving.</p>
+          <h2>Project control</h2>
+          <p>Status, timing, owner, blockers.</p>
         </div>
-        <div class="status-chip good">on track / 3 active streams</div>
+        <div class="status-chip good">3 active streams</div>
       </div>
 
       <div class="tower-grid">
@@ -1271,50 +1272,50 @@
           <div class="tower-status">
             <span class="status-chip good">deadline confidence 78%</span>
             <span class="status-chip warn">2 blockers</span>
-            <span class="status-chip">last updated <time id="sync-time" datetime="2026-05-20T12:20:00-04:00">12:20 PM EDT</time></span>
+            <span class="status-chip">updated <time id="sync-time" datetime="2026-05-20T12:20:00-04:00">12:20 PM EDT</time></span>
           </div>
 
-          <h3 class="tower-headline">The work is visible, the timing is visible, and the next move is obvious.</h3>
-          <p class="tower-copy">This is the view I’d show an executive: what is in flight right now, how expensive it is, what is at risk, and what decision is needed next. The page stays honest by keeping active items, progress, and follow-ups on the surface.</p>
+          <h3 class="tower-headline">Current work</h3>
+          <p class="tower-copy">What’s moving, what’s blocked, and what needs a decision.</p>
 
           <div class="kpi-grid">
             <div class="kpi">
               <div class="label">Tokens this week</div>
               <div class="value">42.8k</div>
-              <p class="sub">Mostly review, synthesis, and PM updates. No wasted busywork hiding underneath.</p>
+              <p class="sub">Review, synthesis, PM updates.</p>
             </div>
             <div class="kpi">
               <div class="label">Time spent</div>
               <div class="value">11h 35m</div>
-              <p class="sub">Spending shows where the effort went, not just where the conversation went.</p>
+              <p class="sub">Where the effort went.</p>
             </div>
             <div class="kpi">
               <div class="label">Updates today</div>
               <div class="value">7</div>
-              <p class="sub">Enough cadence to catch drift without turning the page into noise.</p>
+              <p class="sub">Enough cadence to catch drift.</p>
             </div>
             <div class="kpi">
               <div class="label">Next review</div>
               <div class="value">Fri</div>
-              <p class="sub">The page should make it clear when the next executive check-in happens.</p>
+              <p class="sub">Next check-in.</p>
             </div>
           </div>
         </article>
 
         <aside class="panel-box">
-          <h3>What changed since the last update</h3>
+          <h3>Recent changes</h3>
           <ul class="feed-list">
             <li class="feed-item">
               <div class="feed-top"><strong>Android login issue isolated</strong><span>10:15</span></div>
-              <p class="feed-copy">The failure path is narrower now, which makes the next fix more surgical.</p>
+              <p class="feed-copy">Narrower failure path. Next fix is clearer.</p>
             </li>
             <li class="feed-item">
               <div class="feed-top"><strong>iOS 2.2.2 ready for release</strong><span>11:00</span></div>
-              <p class="feed-copy">The ship path is clear. The page should keep that status easy to spot.</p>
+              <p class="feed-copy">Ship path is clear.</p>
             </li>
             <li class="feed-item">
               <div class="feed-top"><strong>Workflow review added</strong><span>11:42</span></div>
-              <p class="feed-copy">Successes and failures are being captured so the system can improve instead of guess.</p>
+              <p class="feed-copy">Successes and failures are captured.</p>
             </li>
           </ul>
         </aside>
@@ -1327,28 +1328,28 @@
             <li class="stream-item">
               <div class="stream-top"><strong>Android login recovery</strong><span>Owner: Phillip</span></div>
               <div class="progress"><i style="width: 58%;"></i></div>
-              <p class="stream-meta">Status: blocked. Fix the auth path, then verify on device before closing the loop.</p>
+              <p class="stream-meta">Blocked. Fix auth, then verify on device.</p>
             </li>
             <li class="stream-item">
               <div class="stream-top"><strong>iOS v2.2.2 launch</strong><span>Owner: Phillip</span></div>
               <div class="progress"><i style="width: 88%;"></i></div>
-              <p class="stream-meta">Status: ready. This should be the cleanest path to a visible win.</p>
+              <p class="stream-meta">Ready.</p>
             </li>
             <li class="stream-item">
               <div class="stream-top"><strong>Android parity</strong><span>Owner: Monica</span></div>
               <div class="progress"><i style="width: 61%;"></i></div>
-              <p class="stream-meta">Status: in motion. Keep Android aligned with the iOS release so the story stays consistent.</p>
+              <p class="stream-meta">In motion. Keep Android aligned with iOS.</p>
             </li>
             <li class="stream-item">
               <div class="stream-top"><strong>Workflows and agents</strong><span>Owner: Stefon</span></div>
               <div class="progress"><i style="width: 47%;"></i></div>
-              <p class="stream-meta">Status: ongoing. Tighten the loop around review, lessons learned, and next action. Stefon owns the operational routing for this work.</p>
+              <p class="stream-meta">Ongoing. Review, lessons learned, next action.</p>
             </li>
           </ul>
         </article>
 
         <article class="panel-box">
-          <h3>Token and time burn</h3>
+          <h3>Burn</h3>
           <div class="bar-set">
             <div class="bar-row">
               <div class="bar-head"><span>Review + synthesis</span><span>18.4k tokens</span></div>
@@ -1367,23 +1368,23 @@
               <div class="bar"><i style="width: 19%;"></i></div>
             </div>
           </div>
-          <p class="stream-meta">The point is not just usage. The point is seeing whether effort is going into progress, or into churn.</p>
+          <p class="stream-meta">Shows whether effort is going into progress or churn.</p>
         </article>
 
         <article class="panel-box">
-          <h3>Decisions / risks</h3>
+          <h3>Decisions</h3>
           <ul class="decision-list">
             <li class="decision-item">
               <div class="decision-top"><strong>Decision: keep scope tight</strong><span>needed today</span></div>
-              <p class="decision-copy">Do not widen the release until the login fix is verified and the release path is clean.</p>
+              <p class="decision-copy">Do not widen the release until login is verified.</p>
             </li>
             <li class="decision-item">
               <div class="decision-top"><strong>Risk: hidden blockers</strong><span>watch</span></div>
-              <p class="decision-copy">Any task that slips out of the feed should be surfaced here so it does not disappear quietly.</p>
+              <p class="decision-copy">Surface anything that slips out of the feed.</p>
             </li>
             <li class="decision-item">
               <div class="decision-top"><strong>Need: final sign-off</strong><span>Friday</span></div>
-              <p class="decision-copy">A single clear approval point keeps the page useful to executives instead of ornamental.</p>
+              <p class="decision-copy">One clear approval point.</p>
             </li>
           </ul>
         </article>
