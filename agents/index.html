@@ -230,6 +230,45 @@
       line-height: 1.7;
     }
 
+    .pm-list {
+      margin: 0;
+      padding-left: 18px;
+      color: #d6cec0;
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .pm-list li strong {
+      color: var(--text);
+    }
+
+    .pm-note {
+      margin-top: 2px;
+      color: #b7afa5;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .pm-owners {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .pm-owner {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e5d8c3;
+    }
+
     .org-func-team {
       display: grid;
       gap: 12px;
@@ -999,27 +1038,51 @@
       <div class="section-head">
         <div>
           <h2>Project Management Dashboard</h2>
-          <p>Coordination, ownership, and live-verification rules for the whole system.</p>
+          <p>Real priorities, real ownership, and a living view of what moves next.</p>
         </div>
         <div class="pill shared">PM / oversight</div>
       </div>
 
       <div class="pm-grid">
         <article class="pm-card">
-          <h3>Now</h3>
-          <p>Keep the page readable, ship changes live, and verify them before calling them done.</p>
+          <h3>Libations</h3>
+          <ul class="pm-list">
+            <li><strong>Critical:</strong> fix the Android login issue.</li>
+            <li><strong>Ship:</strong> launch iOS version 2.2.2.</li>
+            <li><strong>Parity:</strong> update Android to match iOS.</li>
+            <li><strong>Partnership:</strong> partner with Liquid Labs.</li>
+          </ul>
         </article>
+
         <article class="pm-card">
-          <h3>Point of Contact</h3>
-          <p>Stefon is the Telegram gateway and project coordination contact for all agents.</p>
+          <h3>Overall</h3>
+          <ul class="pm-list">
+            <li><strong>Focus:</strong> workflows and agents.</li>
+            <li><strong>Improve:</strong> review successes and failures, then update the system.</li>
+          </ul>
+          <div class="pm-note">This dashboard should stay active, specific, and tied to live outcomes.</div>
         </article>
+
         <article class="pm-card">
-          <h3>Structure</h3>
-          <p>App Team, Life Team, and Functional Experts are the main workstreams beneath Greg.</p>
+          <h3>Agents keeping things moving</h3>
+          <div class="pm-owners">
+            <span class="pm-owner">Stefon — point of contact</span>
+            <span class="pm-owner">Phillip — Libations</span>
+            <span class="pm-owner">Monica — new work</span>
+            <span class="pm-owner">Arnold — training</span>
+            <span class="pm-owner">Tim — workflows</span>
+            <span class="pm-owner">Socrates — reflection</span>
+          </div>
+          <div class="pm-note">Agents should keep ownership visible, surface blockers early, and push work forward.</div>
         </article>
+
         <article class="pm-card">
-          <h3>Watch</h3>
-          <p>Preserve production safety, premium feel, and clear ownership boundaries.</p>
+          <h3>PM cadence</h3>
+          <ul class="pm-list">
+            <li>Check status every time something ships.</li>
+            <li>Mark what worked, what failed, and what needs a follow-up.</li>
+            <li>Keep the page honest: unfinished work stays visible.</li>
+          </ul>
         </article>
       </div>
     </section>
