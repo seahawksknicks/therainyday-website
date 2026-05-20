@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agents — The Rainy Day Company</title>
-  <meta name="description" content="Org chart for Greg, Monica, Phillip, Arnold, Tim, Socrates, and Stefon at The Rainy Day Company." />
+  <meta name="description" content="Control surface for Greg, Monica, Phillip, Arnold, Tim, Socrates, and Stefon at The Rainy Day Company." />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -806,6 +806,399 @@
       max-width: 70ch;
     }
 
+    .ops-section {
+      display: grid;
+      gap: 18px;
+    }
+
+    .top-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .strip-card {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      min-height: 180px;
+    }
+
+    .strip-card.attention { border-color: rgba(248,113,113,0.18); background: linear-gradient(180deg, rgba(248,113,113,0.08), rgba(255,255,255,0.02)); }
+    .strip-card.risk { border-color: rgba(251,191,36,0.16); background: linear-gradient(180deg, rgba(251,191,36,0.08), rgba(255,255,255,0.02)); }
+    .strip-card.launch { border-color: rgba(96,165,250,0.16); background: linear-gradient(180deg, rgba(96,165,250,0.08), rgba(255,255,255,0.02)); }
+
+    .strip-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .strip-head strong {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .strip-head span {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .strip-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .strip-list li {
+      display: grid;
+      gap: 4px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .strip-list li:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .strip-list b {
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .strip-list span {
+      color: #c6bfb5;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .now-rail {
+      display: grid;
+      gap: 14px;
+    }
+
+    .work-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .work-card {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .work-card.top-priority { border-color: rgba(248,113,113,0.18); background: linear-gradient(180deg, rgba(248,113,113,0.05), rgba(255,255,255,0.02)); }
+
+    .work-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .work-name {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.05;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .work-owner {
+      margin-top: 4px;
+      color: var(--amber-2);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .work-pill {
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      white-space: nowrap;
+      align-self: start;
+    }
+
+    .work-pill.good { color: #09150d; background: #97efb9; border-color: transparent; font-weight: 700; }
+    .work-pill.warn { color: #1b1205; background: #f0d79a; border-color: transparent; font-weight: 700; }
+    .work-pill.bad { color: #1c0909; background: #ffb0b0; border-color: transparent; font-weight: 700; }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .field {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      padding: 10px 12px;
+      display: grid;
+      gap: 4px;
+      min-height: 64px;
+    }
+
+    .field .kicker {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .field .value {
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .field .value.small { font-weight: 500; color: #d8d0c3; }
+
+    .work-note {
+      margin: 0;
+      color: #c6bfb5;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .mid-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .queue-list, .forecast-list, .audit-list, .agent-list, .ladder-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .queue-item, .forecast-item, .audit-item, .agent-item, .ladder-item {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .queue-item:first-child, .forecast-item:first-child, .audit-item:first-child, .agent-item:first-child, .ladder-item:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .queue-top, .forecast-top, .audit-top, .agent-top, .ladder-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .queue-top strong, .forecast-top strong, .audit-top strong, .agent-top strong, .ladder-top strong {
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .queue-top span, .forecast-top span, .audit-top span, .agent-top span, .ladder-top span {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .queue-copy, .forecast-copy, .audit-copy, .agent-copy, .ladder-copy {
+      margin: 0;
+      color: #c6bfb5;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline-axis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .timeline-chip {
+      border-radius: 999px;
+      padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+      color: #d6cec0;
+    }
+
+    .timeline-chip strong {
+      color: var(--text);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .timeline-bar {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .timeline-bar i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(96,165,250,0.85), rgba(200,145,58,0.95));
+    }
+
+    .launch-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .launch-card {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .launch-card .launch-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .launch-meta {
+      color: #c6bfb5;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .launch-meta .risk { color: var(--amber-2); }
+
+    .oversight-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.2fr 0.95fr 0.95fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .ladder-step {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      padding: 10px 12px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .ladder-step .lvl {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+    }
+
+    .ladder-step .lvl span {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .ladder-step .lvl strong {
+      font-size: 12px;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .agent-card {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .agent-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .agent-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .mini-chip {
+      border-radius: 999px;
+      padding: 6px 8px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: #d6cec0;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .mini-chip.good { color: #09150d; background: #97efb9; border-color: transparent; font-weight: 700; }
+    .mini-chip.warn { color: #1b1205; background: #f0d79a; border-color: transparent; font-weight: 700; }
+
+    .exception-list .queue-item { border-top-color: rgba(248,113,113,0.14); }
+
+    .audit-timeline {
+      display: grid;
+      gap: 10px;
+    }
+
+    .audit-item time {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
     .filters {
       display: flex;
       flex-wrap: wrap;
@@ -1226,9 +1619,9 @@
       .card, .card.slim, .card.wide { grid-column: span 12; }
       .hero-main, .hero-side, .section { padding: 18px; }
       .section-head h2 { font-size: 26px; }
-      .org-level { grid-template-columns: 1fr; }
-      .org-subgrid.app { grid-template-columns: 1fr; }
-      .org-app-groups { grid-template-columns: 1fr; }
+      .top-strip, .mid-grid, .oversight-grid, .launch-cards, .field-grid { grid-template-columns: 1fr; }
+      .work-head { flex-direction: column; align-items: start; }
+      .timeline-axis { grid-template-columns: 1fr; }
       .pm-grid, .expert-grid { grid-template-columns: 1fr; }
       .tower-grid, .tower-secondary, .kpi-grid { grid-template-columns: 1fr; }
     }
@@ -1251,306 +1644,369 @@
       </div>
     </header>
 
-    <section class="panel section control-tower">
+    <section class="panel section ops-section">
       <div class="section-head">
         <div>
-          <h2>Project control</h2>
-          <p>Status, deadlines, blockers.</p>
+          <h2>Control surface</h2>
+          <p>Top strip, active work, forecast, and oversight — with no org-chart mental model.</p>
         </div>
-        <div class="status-chip good">3 workstreams</div>
+        <div class="status-chip good">mode: supervised</div>
       </div>
 
-      <div class="tower-grid">
-        <article class="tower-summary">
-          <div class="tower-status">
-            <span class="status-chip good">launch confidence 78%</span>
-            <span class="status-chip warn">2 blockers</span>
-            <span class="status-chip">updated <time id="sync-time" datetime="2026-05-20T12:20:00-04:00">12:20 PM EDT</time></span>
+      <div class="top-strip">
+        <article class="strip-card attention">
+          <div class="strip-head">
+            <strong>What needs attention now</strong>
+            <span>red / yellow queue</span>
           </div>
-
-          <h3 class="tower-headline">Now</h3>
-          <p class="tower-copy">What is moving, what is blocked, what needs you.</p>
-
-          <div class="kpi-grid">
-            <div class="kpi">
-              <div class="label">Workstreams</div>
-              <div class="value">3</div>
-              <p class="sub">Live work.</p>
-            </div>
-            <div class="kpi">
-              <div class="label">Due soon</div>
-              <div class="value">2</div>
-              <p class="sub">This week.</p>
-            </div>
-            <div class="kpi">
-              <div class="label">Blockers</div>
-              <div class="value">2</div>
-              <p class="sub">Open.</p>
-            </div>
-            <div class="kpi">
-              <div class="label">Next launch</div>
-              <div class="value">Fri</div>
-              <p class="sub">iOS 2.2.2.</p>
-            </div>
-          </div>
+          <ul class="strip-list">
+            <li>
+              <b>Approve the iOS release window</b>
+              <span>Owner: Greg · due: Fri · confidence: high</span>
+            </li>
+            <li>
+              <b>Unblock Android auth</b>
+              <span>Owner: Phillip · due: today · confidence: medium</span>
+            </li>
+            <li>
+              <b>Decide whether Android waits or ships in the next window</b>
+              <span>Owner: Greg · due: next · confidence: medium</span>
+            </li>
+          </ul>
         </article>
 
-        <aside class="panel-box">
+        <article class="strip-card risk">
+          <div class="strip-head">
+            <strong>What&#39;s at risk</strong>
+            <span>watch list</span>
+          </div>
+          <ul class="strip-list">
+            <li>
+              <b>Android parity slips past iOS</b>
+              <span>Risk band: yellow · dependency: auth fix and device verification</span>
+            </li>
+            <li>
+              <b>Release scope grows before the blocker clears</b>
+              <span>Risk band: red · trigger: any new auth or signing issue</span>
+            </li>
+            <li>
+              <b>Agent changes lose review discipline</b>
+              <span>Risk band: yellow · trigger: unreviewed autonomy change</span>
+            </li>
+          </ul>
+        </article>
+
+        <article class="strip-card launch">
+          <div class="strip-head">
+            <strong>Next launch</strong>
+            <span>launch window</span>
+          </div>
+          <ul class="strip-list">
+            <li>
+              <b>iOS 2.2.2</b>
+              <span>Window: Fri · handoff: Phillip · risk: low</span>
+            </li>
+            <li>
+              <b>Android login recovery</b>
+              <span>Window: today · handoff: device verification · risk: medium</span>
+            </li>
+            <li>
+              <b>Android parity</b>
+              <span>Window: next week · handoff: Greg decision · risk: medium</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <div class="section-head">
+        <div>
+          <h2>Now</h2>
+          <p>Active workstreams with the fields you asked for: task, owner, due date, launch window, status, and confidence.</p>
+        </div>
+        <div class="status-chip good">4 workstreams</div>
+      </div>
+
+      <div class="now-rail">
+        <article class="work-card top-priority">
+          <div class="work-head">
+            <div>
+              <div class="work-owner">Phillip · established apps</div>
+              <h3 class="work-name">iOS 2.2.2 launch</h3>
+            </div>
+            <div class="work-pill good">ready</div>
+          </div>
+          <div class="field-grid">
+            <div class="field"><div class="kicker">task name</div><div class="value">iOS 2.2.2 launch</div></div>
+            <div class="field"><div class="kicker">owner</div><div class="value">Phillip</div></div>
+            <div class="field"><div class="kicker">due date</div><div class="value">Friday</div></div>
+            <div class="field"><div class="kicker">launch window</div><div class="value">Fri AM</div></div>
+            <div class="field"><div class="kicker">confidence</div><div class="value">High</div></div>
+          </div>
+          <p class="work-note">Ready to ship once the release window is approved.</p>
+        </article>
+
+        <article class="work-card">
+          <div class="work-head">
+            <div>
+              <div class="work-owner">Phillip · established apps</div>
+              <h3 class="work-name">Android login recovery</h3>
+            </div>
+            <div class="work-pill warn">blocked</div>
+          </div>
+          <div class="field-grid">
+            <div class="field"><div class="kicker">task name</div><div class="value">Fix auth path</div></div>
+            <div class="field"><div class="kicker">owner</div><div class="value">Phillip</div></div>
+            <div class="field"><div class="kicker">due date</div><div class="value">Today</div></div>
+            <div class="field"><div class="kicker">launch window</div><div class="value">Today PM</div></div>
+            <div class="field"><div class="kicker">confidence</div><div class="value">Medium</div></div>
+          </div>
+          <p class="work-note">Blocked until auth is fixed and verified on device.</p>
+        </article>
+
+        <article class="work-card">
+          <div class="work-head">
+            <div>
+              <div class="work-owner">Monica · new apps</div>
+              <h3 class="work-name">Android parity</h3>
+            </div>
+            <div class="work-pill warn">in motion</div>
+          </div>
+          <div class="field-grid">
+            <div class="field"><div class="kicker">task name</div><div class="value">Align Android with iOS</div></div>
+            <div class="field"><div class="kicker">owner</div><div class="value">Monica</div></div>
+            <div class="field"><div class="kicker">due date</div><div class="value">Next week</div></div>
+            <div class="field"><div class="kicker">launch window</div><div class="value">Week of next release</div></div>
+            <div class="field"><div class="kicker">confidence</div><div class="value">Medium</div></div>
+          </div>
+          <p class="work-note">Can ship with iOS if the login fix holds, otherwise it waits for the next window.</p>
+        </article>
+
+        <article class="work-card">
+          <div class="work-head">
+            <div>
+              <div class="work-owner">Stefon · ops</div>
+              <h3 class="work-name">Workflows and agents</h3>
+            </div>
+            <div class="work-pill good">steady</div>
+          </div>
+          <div class="field-grid">
+            <div class="field"><div class="kicker">task name</div><div class="value">Keep the system legible</div></div>
+            <div class="field"><div class="kicker">owner</div><div class="value">Stefon</div></div>
+            <div class="field"><div class="kicker">due date</div><div class="value">Ongoing</div></div>
+            <div class="field"><div class="kicker">launch window</div><div class="value">Continuous</div></div>
+            <div class="field"><div class="kicker">confidence</div><div class="value">High</div></div>
+          </div>
+          <p class="work-note">Tracks the dashboard, review loop, and operating discipline.</p>
+        </article>
+      </div>
+
+      <div class="mid-grid" style="margin-top: 14px;">
+        <article class="panel-box">
           <h3>Needs you</h3>
-          <ul class="feed-list">
-            <li class="feed-item">
-              <div class="feed-top"><strong>Approve release window</strong><span>Fri</span></div>
-              <p class="feed-copy">iOS 2.2.2 is ready. Keep the window tight.</p>
+          <ul class="queue-list exception-list">
+            <li class="queue-item">
+              <div class="queue-top"><strong>Approve release window</strong><span>urgent</span></div>
+              <p class="queue-copy">Decision required: can iOS 2.2.2 ship this Friday?</p>
+              <p class="queue-copy">Missing input: your approval. Blocker: nothing ships until the window is set. Next move: Greg.</p>
             </li>
-            <li class="feed-item">
-              <div class="feed-top"><strong>Verify Android login</strong><span>Today</span></div>
-              <p class="feed-copy">Fix auth on device before the branch moves on.</p>
+            <li class="queue-item">
+              <div class="queue-top"><strong>Verify Android login</strong><span>high</span></div>
+              <p class="queue-copy">Decision required: is auth fixed on device? Missing input: confirmation from Phillip. Dependency: device test. Next move: Phillip.</p>
             </li>
-            <li class="feed-item">
-              <div class="feed-top"><strong>Decide on Android parity</strong><span>Next</span></div>
-              <p class="feed-copy">Ship with iOS or hold for the next window.</p>
-            </li>
-          </ul>
-        </aside>
-      </div>
-
-      <div class="tower-secondary">
-        <article class="panel-box">
-          <h3>Workstreams</h3>
-          <ul class="stream-list">
-            <li class="stream-item">
-              <div class="stream-top"><strong>Android login recovery</strong><span>Owner: Phillip</span></div>
-              <div class="progress"><i style="width: 58%;"></i></div>
-              <p class="stream-meta">Blocked. Fix auth, verify on device.</p>
-            </li>
-            <li class="stream-item">
-              <div class="stream-top"><strong>iOS v2.2.2 launch</strong><span>Owner: Phillip</span></div>
-              <div class="progress"><i style="width: 88%;"></i></div>
-              <p class="stream-meta">Ready.</p>
-            </li>
-            <li class="stream-item">
-              <div class="stream-top"><strong>Android parity</strong><span>Owner: Monica</span></div>
-              <div class="progress"><i style="width: 61%;"></i></div>
-              <p class="stream-meta">In motion. Align with iOS or hold.</p>
-            </li>
-            <li class="stream-item">
-              <div class="stream-top"><strong>Workflows and agents</strong><span>Owner: Stefon</span></div>
-              <div class="progress"><i style="width: 47%;"></i></div>
-              <p class="stream-meta">Ongoing. Review, lessons learned, next action.</p>
+            <li class="queue-item">
+              <div class="queue-top"><strong>Decide Android parity timing</strong><span>medium</span></div>
+              <p class="queue-copy">Decision required: ship with iOS or hold for the next window. Missing input: your call after the auth check. Next move: Greg.</p>
             </li>
           </ul>
         </article>
 
         <article class="panel-box">
-          <h3>Launch timeline</h3>
-          <ul class="decision-list">
-            <li class="decision-item">
-              <div class="decision-top"><strong>Fri</strong><span>iOS 2.2.2</span></div>
-              <p class="decision-copy">Release window. Keep the path tight.</p>
-            </li>
-            <li class="decision-item">
-              <div class="decision-top"><strong>Today</strong><span>Android login</span></div>
-              <p class="decision-copy">Verify on device before moving on.</p>
-            </li>
-            <li class="decision-item">
-              <div class="decision-top"><strong>Next week</strong><span>Android parity</span></div>
-              <p class="decision-copy">Ship with iOS if the fix holds.</p>
-            </li>
-          </ul>
-
-          <p class="pm-note"><strong>Agent oversight.</strong> Human-led now. Later: supervised autonomy, then exception-only review.</p>
+          <h3>Forecast</h3>
+          <div class="timeline">
+            <div class="timeline-axis">
+              <div class="timeline-chip"><strong>7 days</strong><span>near-term</span></div>
+              <div class="timeline-chip"><strong>30 days</strong><span>next month</span></div>
+            </div>
+            <div class="timeline-bar"><i style="width: 66%;"></i></div>
+            <ul class="forecast-list">
+              <li class="forecast-item">
+                <div class="forecast-top"><strong>iOS 2.2.2</strong><span>handoff: Fri</span></div>
+                <p class="forecast-copy">Risk band: low. Milestone: release approved, app shipped, post-release watch begins.</p>
+              </li>
+              <li class="forecast-item">
+                <div class="forecast-top"><strong>Android login recovery</strong><span>handoff: today</span></div>
+                <p class="forecast-copy">Risk band: medium. Milestone: auth fixed, device verified, branch cleared.</p>
+              </li>
+              <li class="forecast-item">
+                <div class="forecast-top"><strong>Android parity</strong><span>handoff: next week</span></div>
+                <p class="forecast-copy">Risk band: medium. Milestone: align with iOS or hold for the next launch window.</p>
+              </li>
+            </ul>
+          </div>
         </article>
 
         <article class="panel-box">
-          <h3>Decisions</h3>
-          <ul class="decision-list">
-            <li class="decision-item">
-              <div class="decision-top"><strong>Decision: keep scope tight</strong><span>needed today</span></div>
-              <p class="decision-copy">Do not widen the release until login is verified.</p>
-            </li>
-            <li class="decision-item">
-              <div class="decision-top"><strong>Risk: hidden blockers</strong><span>watch</span></div>
-              <p class="decision-copy">Surface anything that slips out of the feed.</p>
-            </li>
-            <li class="decision-item">
-              <div class="decision-top"><strong>Need: final sign-off</strong><span>Friday</span></div>
-              <p class="decision-copy">One clear approval point.</p>
-            </li>
-          </ul>
+          <h3>Launch cards</h3>
+          <div class="launch-cards">
+            <div class="launch-card">
+              <div class="launch-title">iOS 2.2.2</div>
+              <div class="launch-meta"><span class="risk">Risk: low</span><br />Milestones: release approval → ship → monitor.</div>
+            </div>
+            <div class="launch-card">
+              <div class="launch-title">Android login recovery</div>
+              <div class="launch-meta"><span class="risk">Risk: medium</span><br />Milestones: auth fix → device verification → unblock parity.</div>
+            </div>
+            <div class="launch-card">
+              <div class="launch-title">Android parity</div>
+              <div class="launch-meta"><span class="risk">Risk: medium</span><br />Milestones: scope check → timing decision → next window.</div>
+            </div>
+            <div class="launch-card">
+              <div class="launch-title">Agent dashboard</div>
+              <div class="launch-meta"><span class="risk">Risk: low</span><br />Milestones: oversight review → exception queue → audit trail.</div>
+            </div>
+          </div>
         </article>
       </div>
     </section>
 
-    <section class="hero">
-      <div class="panel hero-main">
-        <h2 class="hero-title">Team structure</h2>
-        <p class="hero-copy">Who owns what, who reports where, what each group covers.</p>
-
-        <div class="org-tree">
-          <div class="org-ceo">
-            <div class="org-ceo-card">
-              <div class="org-ceo-kicker">Top level</div>
-              <div class="org-ceo-name">Greg</div>
-              <div class="org-ceo-role">Direct oversight</div>
-            </div>
-          </div>
-
-          <div class="org-level">
-            <div class="org-branch">
-              <div class="org-branch-card">
-                <div class="org-branch-head">
-                  <h3>App Team</h3>
-                  <span class="org-count">reports to Greg</span>
-                </div>
-                <p class="org-branch-note">Monica handles new apps. Phillip handles established apps. Functional Experts support both.</p>
-
-                <div class="org-app-groups">
-                  <div class="org-app-team">
-                    <div class="org-node team">
-                      <span class="kicker">New Apps</span>
-                      <span class="name">Monica</span>
-                      <span class="role">Launches new apps, early product direction, and positioning.</span>
-                    </div>
-                    <div class="org-subgrid app-people">
-                      <div class="org-node person">
-                        <span class="kicker">UX</span>
-                        <span class="name">UX Expert</span>
-                        <span class="role">Finds friction, ambiguity, and broken flows before users do.</span>
-                      </div>
-                      <div class="org-node person">
-                        <span class="kicker">Design</span>
-                        <span class="name">Design Expert</span>
-                        <span class="role">Keeps the product premium, restrained, and visually coherent.</span>
-                      </div>
-                      <div class="org-node person">
-                        <span class="kicker">Marketing</span>
-                        <span class="name">Marketing Expert</span>
-                        <span class="role">Shapes positioning, launch messaging, and App Store language.</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="org-app-team">
-                    <div class="org-node team">
-                      <span class="kicker">Established Apps</span>
-                      <span class="name">Phillip</span>
-                      <span class="role">Owns Libations and the established app stack.</span>
-                    </div>
-                    <div class="org-subgrid app-people">
-                      <div class="org-node person">
-                        <span class="kicker">Security</span>
-                        <span class="name">Security Expert</span>
-                        <span class="role">Identifies risk, protects data, and keeps production systems safe.</span>
-                      </div>
-                      <div class="org-node person">
-                        <span class="kicker">Database</span>
-                        <span class="name">Database Expert</span>
-                        <span class="role">Reviews schema, migrations, queries, and data integrity.</span>
-                      </div>
-                      <div class="org-node person">
-                        <span class="kicker">iOS</span>
-                        <span class="name">Apple App Expert</span>
-                        <span class="role">Handles iOS, Xcode, TestFlight, and App Store workflows.</span>
-                      </div>
-                      <div class="org-node person">
-                        <span class="kicker">Android</span>
-                        <span class="name">Android App Expert</span>
-                        <span class="role">Handles Android, Play Store, and platform-parity concerns.</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="org-func-team">
-                  <div class="org-func-team-head">
-                    <strong>Functional Experts</strong>
-                    <span>supporting App Team</span>
-                  </div>
-                  <div class="expert-grid">
-                    <div class="expert-card">
-                      <span class="mini-name">Craft Beer Expert</span>
-                      <p class="mini-role">Knows styles, bitterness, aroma, freshness, and what actually tastes good.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Scotch Expert</span>
-                      <p class="mini-role">Understands malt character, peat, regions, age statements, and neat pours.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Wine Expert</span>
-                      <p class="mini-role">Helps with varietals, service, pairings, and what to buy without overthinking it.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Travel Expert</span>
-                      <p class="mini-role">Plans trips, finds the right neighborhood, and keeps logistics smooth.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Cocktail Expert</span>
-                      <p class="mini-role">Balances drinks, recipes, batching, and the little details that make a bar feel right.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Pairing Expert</span>
-                      <p class="mini-role">Matches food and drinks cleanly so the whole table feels considered.</p>
-                    </div>
-                    <div class="expert-card">
-                      <span class="mini-name">Hospitality Expert</span>
-                      <p class="mini-role">Keeps service, pacing, and guest experience polished from start to finish.</p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="org-branch">
-              <div class="org-branch-card life">
-                <div class="org-branch-head">
-                  <h3>Life Team</h3>
-                  <span class="org-count">reports to Greg</span>
-                </div>
-                <p class="org-branch-note">Arnold, Tim, and Socrates sit directly beneath Greg. The grouping is for readability, not extra management.</p>
-
-                <div class="org-subgrid life">
-                  <div class="org-node team">
-                    <span class="kicker">Fitness</span>
-                    <span class="name">Arnold</span>
-                    <span class="role">Training, recovery, and athletic planning.</span>
-                  </div>
-                  <div class="org-node team">
-                    <span class="kicker">Entrepreneurship</span>
-                    <span class="name">Tim</span>
-                    <span class="role">High-agency experiments, goals, and practical focus.</span>
-                  </div>
-                  <div class="org-node team">
-                    <span class="kicker">Philosophy</span>
-                    <span class="name">Socrates</span>
-                    <span class="role">Reflection, perspective, discipline, and non-religious philosophy.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="org-branch">
-              <div class="org-branch-card ops">
-                <div class="org-branch-head">
-                  <h3>Chief of Staff</h3>
-                  <span class="org-count">cross-functional</span>
-                </div>
-                <p class="org-branch-note">Stefon is the point of contact for all agents — the Telegram gateway and archive/signing support for the whole system.</p>
-                <div class="org-node team" style="margin-top: 4px;">
-                  <span class="kicker">Ops</span>
-                  <span class="name">Stefon</span>
-                  <span class="role">Point of contact for all agents; archive + signing, with Mac profile stewardship for Libations work.</span>
-                </div>
-              </div>
-            </div>
-          </div>
+    <section class="panel section">
+      <div class="section-head">
+        <div>
+          <h2>Agent oversight</h2>
+          <p>Autonomy ladder, scope, confidence, escalation triggers, oversight, exception queue, and audit trail.</p>
         </div>
-
-
+        <div class="status-chip warn">review required for releases</div>
       </div>
 
+      <div class="oversight-grid">
+        <article class="panel-box">
+          <h3>Autonomy ladder</h3>
+          <ul class="ladder-list">
+            <li class="ladder-step">
+              <div class="lvl"><strong>Human-led</strong><span>step 1</span></div>
+              <p class="ladder-copy">Greg decides. Agent drafts and waits.</p>
+            </li>
+            <li class="ladder-step">
+              <div class="lvl"><strong>Supervised</strong><span>step 2</span></div>
+              <p class="ladder-copy">Agent acts inside a defined lane; Greg reviews exceptions and releases.</p>
+            </li>
+            <li class="ladder-step">
+              <div class="lvl"><strong>Semi-autonomous</strong><span>step 3</span></div>
+              <p class="ladder-copy">Agent can complete routine work and escalate only on triggers.</p>
+            </li>
+            <li class="ladder-step">
+              <div class="lvl"><strong>Autonomous within guardrails</strong><span>step 4</span></div>
+              <p class="ladder-copy">Agent runs without asking unless it hits a guardrail or exception.</p>
+            </li>
+          </ul>
+        </article>
 
+        <article class="panel-box">
+          <h3>Agent cards</h3>
+          <div class="agent-grid">
+            <div class="agent-card">
+              <div class="agent-top"><strong>Monica</strong><span>new apps</span></div>
+              <div class="agent-tags">
+                <span class="mini-chip good">human-led</span>
+                <span class="mini-chip">scope: launches, positioning</span>
+                <span class="mini-chip">confidence: high</span>
+              </div>
+              <p class="agent-copy">Can do new-app product direction and launch framing. Cannot change release policy without Greg. Escalates on market, brand, or launch risk.</p>
+              <p class="agent-copy"><strong>Oversight:</strong> Greg review required.</p>
+            </div>
+            <div class="agent-card">
+              <div class="agent-top"><strong>Phillip</strong><span>established apps</span></div>
+              <div class="agent-tags">
+                <span class="mini-chip warn">supervised</span>
+                <span class="mini-chip">scope: releases, auth, signing</span>
+                <span class="mini-chip">confidence: high</span>
+              </div>
+              <p class="agent-copy">Can handle established-app execution. Cannot ship production changes or resolve signing issues alone. Escalates on auth, signing, or production risk.</p>
+              <p class="agent-copy"><strong>Oversight:</strong> Greg review on release and production changes.</p>
+            </div>
+            <div class="agent-card">
+              <div class="agent-top"><strong>Arnold</strong><span>fitness</span></div>
+              <div class="agent-tags">
+                <span class="mini-chip warn">semi-autonomous</span>
+                <span class="mini-chip">scope: training, recovery</span>
+                <span class="mini-chip">confidence: medium</span>
+              </div>
+              <p class="agent-copy">Can manage routine training guidance and plans. Stops for injury, medical, or safety concerns. Escalates on health risk or missing context.</p>
+              <p class="agent-copy"><strong>Oversight:</strong> exception-based review.</p>
+            </div>
+            <div class="agent-card">
+              <div class="agent-top"><strong>Tim</strong><span>goals + experiments</span></div>
+              <div class="agent-tags">
+                <span class="mini-chip warn">supervised</span>
+                <span class="mini-chip">scope: goals, systems, focus</span>
+                <span class="mini-chip">confidence: medium</span>
+              </div>
+              <p class="agent-copy">Can suggest experiments and structures. Stops before any money, commitments, or public communication. Escalates on scope creep or cost.</p>
+              <p class="agent-copy"><strong>Oversight:</strong> Greg approval for anything external.</p>
+            </div>
+            <div class="agent-card">
+              <div class="agent-top"><strong>Socrates</strong><span>philosophy</span></div>
+              <div class="agent-tags">
+                <span class="mini-chip good">guardrailed</span>
+                <span class="mini-chip">scope: reflection, perspective</span>
+                <span class="mini-chip">confidence: high</span>
+              </div>
+              <p class="agent-copy">Can reason through tradeoffs and values. Escalates if the topic becomes legal, financial, or operationally binding.</p>
+              <p class="agent-copy"><strong>Oversight:</strong> exception-only review.</p>
+            </div>
+            <div class="agent-card">
+              <div class="agent-top"><strong>Stefon</strong><span>ops</span></div>
+              <div class="agent-tags">
+                <span class="mini-chip warn">supervised</span>
+                <span class="mini-chip">scope: archive, signing, gateway</span>
+                <span class="mini-chip">confidence: high</span>
+              </div>
+              <p class="agent-copy">Can manage the dashboard, archive, and signing workflow. Escalates on production deployment, credential, or account-state changes.</p>
+              <p class="agent-copy"><strong>Oversight:</strong> Greg review before public or production impact.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel-box">
+          <h3>Exception queue</h3>
+          <ul class="queue-list">
+            <li class="queue-item">
+              <div class="queue-top"><strong>Signing certificate review</strong><span>must stop</span></div>
+              <p class="queue-copy">Escalate if a certificate or private key is missing, mismatched, or about to touch production signing.</p>
+            </li>
+            <li class="queue-item">
+              <div class="queue-top"><strong>Release scope change</strong><span>must stop</span></div>
+              <p class="queue-copy">Escalate if any new release item appears after the window is set.</p>
+            </li>
+            <li class="queue-item">
+              <div class="queue-top"><strong>External communication</strong><span>must stop</span></div>
+              <p class="queue-copy">Escalate before sending messages, comments, invites, or posts on Greg&#39;s behalf.</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="panel-box">
+          <h3>Audit trail</h3>
+          <ul class="audit-timeline">
+            <li class="audit-item">
+              <div class="audit-top"><strong>Decision recorded</strong><time>Today</time></div>
+              <p class="audit-copy">Dashboard moved to a control-surface layout with now / needs you / forecast / oversight.</p>
+            </li>
+            <li class="audit-item">
+              <div class="audit-top"><strong>Approval rule</strong><time>Always</time></div>
+              <p class="audit-copy">Anything external, costly, destructive, private, legal, or production-impacting stops for Greg.</p>
+            </li>
+            <li class="audit-item">
+              <div class="audit-top"><strong>Review rule</strong><time>Ongoing</time></div>
+              <p class="audit-copy">If a recommendation is modified, the omission or substitution is called out before implementation.</p>
+            </li>
+          </ul>
+        </article>
+      </div>
     </section>
-
-  </body>
+  </div>
+</body>
 </html>
+
