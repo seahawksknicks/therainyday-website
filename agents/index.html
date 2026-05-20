@@ -364,6 +364,44 @@
       grid-template-columns: 1fr;
     }
 
+    .org-app-groups {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .org-mini-group {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .org-mini-group strong {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .org-mini-group .mini-name {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.1;
+    }
+
+    .org-mini-group .mini-role {
+      margin: 0;
+      color: #c8bfaf;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
     .org-person-block {
       position: relative;
       padding-top: 18px;
@@ -739,6 +777,7 @@
       .section-head h2 { font-size: 26px; }
       .org-level { grid-template-columns: 1fr; }
       .org-subgrid.app { grid-template-columns: 1fr; }
+      .org-app-groups { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -780,7 +819,25 @@
                   <h3>App Team</h3>
                   <span class="org-count">reports to Greg</span>
                 </div>
-                <p class="org-branch-note">Monica and Phillip sit directly beneath Greg. Their functional benches stay grouped under the same line.</p>
+                <p class="org-branch-note">Monica leads Product. Phillip leads Platform. Security and release checks sit in a third lane so the app team stays clear.</p>
+
+                <div class="org-app-groups">
+                  <div class="org-mini-group">
+                    <strong>Product</strong>
+                    <div class="mini-name">Monica</div>
+                    <p class="mini-role">New apps, early product work, UX, design, and launch positioning.</p>
+                  </div>
+                  <div class="org-mini-group">
+                    <strong>Platform</strong>
+                    <div class="mini-name">Phillip</div>
+                    <p class="mini-role">Libations stewardship, beverage-domain judgment, database, and mobile platform work.</p>
+                  </div>
+                  <div class="org-mini-group">
+                    <strong>Release / Safety</strong>
+                    <div class="mini-name">Shared lane</div>
+                    <p class="mini-role">Security, QA, signing, and final checks before anything goes out.</p>
+                  </div>
+                </div>
 
                 <div class="org-subgrid app">
                   <div class="org-person-block">
