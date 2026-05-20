@@ -193,21 +193,21 @@
       color: #b9b2a9;
     }
 
-    .org-chart {
+    .org-tree {
       margin-top: 22px;
       display: grid;
       gap: 18px;
     }
 
-    .org-root {
+    .org-ceo {
       display: grid;
       justify-items: center;
       gap: 12px;
       position: relative;
-      padding-bottom: 14px;
+      padding-bottom: 18px;
     }
 
-    .org-root::after {
+    .org-ceo::after {
       content: '';
       position: absolute;
       left: 50%;
@@ -217,7 +217,7 @@
       background: var(--border);
     }
 
-    .org-root-node {
+    .org-ceo-card {
       width: min(100%, 360px);
       padding: 18px 20px;
       border-radius: 22px;
@@ -227,7 +227,7 @@
       text-align: center;
     }
 
-    .org-root-kicker {
+    .org-ceo-kicker {
       font-size: 11px;
       letter-spacing: 0.24em;
       text-transform: uppercase;
@@ -235,7 +235,7 @@
       margin-bottom: 8px;
     }
 
-    .org-root-name {
+    .org-ceo-name {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2rem, 4.8vw, 3rem);
       line-height: 0.96;
@@ -243,7 +243,7 @@
       color: var(--text);
     }
 
-    .org-root-role {
+    .org-ceo-role {
       margin-top: 8px;
       color: var(--gold);
       letter-spacing: 0.16em;
@@ -252,7 +252,7 @@
       font-weight: 700;
     }
 
-    .org-root-note {
+    .org-ceo-note {
       margin: 0;
       text-align: center;
       color: #b8b1a8;
@@ -261,11 +261,23 @@
       max-width: 64ch;
     }
 
-    .org-branches {
+    .org-level {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: 1.15fr 1fr 0.8fr;
       gap: 14px;
-      align-items: stretch;
+      align-items: start;
+      position: relative;
+      padding-top: 18px;
+    }
+
+    .org-level::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 8%;
+      right: 8%;
+      height: 1px;
+      background: var(--border);
     }
 
     .org-branch {
@@ -285,7 +297,7 @@
     }
 
     .org-branch-card {
-      height: 100%;
+      min-height: 100%;
       padding: 18px;
       border-radius: 18px;
       border: 1px solid var(--border);
@@ -294,13 +306,8 @@
       gap: 12px;
     }
 
-    .org-branch-card.life {
-      background: rgba(100,214,138,0.04);
-    }
-
-    .org-branch-card.ops {
-      background: rgba(244,202,160,0.05);
-    }
+    .org-branch-card.life { background: rgba(100,214,138,0.04); }
+    .org-branch-card.ops { background: rgba(244,202,160,0.05); }
 
     .org-branch-head {
       display: flex;
@@ -325,39 +332,120 @@
       white-space: nowrap;
     }
 
-    .org-member {
-      padding: 12px 0 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .org-member:first-of-type {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .org-member strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 15px;
-      color: var(--text);
-    }
-
-    .org-member span {
-      display: block;
-      color: #c0b8ae;
+    .org-branch-note {
+      margin: 0;
+      color: #bfb7ac;
       font-size: 13px;
       line-height: 1.6;
     }
 
-    .org-member.primary strong {
-      color: var(--gold);
+    .org-subgrid {
+      display: grid;
+      gap: 12px;
+      margin-top: 4px;
+      position: relative;
     }
 
-    .org-member.bench {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
+    .org-subgrid::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .org-subgrid.app {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .org-subgrid.life {
+      grid-template-columns: 1fr;
+    }
+
+    .org-person-block {
+      position: relative;
+      padding-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .org-person-block::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 18px;
+      background: var(--border);
+    }
+
+    .org-node {
+      border-radius: 16px;
+      padding: 14px 14px 13px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .org-node.team {
+      text-align: center;
+      border-color: rgba(240,215,154,0.18);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .org-node.person {
+      text-align: center;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .org-node .kicker {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+      margin-bottom: 7px;
+    }
+
+    .org-node .name {
+      display: block;
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .org-node .role {
+      display: block;
+      margin-top: 6px;
+      color: #c8bfaf;
+      font-size: 13px;
+      line-height: 1.55;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .org-bench {
       border-radius: 14px;
       padding: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.02);
+      color: #d6cec0;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .org-bench strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
     .hero-actions {
@@ -649,7 +737,8 @@
       .card, .card.slim, .card.wide { grid-column: span 12; }
       .hero-main, .hero-side, .section { padding: 18px; }
       .section-head h2 { font-size: 26px; }
-      .org-branches { grid-template-columns: 1fr; }
+      .org-level { grid-template-columns: 1fr; }
+      .org-subgrid.app { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -677,34 +766,48 @@
         <p class="hero-copy">
           This page is the operating chart. I use it to see who belongs where, keep the structure honest, and change the roster fast when the team changes. The chart keeps the app team, life team, and archive support separated so the model stays legible at a glance.
         </p>
-        <div class="org-chart">
-          <div class="org-root">
-            <div class="org-root-node">
-              <div class="org-root-kicker">Chief executive</div>
-              <div class="org-root-name">Greg</div>
-              <div class="org-root-role">CEO</div>
+        <div class="org-tree">
+          <div class="org-ceo">
+            <div class="org-ceo-card">
+              <div class="org-ceo-kicker">Chief executive</div>
+              <div class="org-ceo-name">Greg</div>
+              <div class="org-ceo-role">CEO</div>
             </div>
-            <p class="org-root-note">Top-level decision maker. Everything below flows through this structure so I can evaluate the team, not just the tasks.</p>
+            <p class="org-ceo-note">Top-level decision maker. Everyone below reports to Greg. Stefon is cross-functional support, not the boss of every other agent.</p>
           </div>
 
-          <div class="org-branches">
+          <div class="org-level">
             <div class="org-branch">
               <div class="org-branch-card">
                 <div class="org-branch-head">
                   <h3>App Team</h3>
-                  <span class="org-count">2 leads + 7 experts</span>
+                  <span class="org-count">reports to Greg</span>
                 </div>
-                <div class="org-member primary">
-                  <strong>Monica</strong>
-                  <span>New apps, early product work, and app-development coordination.</span>
-                </div>
-                <div class="org-member primary">
-                  <strong>Phillip</strong>
-                  <span>Libations stewardship, beverage-domain judgment, and release safety.</span>
-                </div>
-                <div class="org-member bench">
-                  <strong>Functional bench</strong>
-                  <span>UX, Design, Security, Marketing, Database, Apple App, Android App.</span>
+                <p class="org-branch-note">Monica and Phillip both report to Greg. Their functional benches sit beneath them so the reporting line stays obvious.</p>
+
+                <div class="org-subgrid app">
+                  <div class="org-person-block">
+                    <div class="org-node person">
+                      <span class="kicker">Lead</span>
+                      <span class="name">Monica</span>
+                      <span class="role">New apps, early product work, app-development coordination.</span>
+                    </div>
+                    <div class="org-bench">
+                      <strong>Functional bench</strong>
+                      UX, Design, Security, Marketing
+                    </div>
+                  </div>
+                  <div class="org-person-block">
+                    <div class="org-node person">
+                      <span class="kicker">Lead</span>
+                      <span class="name">Phillip</span>
+                      <span class="role">Libations stewardship, beverage-domain judgment, release safety.</span>
+                    </div>
+                    <div class="org-bench">
+                      <strong>Functional bench</strong>
+                      Database, Apple App, Android App, beverage-domain support
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -713,19 +816,26 @@
               <div class="org-branch-card life">
                 <div class="org-branch-head">
                   <h3>Life Team</h3>
-                  <span class="org-count">3 personas</span>
+                  <span class="org-count">reports to Greg</span>
                 </div>
-                <div class="org-member">
-                  <strong>Arnold</strong>
-                  <span>Fitness, training, recovery, and athletic planning.</span>
-                </div>
-                <div class="org-member">
-                  <strong>Tim</strong>
-                  <span>High-agency experiments, goals, and practical focus.</span>
-                </div>
-                <div class="org-member">
-                  <strong>Socrates</strong>
-                  <span>Reflection, perspective, discipline, and non-religious philosophy.</span>
+                <p class="org-branch-note">Arnold, Tim, and Socrates report to Greg as a bundled team. The grouping is about visibility, not a higher manager.</p>
+
+                <div class="org-subgrid life">
+                  <div class="org-node person">
+                    <span class="kicker">Life</span>
+                    <span class="name">Arnold</span>
+                    <span class="role">Fitness, training, recovery, and athletic planning.</span>
+                  </div>
+                  <div class="org-node person">
+                    <span class="kicker">Life</span>
+                    <span class="name">Tim</span>
+                    <span class="role">High-agency experiments, goals, and practical focus.</span>
+                  </div>
+                  <div class="org-node person">
+                    <span class="kicker">Life</span>
+                    <span class="name">Socrates</span>
+                    <span class="role">Reflection, perspective, discipline, and non-religious philosophy.</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -733,12 +843,14 @@
             <div class="org-branch">
               <div class="org-branch-card ops">
                 <div class="org-branch-head">
-                  <h3>Ops / Archive</h3>
-                  <span class="org-count">1 steward</span>
+                  <h3>Stefon</h3>
+                  <span class="org-count">cross-functional</span>
                 </div>
-                <div class="org-member">
-                  <strong>Stefon</strong>
-                  <span>Archive, signing, and Mac profile structure for Libations work.</span>
+                <p class="org-branch-note">Stefon reports to Greg. He is a supporting ops/archive/signing role that serves the whole system, not a manager above the rest.</p>
+                <div class="org-node team" style="margin-top: 4px;">
+                  <span class="kicker">Ops</span>
+                  <span class="name">Archive + signing</span>
+                  <span class="role">Mac profile stewardship and the structural layer for Libations work.</span>
                 </div>
               </div>
             </div>
