@@ -1634,6 +1634,10 @@
       gap: 8px;
     }
 
+    .org-level .org-column:nth-child(2) {
+      margin-left: 6px;
+    }
+
     .org-column::before {
       height: 14px;
       width: 1px;
@@ -1757,6 +1761,7 @@
       .card.wide { grid-column: span 12; }
       .card.slim { grid-column: span 6; }
       .pm-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .org-level .org-column:nth-child(2) { margin-left: 0; }
     }
 
     @media (max-width: 720px) {
