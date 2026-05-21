@@ -1759,17 +1759,76 @@
     }
 
     @media (max-width: 720px) {
-      .shell { width: min(100% - 24px, 1280px); padding-top: 16px; }
-      .topbar, .section-head, .two-up { grid-template-columns: 1fr; flex-direction: column; align-items: start; }
-      .meta, .filters { justify-content: flex-start; }
-      .card, .card.slim, .card.wide { grid-column: span 12; }
-      .hero-main, .hero-side, .section { padding: 18px; }
-      .section-head h2 { font-size: 26px; }
-      .top-strip, .mid-grid, .oversight-grid, .launch-cards, .field-grid { grid-template-columns: 1fr; }
-      .work-head { flex-direction: column; align-items: start; }
+      .shell { width: min(100% - 20px, 1280px); padding-top: 14px; }
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .brand { align-items: flex-start; gap: 12px; }
+      .crest { width: 46px; height: 46px; font-size: 24px; border-radius: 14px; }
+      .brand-copy h1 { font-size: 2.2rem; }
+      .brand-copy p { max-width: none; font-size: 13px; line-height: 1.6; }
+      .meta, .filters { justify-content: flex-start; width: 100%; }
+      .badge { width: 100%; justify-content: center; }
+      .card, .card.slim, .card.wide { grid-column: span 12; min-height: unset; }
+      .hero-main, .hero-side, .section { padding: 16px; }
+      .hero-title { max-width: none; font-size: clamp(2rem, 10vw, 3rem); }
+      .hero-copy { font-size: 14px; line-height: 1.7; }
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .section-head h2 { font-size: 24px; }
+      .section-head p { max-width: none; font-size: 13px; line-height: 1.55; }
+      .top-strip, .mid-grid, .oversight-grid, .launch-cards, .field-grid, .pm-grid, .expert-grid, .tower-grid, .tower-secondary, .kpi-grid, .org-level, .org-app-groups { grid-template-columns: 1fr; }
+      .work-head, .strip-head, .queue-top, .forecast-top, .audit-top, .agent-top, .ladder-top, .stream-top, .feed-top, .decision-top, .list li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .strip-head span, .queue-top span, .forecast-top span, .audit-top span, .agent-top span, .ladder-top span, .stream-top span, .feed-top span, .decision-top span, .list .right, .org-count {
+        white-space: normal;
+      }
       .timeline-axis { grid-template-columns: 1fr; }
-      .pm-grid, .expert-grid { grid-template-columns: 1fr; }
-      .tower-grid, .tower-secondary, .kpi-grid { grid-template-columns: 1fr; }
+      .org-level, .org-app-groups { gap: 12px; padding-top: 0; }
+      .org-level::before, .org-app-groups::before, .org-column::before, .org-person-block::before, .org-ceo::after { display: none; }
+      .org-column { padding-top: 0; }
+      .org-column-card { padding: 14px; }
+      .org-column-head { flex-direction: column; align-items: flex-start; }
+      .org-column-head span { white-space: normal; text-align: left; }
+      .org-column-note, .org-node.team .role, .org-node .role, .org-mini-group .mini-role { font-size: 12px; line-height: 1.5; }
+      .expert-mini-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        overflow: visible;
+        padding-bottom: 0;
+      }
+      .expert-mini-grid .mini-card { white-space: normal; }
+      .expert-mini-grid .mini-card .mini-name { white-space: normal; }
+      .org-mini-group { padding: 14px 12px 12px; }
+      .org-node, .mini-card, .org-column-card, .org-mini-group, .panel-box, .kpi, .field, .strip-card, .work-card, .launch-card { border-radius: 14px; }
+      .field { min-height: unset; }
+      .field .value { font-size: 12px; }
+      .field-grid { gap: 8px; }
+      .tags, .agent-tags, .hero-actions { gap: 8px; }
+      .pill, .mini-chip, .tag, .status-chip, .work-pill { white-space: normal; }
+      .list li { gap: 6px; }
+      .two-up { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 420px) {
+      .shell { width: min(100% - 16px, 1280px); }
+      .hero-main, .hero-side, .section { padding: 14px; }
+      .brand-copy h1 { font-size: 2rem; }
+      .hero-title { font-size: 2.2rem; }
+      .section-head h2 { font-size: 22px; }
+      .kpi .value { font-size: 24px; }
+      .pm-grid, .expert-grid, .field-grid, .launch-cards, .top-strip, .org-level, .org-app-groups { grid-template-columns: 1fr; }
+      .expert-mini-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
