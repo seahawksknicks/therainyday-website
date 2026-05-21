@@ -326,6 +326,10 @@
       margin-top: 22px;
       display: grid;
       gap: 18px;
+      overflow-x: auto;
+      overflow-y: visible;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .org-ceo {
@@ -1607,12 +1611,13 @@
     /* Compact org chart override */
     .org-level {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(5, 220px);
+      gap: 12px;
       align-items: start;
       position: relative;
-      padding-top: 18px;
+      padding-top: 24px;
       margin-top: 8px;
+      justify-content: start;
     }
 
     .org-level::before {
