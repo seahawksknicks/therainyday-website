@@ -1611,13 +1611,12 @@
     /* Compact org chart override */
     .org-level {
       display: grid;
-      grid-template-columns: repeat(5, 220px);
-      gap: 12px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
       align-items: start;
       position: relative;
       padding-top: 24px;
       margin-top: 8px;
-      justify-content: start;
     }
 
     .org-level::before {
@@ -1635,7 +1634,7 @@
     }
 
     .org-level .org-column:nth-child(2) {
-      margin-left: 20px;
+      margin-left: 0;
     }
 
     .org-column::before {
