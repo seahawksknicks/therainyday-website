@@ -1719,9 +1719,17 @@
     }
 
     .expert-mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      display: flex;
+      flex-wrap: nowrap;
       gap: 7px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .expert-mini-grid .mini-card {
+      flex: 0 0 auto;
+      white-space: nowrap;
     }
 
     .expert-mini-grid .mini-card .mini-name,
@@ -2016,13 +2024,12 @@
                 <p class="org-column-note">On call experts rotate in when a specialty is needed.</p>
                 <div class="org-mini-group">
                   <strong>On Call Experts</strong>
-                  <div class="stack">
+                  <div class="expert-mini-grid">
                     <div class="mini-card"><span class="mini-name">Craft Beer Expert</span></div>
                     <div class="mini-card"><span class="mini-name">Scotch Expert</span></div>
                     <div class="mini-card"><span class="mini-name">Sommelier</span></div>
                     <div class="mini-card"><span class="mini-name">Mixologist</span></div>
                     <div class="mini-card"><span class="mini-name">Travel Expert</span></div>
-                    <div class="mini-card"><span class="mini-name">Other On-Call Experts</span></div>
                   </div>
                 </div>
               </div>
