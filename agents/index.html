@@ -1719,17 +1719,13 @@
     }
 
     .expert-mini-grid {
-      display: flex;
-      flex-wrap: nowrap;
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 7px;
-      overflow-x: auto;
-      padding-bottom: 2px;
-      -webkit-overflow-scrolling: touch;
     }
 
     .expert-mini-grid .mini-card {
-      flex: 0 0 auto;
-      white-space: nowrap;
+      white-space: normal;
     }
 
     .expert-mini-grid .mini-card .mini-name,
@@ -1801,13 +1797,9 @@
       .org-column-head span { white-space: normal; text-align: left; }
       .org-column-note, .org-node.team .role, .org-node .role, .org-mini-group .mini-role { font-size: 12px; line-height: 1.5; }
       .expert-mini-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
         gap: 8px;
-        overflow: visible;
-        padding-bottom: 0;
       }
-      .expert-mini-grid .mini-card { white-space: normal; }
       .expert-mini-grid .mini-card .mini-name { white-space: normal; }
       .org-mini-group { padding: 14px 12px 12px; }
       .org-node, .mini-card, .org-column-card, .org-mini-group, .panel-box, .kpi, .field, .strip-card, .work-card, .launch-card { border-radius: 14px; }
@@ -1828,7 +1820,6 @@
       .section-head h2 { font-size: 22px; }
       .kpi .value { font-size: 24px; }
       .pm-grid, .expert-grid, .field-grid, .launch-cards, .top-strip, .org-level, .org-app-groups { grid-template-columns: 1fr; }
-      .expert-mini-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -2011,8 +2002,6 @@
     <section class="hero">
       <div class="panel hero-main">
         <h2 class="hero-title">Team structure</h2>
-        <p class="hero-copy">Who owns what, who reports where, and where agent oversight sits in the org chart.</p>
-
         <div class="org-tree">
           <div class="org-ceo">
             <div class="org-ceo-card">
@@ -2029,7 +2018,6 @@
                   <h3>Chief of Staff</h3>
                   <span>cross-functional</span>
                 </div>
-                <p class="org-column-note">Stefon keeps the system legible and routes agent work.</p>
                 <div class="stack">
                   <div class="mini-card">
                     <span class="mini-kicker">Ops</span>
@@ -2046,7 +2034,6 @@
                   <h3>App Team</h3>
                   <span>reports to Greg</span>
                 </div>
-                <p class="org-column-note">Monica handles new apps. Phillip handles established apps.</p>
                 <div class="stack">
                   <div class="mini-card">
                     <span class="mini-kicker">New Apps</span>
@@ -2080,7 +2067,6 @@
                   <h3>Functional Experts</h3>
                   <span>shared bench</span>
                 </div>
-                <p class="org-column-note">On call experts rotate in when a specialty is needed.</p>
                 <div class="org-mini-group">
                   <strong>On Call Experts</strong>
                   <div class="expert-mini-grid">
