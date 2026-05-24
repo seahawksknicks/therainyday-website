@@ -582,15 +582,15 @@
       border-radius: 16px;
       border: 1px solid var(--border);
       background: rgba(255,255,255,0.03);
-      padding: 18px 14px 14px;
+      padding: 12px 10px 10px;
       display: grid;
-      gap: 8px;
+      gap: 6px;
       position: relative;
     }
 
     .org-mini-group strong {
       display: block;
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--amber-2);
@@ -599,7 +599,7 @@
     .org-mini-group .mini-name {
       font-weight: 700;
       color: var(--text);
-      font-size: 15px;
+      font-size: 13px;
       line-height: 1.1;
     }
 
@@ -1611,13 +1611,13 @@
     /* Compact org chart override */
     .org-level {
       display: grid;
-      grid-template-columns: repeat(5, minmax(230px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(5, minmax(170px, 1fr));
+      gap: 12px;
       align-items: start;
       position: relative;
       padding-top: 24px;
       margin-top: 8px;
-      min-width: max-content;
+      min-width: 0;
     }
 
     .org-level::before {
@@ -1642,12 +1642,12 @@
 
     .org-column-card {
       min-height: 100%;
-      padding: 12px;
+      padding: 10px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.03);
       display: grid;
-      gap: 8px;
+      gap: 6px;
     }
 
     .org-column-card.coat { background: rgba(244,202,160,0.05); }
@@ -1665,7 +1665,7 @@
 
     .org-column-head h3 {
       margin: 0;
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text);
@@ -1673,7 +1673,7 @@
 
     .org-column-head span {
       color: var(--muted);
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       text-align: right;
@@ -1683,20 +1683,20 @@
     .org-column-note {
       margin: 0;
       color: #c8bfaf;
-      font-size: 11px;
+      font-size: 10px;
       line-height: 1.45;
     }
 
     .stack {
       display: grid;
-      gap: 7px;
+      gap: 6px;
     }
 
     .mini-card {
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.06);
       background: rgba(255,255,255,0.02);
-      padding: 9px 10px;
+      padding: 8px 9px;
     }
 
     .mini-card .mini-kicker {
@@ -1712,21 +1712,21 @@
       display: block;
       font-weight: 700;
       color: var(--text);
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.1;
     }
 
     .mini-card .mini-role {
       margin: 3px 0 0;
       color: #c8bfaf;
-      font-size: 11px;
-      line-height: 1.4;
+      font-size: 10px;
+      line-height: 1.35;
     }
 
     .expert-mini-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 7px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
     }
 
     .expert-mini-grid .mini-card {
@@ -2030,9 +2030,14 @@
                     <p class="mini-role">Routes company work, keeps the command layer moving, and hands off to the right team.</p>
                   </div>
                   <div class="mini-card">
-                    <span class="mini-kicker">Company Source of Truth</span>
-                    <span class="mini-name">Shared Dashboard</span>
-                    <p class="mini-role">Shows tasks, blockers, recent activity, and the current org chart without losing context.</p>
+                    <span class="mini-kicker">Cross-Functional</span>
+                    <span class="mini-name">Monica</span>
+                    <p class="mini-role">Moves between teams to shape new-app direction and keep launches coordinated.</p>
+                  </div>
+                  <div class="mini-card">
+                    <span class="mini-kicker">Cross-Functional</span>
+                    <span class="mini-name">Phillip</span>
+                    <p class="mini-role">Moves between teams to steer Libations and keep existing app work aligned.</p>
                   </div>
                 </div>
               </div>
@@ -2047,24 +2052,24 @@
                 <div class="stack">
                   <div class="mini-card">
                     <span class="mini-kicker">New Apps</span>
-                    <span class="mini-name">Monica</span>
-                    <p class="mini-role">Launches new apps, early product direction, and positioning.</p>
+                    <span class="mini-name">Launch lane</span>
+                    <p class="mini-role">Early product direction, positioning, and launch shaping.</p>
                   </div>
                   <div class="mini-card">
-                    <span class="mini-kicker">Libations PM</span>
-                    <span class="mini-name">Phillip</span>
-                    <p class="mini-role">Owns Libations planning, priorities, release readiness, and app stewardship.</p>
+                    <span class="mini-kicker">Existing Apps</span>
+                    <span class="mini-name">Steady lane</span>
+                    <p class="mini-role">Keeps shipped apps stable, current, and ready for release work.</p>
                   </div>
                 </div>
                 <div class="org-mini-group">
-                  <strong>Shared Resources</strong>
+                  <strong>Resource / team lanes</strong>
                   <div class="expert-mini-grid">
                     <div class="mini-card"><span class="mini-name">Design / UX Team</span></div>
                     <div class="mini-card"><span class="mini-name">Security Team</span></div>
                     <div class="mini-card"><span class="mini-name">Coding / Development Team</span></div>
                     <div class="mini-card"><span class="mini-name">Database Team</span></div>
-                    <div class="mini-card"><span class="mini-name">QA / Testing</span></div>
-                    <div class="mini-card"><span class="mini-name">Platform Specialists</span></div>
+                    <div class="mini-card"><span class="mini-name">QA / Testing Team</span></div>
+                    <div class="mini-card"><span class="mini-name">Platform Specialists Team</span></div>
                   </div>
                 </div>
               </div>
@@ -2083,8 +2088,8 @@
                     <div class="mini-card"><span class="mini-name">Security</span></div>
                     <div class="mini-card"><span class="mini-name">Coding / Development</span></div>
                     <div class="mini-card"><span class="mini-name">Database</span></div>
-                    <div class="mini-card"><span class="mini-name">QA / Testing</span></div>
-                    <div class="mini-card"><span class="mini-name">Platform Specialists</span></div>
+                    <div class="mini-card"><span class="mini-name">QA / Testing Team</span></div>
+                    <div class="mini-card"><span class="mini-name">Platform Specialists Team</span></div>
                   </div>
                 </div>
               </div>
@@ -2101,7 +2106,7 @@
                   <div class="mini-card">
                     <span class="mini-kicker">Existing Apps</span>
                     <span class="mini-name">Direct line</span>
-                    <p class="mini-role">Established app work routes through Phillip and the shared dashboard.</p>
+                    <p class="mini-role">Established app work routes through Phillip and the live dashboard.</p>
                   </div>
                   <div class="mini-card">
                     <span class="mini-kicker">Fitness</span>
