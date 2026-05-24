@@ -3,1016 +3,2147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hermes Agent Command Center</title>
+  <title>Agents — The Rainy Day Company</title>
+  <meta name="description" content="Control surface for Greg, Monica, Phillip, Arnold, Tim, Socrates, and Stefon at The Rainy Day Company." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      color-scheme: dark;
-      --bg: #050810;
-      --bg2: #090e18;
-      --panel: rgba(14, 21, 37, 0.92);
-      --panel2: rgba(18, 27, 48, 0.94);
-      --panel3: rgba(10, 16, 28, 0.88);
-      --line: rgba(140, 170, 255, 0.14);
-      --line2: rgba(125, 211, 252, 0.22);
-      --text: #eef3ff;
-      --muted: #9ba8c7;
-      --soft: #7483a6;
-      --accent: #7dd3fc;
-      --accent2: #c084fc;
-      --good: #6ee7b7;
-      --warn: #fbbf24;
-      --bad: #fb7185;
-      --shadow: 0 28px 80px rgba(0,0,0,.46);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 16px;
-      --radius-sm: 12px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --bg: #0d1117;
+      --bg2: #101720;
+      --surface: #161e28;
+      --surface2: #1c2533;
+      --surface3: #202a39;
+      --border: rgba(255,255,255,0.08);
+      --text: #ece4d8;
+      --muted: #8d847b;
+      --amber: #c8913a;
+      --amber-2: #e2bb66;
+      --gold: #f0d79a;
+      --green: #64d68a;
+      --blue: #7fb5ff;
+      --red: #ff8a8a;
+      --shadow: 0 24px 60px rgba(0,0,0,0.28);
+      --radius: 20px;
     }
+
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: var(--sans);
+      min-height: 100vh;
       color: var(--text);
+      font-family: 'DM Sans', sans-serif;
       background:
-        radial-gradient(circle at 12% 10%, rgba(125, 211, 252, 0.14), transparent 22%),
-        radial-gradient(circle at 88% 14%, rgba(192, 132, 252, 0.12), transparent 22%),
-        radial-gradient(circle at 50% 100%, rgba(110, 231, 183, 0.08), transparent 24%),
-        linear-gradient(180deg, #050810 0%, #090d16 100%);
-      overflow: hidden;
+        radial-gradient(1200px 700px at 20% -10%, rgba(200,145,58,0.14), transparent 55%),
+        radial-gradient(900px 600px at 100% 10%, rgba(127,181,255,0.09), transparent 45%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-    .app {
-      height: 100%;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 14px;
-      padding: 16px;
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1280px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 28px 0 40px;
     }
-    .shell, .card {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(16, 23, 41, 0.96), rgba(11, 17, 31, 0.92));
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      border-radius: var(--radius-xl);
-    }
+
     .topbar {
-      padding: 16px 18px;
-      display: grid;
-      grid-template-columns: 1.25fr 1fr auto;
-      gap: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
       align-items: center;
+      margin-bottom: 24px;
     }
-    .headline { display: grid; gap: 6px; }
-    .eyebrow {
-      font-size: 12px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      font-weight: 800;
-      color: var(--accent);
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
-    h1 {
-      margin: 0;
+
+    .crest {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--amber), #8a5d1f);
+      display: grid;
+      place-items: center;
+      color: #111;
       font-size: 28px;
-      line-height: 1;
-      letter-spacing: -0.04em;
+      box-shadow: 0 10px 30px rgba(200,145,58,0.25);
     }
-    .sub {
-      margin: 0;
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.5;
-      max-width: 920px;
-    }
-    .pill-row, .button-row, .mini-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .pill {
-      border: 1px solid rgba(154, 173, 214, 0.16);
-      background: rgba(255,255,255,.04);
-      color: #dbe5ff;
-      border-radius: 999px;
-      padding: 9px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .01em;
-      white-space: nowrap;
-    }
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    .stat {
-      padding: 12px 14px;
-      border: 1px solid rgba(140, 170, 255, 0.12);
-      background: rgba(255,255,255,.03);
-      border-radius: 18px;
-      display: grid;
-      gap: 4px;
-    }
-    .stat .label {
-      text-transform: uppercase;
-      letter-spacing: .14em;
+
+    .brand-copy .eyebrow {
       font-size: 11px;
-      color: var(--soft);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+      margin-bottom: 4px;
     }
-    .stat .value {
-      font-size: 24px;
-      font-weight: 780;
-      letter-spacing: -0.03em;
+
+    .brand-copy h1 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1;
     }
-    .stat .note { font-size: 12px; color: var(--muted); }
-    .actions {
+
+    .brand-copy p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 54ch;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .meta {
       display: flex;
-      gap: 10px;
       flex-wrap: wrap;
+      gap: 10px;
       justify-content: flex-end;
     }
-    button {
-      border: 1px solid rgba(154, 173, 214, 0.16);
-      background: rgba(255,255,255,.05);
-      color: var(--text);
+
+    .badge {
+      border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 11px 14px;
-      font: inherit;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
-    }
-    button:hover { transform: translateY(-1px); border-color: rgba(125, 211, 252, 0.34); background: rgba(125, 211, 252, 0.12); }
-    button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .primary {
-      background: linear-gradient(135deg, rgba(125, 211, 252, .95), rgba(192, 132, 252, .85));
-      color: #06101d;
-      border-color: transparent;
-      box-shadow: 0 16px 36px rgba(125, 211, 252, 0.16);
-    }
-    .primary:hover { box-shadow: 0 18px 44px rgba(125, 211, 252, 0.24); }
-    .workspace {
-      min-height: 0;
-      display: grid;
-      grid-template-columns: 330px minmax(0, 1fr) 360px;
-      gap: 14px;
-    }
-    .panel {
-      min-height: 0;
-      overflow: hidden;
-      display: grid;
-      grid-template-rows: auto minmax(0, 1fr);
-    }
-    .panel .hd {
-      padding: 16px 18px 12px;
-      border-bottom: 1px solid rgba(140, 170, 255, 0.08);
-      display: flex;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-size: 13px;
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
+      backdrop-filter: blur(8px);
     }
-    .panel .hd h2 {
-      margin: 0;
-      font-size: 13px;
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(100,214,138,0.12);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-main {
+      padding: 28px;
+      position: relative;
+    }
+
+    .hero-main::after {
+      display: none;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      letter-spacing: .14em;
-      color: var(--muted);
+      color: var(--amber-2);
+      margin-bottom: 16px;
     }
-    .panel .body { padding: 16px; overflow: auto; min-height: 0; }
-    .left-stack, .right-stack { display: grid; gap: 12px; }
-    .section {
-      border: 1px solid rgba(140, 170, 255, 0.12);
-      background: rgba(5, 10, 19, 0.55);
-      border-radius: var(--radius-lg);
-      padding: 14px;
+
+    .hero-title {
+      margin: 0 0 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: clamp(2.3rem, 5vw, 4.6rem);
+      line-height: 0.96;
+      letter-spacing: -0.02em;
+      max-width: 11ch;
     }
-    .section h3 {
-      margin: 0 0 8px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      color: var(--muted);
+
+    .hero-title em {
+      color: var(--gold);
+      font-style: italic;
     }
-    .section p {
+
+    .hero-copy {
       margin: 0;
-      color: var(--muted);
+      max-width: 66ch;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #b9b2a9;
+    }
+
+    .pm-dashboard {
+      margin-bottom: 18px;
+      padding: 22px;
+    }
+
+    .pm-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .pm-card {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 16px;
+      min-height: 132px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .pm-card h3 {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .pm-card p {
+      margin: 0;
+      color: #c6bfb5;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .pm-list {
+      margin: 0;
+      padding-left: 18px;
+      color: #d6cec0;
+      display: grid;
+      gap: 8px;
       font-size: 13px;
       line-height: 1.55;
     }
-    .search {
-      width: 100%;
-      border: 1px solid rgba(154, 173, 214, 0.16);
-      background: rgba(6, 10, 18, 0.6);
-      color: var(--text);
-      border-radius: 16px;
-      padding: 12px 14px;
-      font: inherit;
-      outline: none;
-    }
-    .search::placeholder { color: #6f7da3; }
-    .search:focus { border-color: rgba(125, 211, 252, 0.46); box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.08); }
-    .list { display: grid; gap: 10px; }
-    .item {
-      border: 1px solid rgba(140, 170, 255, 0.12);
-      background: rgba(255,255,255,.03);
-      border-radius: 18px;
-      padding: 13px 14px;
-      cursor: pointer;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-    }
-    .item:hover { transform: translateY(-1px); border-color: rgba(125, 211, 252, 0.26); }
-    .item.active { border-color: rgba(125, 211, 252, 0.5); background: linear-gradient(180deg, rgba(19, 29, 51, 0.94), rgba(9, 14, 24, 0.74)); }
-    .item-top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
-    .item-name { font-weight: 780; letter-spacing: -.02em; }
-    .item-desc { font-size: 13px; line-height: 1.5; color: var(--muted); }
-    .tagrow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    .tag {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      border-radius: 999px;
-      padding: 7px 10px;
-      border: 1px solid rgba(154,173,214,.14);
-      color: #d9e5ff;
-      background: rgba(255,255,255,.03);
-    }
-    .badge {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      border-radius: 999px;
-      padding: 7px 10px;
-      border: 1px solid rgba(154, 173, 214, .14);
-      color: var(--soft);
-      background: rgba(255,255,255,.03);
-      white-space: nowrap;
-    }
-    .badge.good { color: #a8f5d0; border-color: rgba(110,231,183,.22); background: rgba(110,231,183,.08); }
-    .badge.warn { color: #ffd78d; border-color: rgba(251,191,36,.22); background: rgba(251,191,36,.08); }
-    .badge.bad { color: #ff9db0; border-color: rgba(251,113,133,.22); background: rgba(251,113,133,.08); }
 
-    .center {
-      display: grid;
-      grid-template-rows: auto minmax(0, 1fr) auto;
-      gap: 14px;
-      min-height: 0;
+    .pm-list li strong {
+      color: var(--text);
     }
-    .hero {
-      padding: 16px 18px;
-      display: grid;
-      grid-template-columns: 1.35fr auto;
-      gap: 14px;
-      align-items: center;
-    }
-    .hero-title {
-      font-size: 24px;
-      font-weight: 820;
-      letter-spacing: -0.04em;
-      margin: 0 0 6px;
-    }
-    .hero-copy { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
-    .canvas {
-      position: relative;
-      overflow: auto;
-      min-height: 0;
-      background:
-        radial-gradient(circle at 50% 18%, rgba(125, 211, 252, 0.05), transparent 18%),
-        radial-gradient(circle at 50% 100%, rgba(110, 231, 183, 0.04), transparent 22%);
-    }
-    .canvas-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(140, 170, 255, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(140, 170, 255, 0.06) 1px, transparent 1px);
-      background-size: 84px 84px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,.74), rgba(0,0,0,.06));
-      pointer-events: none;
-    }
-    .board {
-      position: relative;
-      min-width: 1260px;
-      min-height: 1460px;
-      padding: 20px;
-    }
-    .lane {
-      position: absolute;
-      top: 18px;
-      bottom: 18px;
-      border-radius: 24px;
-      border: 1px solid rgba(140, 170, 255, 0.1);
-      background: rgba(255,255,255,.02);
-    }
-    .lane.one { left: 18px; width: 350px; }
-    .lane.two { left: 394px; width: 420px; }
-    .lane.three { left: 838px; width: 390px; }
-    .lane-head {
-      position: absolute;
-      top: 18px; left: 18px; right: 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 760;
-      letter-spacing: -.02em;
-    }
-    .lane-sub {
-      position: absolute;
-      top: 44px; left: 18px; right: 18px;
-      color: var(--muted);
-      font-size: 13px;
+
+    .pm-note {
+      margin-top: 2px;
+      color: #b7afa5;
+      font-size: 12px;
       line-height: 1.5;
     }
-    .org {
-      position: absolute;
-      left: 46px; top: 126px;
-      width: 258px;
-      border-radius: 22px;
-      border: 1px solid rgba(140, 170, 255, 0.14);
-      background: linear-gradient(180deg, rgba(17, 25, 44, 0.96), rgba(10, 15, 26, 0.98));
-      box-shadow: 0 20px 40px rgba(0,0,0,.25);
-      padding: 14px;
-      cursor: pointer;
-      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-    }
-    .org:hover { transform: translateY(-2px); border-color: rgba(125, 211, 252, 0.34); }
-    .org.active { border-color: rgba(125, 211, 252, 0.58); box-shadow: 0 0 0 1px rgba(125, 211, 252, 0.12) inset, 0 24px 54px rgba(0,0,0,.26); }
-    .org::after {
-      content: "";
-      position: absolute;
-      left: -70px; top: 50%;
-      width: 58px; height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(125, 211, 252, .65));
-      transform: translateY(-50%);
-    }
-    .org.first::after { display: none; }
-    .org .top { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 10px; }
-    .org .role { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
-    .org .state { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
-    .org .name { font-size: 18px; font-weight: 800; letter-spacing: -.03em; margin-bottom: 6px; }
-    .org .desc { color: var(--muted); font-size: 13px; line-height: 1.48; min-height: 52px; }
-    .org .foot { margin-top: 12px; display: flex; justify-content: space-between; gap: 10px; align-items: center; font-size: 12px; }
-    .org .foot .meta { color: var(--soft); font-family: var(--mono); }
-    .org .foot .ctl { border-radius: 999px; padding: 7px 10px; border: 1px solid rgba(154,173,214,.16); background: rgba(255,255,255,.04); letter-spacing: .12em; text-transform: uppercase; }
 
-    .flow {
-      position: absolute;
-      right: 28px; top: 122px;
-      width: 310px;
-      border-radius: 22px;
-      border: 1px solid rgba(140, 170, 255, 0.14);
-      background: linear-gradient(180deg, rgba(17, 25, 44, 0.96), rgba(10, 15, 26, 0.98));
-      box-shadow: 0 20px 40px rgba(0,0,0,.25);
-      padding: 14px;
-      cursor: pointer;
-      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    .pm-owners {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
     }
-    .flow:hover { transform: translateY(-2px); border-color: rgba(125, 211, 252, 0.34); }
-    .flow.active { border-color: rgba(125, 211, 252, 0.58); box-shadow: 0 0 0 1px rgba(125, 211, 252, 0.12) inset, 0 24px 54px rgba(0,0,0,.26); }
-    .flow::before {
-      content: "";
-      position: absolute;
-      left: -70px; top: 50%;
-      width: 58px; height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(125, 211, 252, .65));
-      transform: translateY(-50%);
-    }
-    .flow .top { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 10px; }
-    .flow .role { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
-    .flow .state { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--good); }
-    .flow .name { font-size: 18px; font-weight: 800; letter-spacing: -.03em; margin-bottom: 6px; }
-    .flow .desc { color: var(--muted); font-size: 13px; line-height: 1.48; min-height: 52px; }
-    .flow .foot { margin-top: 12px; display: flex; justify-content: space-between; gap: 10px; align-items: center; font-size: 12px; }
-    .flow .foot .meta { color: var(--soft); font-family: var(--mono); }
-    .flow .foot .ctl { border-radius: 999px; padding: 7px 10px; border: 1px solid rgba(154,173,214,.16); background: rgba(255,255,255,.04); letter-spacing: .12em; text-transform: uppercase; }
-    .flow.pm { top: 330px; }
 
-    .dept {
-      position: absolute;
-      width: 292px;
-      border-radius: 22px;
-      border: 1px solid rgba(140, 170, 255, 0.14);
-      background: linear-gradient(180deg, rgba(17, 25, 44, 0.96), rgba(10, 15, 26, 0.98));
-      box-shadow: 0 20px 40px rgba(0,0,0,.25);
-      padding: 14px;
-      cursor: pointer;
-      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-    }
-    .dept:hover { transform: translateY(-2px); border-color: rgba(125, 211, 252, 0.34); }
-    .dept.active { border-color: rgba(125, 211, 252, 0.58); box-shadow: 0 0 0 1px rgba(125, 211, 252, 0.12) inset, 0 24px 54px rgba(0,0,0,.26); }
-    .dept::before {
-      content: "";
-      position: absolute;
-      left: -70px; top: 50%;
-      width: 58px; height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(125, 211, 252, .65));
-      transform: translateY(-50%);
-    }
-    .dept .top { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 10px; }
-    .dept .role { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
-    .dept .state { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--good); }
-    .dept .name { font-size: 18px; font-weight: 800; letter-spacing: -.03em; margin-bottom: 6px; }
-    .dept .desc { color: var(--muted); font-size: 13px; line-height: 1.48; min-height: 52px; }
-    .dept .foot { margin-top: 12px; display: flex; justify-content: space-between; gap: 10px; align-items: center; font-size: 12px; }
-    .dept .foot .meta { color: var(--soft); font-family: var(--mono); }
-    .dept .foot .ctl { border-radius: 999px; padding: 7px 10px; border: 1px solid rgba(154,173,214,.16); background: rgba(255,255,255,.04); letter-spacing: .12em; text-transform: uppercase; }
-
-    .e1 { left: 858px; top: 165px; }
-    .e2 { left: 858px; top: 330px; }
-    .e3 { left: 858px; top: 495px; }
-    .e4 { left: 858px; top: 660px; }
-    .e5 { left: 858px; top: 825px; }
-    .e6 { left: 858px; top: 990px; }
-    .e7 { left: 858px; top: 1155px; }
-
-    .arrow {
-      position: absolute;
-      height: 2px;
-      background: rgba(125, 211, 252, 0.33);
-      transform-origin: left center;
-    }
-    .arrow::after {
-      content: "";
-      position: absolute;
-      right: -5px; top: -4px;
-      border-left: 8px solid rgba(125, 211, 252, 0.55);
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-    }
-    .a1 { left: 304px; top: 186px; width: 112px; transform: rotate(18deg); }
-    .a2 { left: 304px; top: 376px; width: 112px; transform: rotate(11deg); }
-    .a3 { left: 304px; top: 566px; width: 112px; transform: rotate(7deg); }
-    .a4 { left: 304px; top: 748px; width: 112px; transform: rotate(0deg); }
-    .a5 { left: 770px; top: 260px; width: 88px; transform: rotate(-4deg); }
-    .a6 { left: 770px; top: 450px; width: 88px; transform: rotate(-4deg); }
-    .a7 { left: 770px; top: 640px; width: 88px; transform: rotate(-4deg); }
-
-    .lower {
-      padding: 16px 18px 18px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-    }
-    .mini {
-      border: 1px solid rgba(140, 170, 255, 0.12);
-      background: rgba(5, 10, 19, 0.55);
-      border-radius: var(--radius-lg);
-      padding: 14px;
-      display: grid;
-      gap: 10px;
-    }
-    .mini h3 {
-      margin: 0;
-      font-size: 13px;
+    .pm-owner {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: .14em;
-      color: var(--muted);
+      color: #e5d8c3;
     }
-    .mini .large {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      margin: 0;
-    }
-    .mini .copy { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
-    .progress-list { display: grid; gap: 10px; }
-    .progress {
+
+    .org-func-team {
       display: grid;
-      gap: 4px;
-      padding: 10px 12px;
+      gap: 12px;
+      margin-top: 12px;
+      padding: 16px;
       border-radius: 16px;
-      border: 1px solid rgba(140, 170, 255, 0.1);
-      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.025);
     }
-    .progress .top { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
-    .progress strong { font-size: 14px; }
-    .progress span { color: var(--muted); font-size: 12px; line-height: 1.45; }
-    .bar {
-      width: 100%; height: 8px; border-radius: 999px; background: rgba(255,255,255,.06); overflow: hidden;
-      margin-top: 6px;
-    }
-    .bar > i {
-      display: block; height: 100%; border-radius: inherit;
-      background: linear-gradient(90deg, rgba(125, 211, 252, 0.94), rgba(192, 132, 252, 0.88));
-    }
-    .feed {
-      display: grid; gap: 10px;
-      max-height: 210px;
-      overflow: auto;
-      padding-right: 2px;
-    }
-    .event {
-      display: grid; gap: 4px;
-      border: 1px solid rgba(140, 170, 255, 0.1);
-      background: rgba(255,255,255,.03);
-      border-radius: 16px;
-      padding: 10px 12px;
-    }
-    .event .top { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
-    .event .who { font-weight: 780; font-size: 13px; }
-    .event .time { font-family: var(--mono); color: var(--soft); font-size: 12px; }
-    .event .msg { color: var(--muted); font-size: 13px; line-height: 1.45; }
-    .right-stack .section .action-row { display: flex; gap: 10px; flex-wrap: wrap; }
-    .selectlist { display: grid; gap: 10px; }
-    .select {
-      display: flex; justify-content: space-between; gap: 10px; align-items: flex-start;
-      padding: 11px 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(140,170,255,.12);
-      background: rgba(255,255,255,.03);
-      cursor: pointer;
-    }
-    .select:hover { border-color: rgba(125, 211, 252, 0.26); }
-    .select strong { display: block; font-size: 14px; }
-    .select span { display: block; color: var(--muted); font-size: 12px; line-height: 1.45; margin-top: 2px; }
-    .textarea {
-      width: 100%;
-      min-height: 120px;
-      border: 1px solid rgba(154,173,214,.16);
-      border-radius: 16px;
-      background: rgba(6,10,18,.6);
-      color: var(--text);
-      padding: 12px 14px;
-      font: inherit;
-      resize: vertical;
-      outline: none;
-    }
-    .textarea:focus { border-color: rgba(125, 211, 252, 0.46); box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.08); }
-    .footer {
-      padding: 14px 18px;
+
+    .org-func-team-head {
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      align-items: center;
-      color: var(--soft);
+      align-items: start;
+      flex-wrap: wrap;
+    }
+
+    .org-func-team-head strong {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .org-func-team-head span {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .expert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .expert-card {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      padding: 10px 12px;
+    }
+
+    .expert-card .mini-name {
+      display: block;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .expert-card .mini-role {
+      margin: 4px 0 0;
+      color: #c8bfaf;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .org-tree {
+      margin-top: 22px;
+      display: grid;
+      gap: 18px;
+      overflow-x: auto;
+      overflow-y: visible;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .org-ceo {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      position: relative;
+      padding-bottom: 18px;
+    }
+
+    .org-ceo::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 1px;
+      height: 18px;
+      background: var(--border);
+    }
+
+    .org-ceo-card {
+      width: min(100%, 360px);
+      padding: 18px 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(240,215,154,0.22);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+      text-align: center;
+    }
+
+    .org-ceo-kicker {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+      margin-bottom: 8px;
+    }
+
+    .org-ceo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.8vw, 3rem);
+      line-height: 0.96;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .org-ceo-role {
+      margin-top: 8px;
+      color: var(--gold);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .org-ceo-note {
+      margin: 0;
+      text-align: center;
+      color: #b8b1a8;
+      font-size: 14px;
+      line-height: 1.75;
+      max-width: 64ch;
+    }
+
+    .org-level {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+      position: relative;
+      padding-top: 24px;
+      margin-top: 8px;
+    }
+
+    .org-level::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 7%;
+      right: 7%;
+      height: 2px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .org-branch {
+      position: relative;
+      padding-top: 24px;
+      display: grid;
+      gap: 0;
+    }
+
+    .org-branch::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 24px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .org-branch-card {
+      min-height: 100%;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      display: grid;
+      gap: 12px;
+      position: relative;
+    }
+
+    .org-branch-card.life { background: rgba(100,214,138,0.04); }
+    .org-branch-card.ops { background: rgba(244,202,160,0.05); }
+
+    .org-branch-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .org-branch-head h3 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .org-count {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .org-branch-note {
+      margin: 0;
+      color: #bfb7ac;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .org-subgrid {
+      display: grid;
+      gap: 12px;
+      margin-top: 4px;
+      position: relative;
+    }
+
+    .org-subgrid::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .org-subgrid.app {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .org-subgrid.life {
+      grid-template-columns: 1fr;
+    }
+
+    .org-app-groups {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 4px;
+      position: relative;
+      padding-top: 18px;
+      align-items: start;
+    }
+
+    .org-app-groups::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: rgba(255,255,255,0.10);
+    }
+
+    .org-app-team {
+      display: grid;
+      gap: 10px;
+      position: relative;
+      padding-top: 14px;
+    }
+
+    .org-app-team::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 14px;
+      background: rgba(255,255,255,0.10);
+    }
+
+    .org-app-team .org-node.team {
+      text-align: left;
+      padding: 12px 12px 11px;
+    }
+
+    .org-app-team .org-node.team .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .org-app-team .org-node.team .role {
+      color: #d7cdbd;
+      max-width: 42ch;
       font-size: 12px;
     }
-    .footer code { font-family: var(--mono); color: #cfe4ff; }
-    @media (max-width: 1400px) {
-      body { overflow: auto; }
-      .app { height: auto; min-height: 100%; }
-      .workspace { grid-template-columns: 1fr; }
-      .lower { grid-template-columns: 1fr; }
-      .topbar { grid-template-columns: 1fr; }
-      .actions { justify-content: flex-start; }
-      .board { min-width: 1260px; }
-      .panel { min-height: 560px; }
+
+    .org-app-team .org-subgrid.app-people {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .org-app-team .org-node.person {
+      padding: 12px 12px 11px;
+    }
+
+    .org-app-team .org-node.person .kicker {
+      font-size: 9px;
+    }
+
+    .org-app-team .org-node.person .name {
+      font-size: 15px;
+    }
+
+    .org-app-team .org-node.person .role {
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .org-mini-group {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 18px 14px 14px;
+      display: grid;
+      gap: 8px;
+      position: relative;
+    }
+
+    .org-mini-group strong {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .org-mini-group .mini-name {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.1;
+    }
+
+    .org-mini-group .mini-role {
+      margin: 0;
+      color: #c8bfaf;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .org-person-block {
+      position: relative;
+      padding-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .org-person-block::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 18px;
+      background: var(--border);
+    }
+
+    .org-node {
+      border-radius: 16px;
+      padding: 14px 14px 13px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .org-node.team {
+      text-align: center;
+      border-color: rgba(240,215,154,0.18);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+
+    .org-node.team .kicker {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      color: var(--amber-2);
+      margin-bottom: 8px;
+    }
+
+    .org-node.team .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: 0.01em;
+    }
+
+    .org-node.team .role {
+      color: #d7cdbd;
+      font-size: 12px;
+      line-height: 1.55;
+      max-width: 42ch;
+      margin-top: 8px;
+    }
+
+    .org-node.person {
+      text-align: center;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .org-node .kicker {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+      margin-bottom: 7px;
+    }
+
+    .org-node .name {
+      display: block;
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .org-node .role {
+      display: block;
+      margin-top: 6px;
+      color: #c8bfaf;
+      font-size: 13px;
+      line-height: 1.55;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .org-bench {
+      border-radius: 14px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.02);
+      color: #d6cec0;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .org-bench strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 16px;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.16); }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--amber), #9b6a26);
+      color: #130f07;
+      font-weight: 700;
+      border-color: transparent;
+    }
+
+    .hero-side {
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .mini-stat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .mini-stat .kicker {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .mini-stat .value {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .mini-stat .note {
+      margin: 0;
+      color: #b6afa6;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .section {
+      margin-top: 18px;
+      padding: 22px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .section-head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+
+    .ops-section {
+      display: grid;
+      gap: 18px;
+    }
+
+    .top-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .strip-card {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      min-height: 180px;
+    }
+
+    .strip-card.attention { border-color: rgba(248,113,113,0.18); background: linear-gradient(180deg, rgba(248,113,113,0.08), rgba(255,255,255,0.02)); }
+    .strip-card.risk { border-color: rgba(251,191,36,0.16); background: linear-gradient(180deg, rgba(251,191,36,0.08), rgba(255,255,255,0.02)); }
+    .strip-card.launch { border-color: rgba(96,165,250,0.16); background: linear-gradient(180deg, rgba(96,165,250,0.08), rgba(255,255,255,0.02)); }
+
+    .strip-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .strip-head strong {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .strip-head span {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .strip-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .strip-list li {
+      display: grid;
+      gap: 4px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .strip-list li:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .strip-list b {
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .strip-list span {
+      color: #c6bfb5;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .now-rail {
+      display: grid;
+      gap: 14px;
+    }
+
+    .work-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .work-card {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .work-card.top-priority { border-color: rgba(248,113,113,0.18); background: linear-gradient(180deg, rgba(248,113,113,0.05), rgba(255,255,255,0.02)); }
+
+    .work-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .work-name {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.05;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .work-owner {
+      margin-top: 4px;
+      color: var(--amber-2);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .work-pill {
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      white-space: nowrap;
+      align-self: start;
+    }
+
+    .work-pill.good { color: #09150d; background: #97efb9; border-color: transparent; font-weight: 700; }
+    .work-pill.warn { color: #1b1205; background: #f0d79a; border-color: transparent; font-weight: 700; }
+    .work-pill.bad { color: #1c0909; background: #ffb0b0; border-color: transparent; font-weight: 700; }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .field {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      padding: 10px 12px;
+      display: grid;
+      gap: 4px;
+      min-height: 64px;
+    }
+
+    .field .kicker {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .field .value {
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .field .value.small { font-weight: 500; color: #d8d0c3; }
+
+    .work-note {
+      margin: 0;
+      color: #c6bfb5;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .mid-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .queue-list, .forecast-list, .audit-list, .agent-list, .ladder-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .queue-item, .forecast-item, .audit-item, .agent-item, .ladder-item {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .queue-item:first-child, .forecast-item:first-child, .audit-item:first-child, .agent-item:first-child, .ladder-item:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .queue-top, .forecast-top, .audit-top, .agent-top, .ladder-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .queue-top strong, .forecast-top strong, .audit-top strong, .agent-top strong, .ladder-top strong {
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .queue-top span, .forecast-top span, .audit-top span, .agent-top span, .ladder-top span {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .queue-copy, .forecast-copy, .audit-copy, .agent-copy, .ladder-copy {
+      margin: 0;
+      color: #c6bfb5;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline-axis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .timeline-chip {
+      border-radius: 999px;
+      padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+      color: #d6cec0;
+    }
+
+    .timeline-chip strong {
+      color: var(--text);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .timeline-bar {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .timeline-bar i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(96,165,250,0.85), rgba(200,145,58,0.95));
+    }
+
+    .launch-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .launch-card {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .launch-card .launch-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .launch-meta {
+      color: #c6bfb5;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .launch-meta .risk { color: var(--amber-2); }
+
+    .oversight-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.2fr 0.95fr 0.95fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .ladder-step {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      padding: 10px 12px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .ladder-step .lvl {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+    }
+
+    .ladder-step .lvl span {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .ladder-step .lvl strong {
+      font-size: 12px;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .agent-card {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .agent-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .agent-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .mini-chip {
+      border-radius: 999px;
+      padding: 6px 8px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: #d6cec0;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .mini-chip.good { color: #09150d; background: #97efb9; border-color: transparent; font-weight: 700; }
+    .mini-chip.warn { color: #1b1205; background: #f0d79a; border-color: transparent; font-weight: 700; }
+
+    .exception-list .queue-item { border-top-color: rgba(248,113,113,0.14); }
+
+    .audit-timeline {
+      display: grid;
+      gap: 10px;
+    }
+
+    .audit-item time {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .filters input {
+      width: min(320px, 100%);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 16px;
+      font: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .filters input::placeholder { color: #7c7369; }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 160ms ease;
+    }
+
+    .chip[aria-pressed="true"] {
+      color: #130f07;
+      background: var(--gold);
+      border-color: transparent;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      grid-column: span 4;
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .card.wide { grid-column: span 6; }
+    .card.slim { grid-column: span 3; }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .name {
+      margin: 0;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .role {
+      margin: 4px 0 0;
+      color: var(--amber-2);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .pill.shared { color: #1a1608; background: var(--gold); border-color: transparent; font-weight: 700; }
+    .pill.testing { color: #0d1a12; background: #9cf0bf; border-color: transparent; font-weight: 700; }
+    .pill.standalone { color: #08111a; background: #a7c6ff; border-color: transparent; font-weight: 700; }
+    .pill.ops { color: #241307; background: #f4caa0; border-color: transparent; font-weight: 700; }
+
+    .card p {
+      margin: 0;
+      color: #c6bfb5;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: #d0c7ba;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .two-up {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .list {
+      padding: 18px;
+    }
+
+    .list h3 {
+      margin: 0 0 14px;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .list ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .list li:first-child { border-top: 0; padding-top: 0; }
+    .list .left strong { display: block; margin-bottom: 4px; }
+    .list .left span { color: #b6afa6; font-size: 13px; line-height: 1.55; }
+    .list .right { color: var(--muted); font-size: 12px; white-space: nowrap; }
+
+    .control-tower {
+      margin-top: 18px;
+      padding: 22px;
+    }
+
+    .tower-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .tower-summary {
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(240,215,154,0.14);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      display: grid;
+      gap: 14px;
+    }
+
+    .tower-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .status-chip {
+      border-radius: 999px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: #d6cec0;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .status-chip.good { color: #09150d; background: #97efb9; border-color: transparent; font-weight: 700; }
+    .status-chip.warn { color: #1b1205; background: #f0d79a; border-color: transparent; font-weight: 700; }
+    .status-chip.bad { color: #1c0909; background: #ffb0b0; border-color: transparent; font-weight: 700; }
+
+    .tower-headline {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3vw, 2.7rem);
+      font-weight: 500;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      max-width: 16ch;
+    }
+
+    .tower-copy {
+      margin: 0;
+      max-width: 68ch;
+      color: #c1b7ab;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .kpi .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .kpi .value {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .kpi .sub {
+      margin: 0;
+      color: #b6afa6;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .tower-secondary {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 0.95fr;
+      gap: 16px;
+    }
+
+    .panel-box {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      min-height: 100%;
+    }
+
+    .panel-box h3 {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+    }
+
+    .stream-list, .feed-list, .decision-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .stream-item, .feed-item, .decision-item {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .stream-item:first-child,
+    .feed-item:first-child,
+    .decision-item:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .stream-top, .feed-top, .decision-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .stream-top strong, .feed-top strong, .decision-top strong {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .stream-top span, .feed-top span, .decision-top span {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .stream-meta, .feed-copy, .decision-copy {
+      margin: 0;
+      color: #c6bfb5;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .progress {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+
+    .progress > i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--amber), var(--gold));
+    }
+
+    .bar-set {
+      display: grid;
+      gap: 10px;
+    }
+
+    .bar-row {
+      display: grid;
+      gap: 6px;
+    }
+
+    .bar-row .bar-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      color: #d6cec0;
+    }
+
+    .bar-row .bar-head span:last-child {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+
+    .bar > i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(127,181,255,0.85), rgba(200,145,58,0.95));
+    }
+
+    .footer {
+      margin: 18px 0 0;
+      padding: 16px 4px 0;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hidden { display: none !important; }
+
+    /* Compact org chart override */
+    .org-level {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(230px, 1fr));
+      gap: 18px;
+      align-items: start;
+      position: relative;
+      padding-top: 24px;
+      margin-top: 8px;
+      min-width: max-content;
+    }
+
+    .org-level::before {
+      left: 3%;
+      right: 3%;
+      height: 1px;
+      background: rgba(255,255,255,0.10);
+    }
+
+    .org-column {
+      position: relative;
+      padding-top: 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .org-column::before {
+      height: 14px;
+      width: 1px;
+      background: rgba(255,255,255,0.10);
+    }
+
+    .org-column-card {
+      min-height: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      display: grid;
+      gap: 8px;
+    }
+
+    .org-column-card.coat { background: rgba(244,202,160,0.05); }
+    .org-column-card.apps { background: rgba(255,255,255,0.035); }
+    .org-column-card.func { background: rgba(127,181,255,0.05); }
+    .org-column-card.other { background: rgba(100,214,138,0.05); }
+    .org-column-card.life { background: rgba(100,214,138,0.04); }
+
+    .org-column-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .org-column-head h3 {
+      margin: 0;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .org-column-head span {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .org-column-note {
+      margin: 0;
+      color: #c8bfaf;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .stack {
+      display: grid;
+      gap: 7px;
+    }
+
+    .mini-card {
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      padding: 9px 10px;
+    }
+
+    .mini-card .mini-kicker {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber-2);
+      margin-bottom: 4px;
+    }
+
+    .mini-card .mini-name {
+      display: block;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.1;
+    }
+
+    .mini-card .mini-role {
+      margin: 3px 0 0;
+      color: #c8bfaf;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .expert-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 7px;
+    }
+
+    .expert-mini-grid .mini-card {
+      white-space: normal;
+    }
+
+    .expert-mini-grid .mini-card .mini-name,
+    .org-column-card.apps .mini-card .mini-name {
+      font-size: 12px;
+    }
+
+    .expert-mini-grid .mini-card .mini-role,
+    .org-column-card.apps .mini-card .mini-role,
+    .org-column-card.other .mini-card .mini-role,
+    .org-column-card.life .mini-card .mini-role {
+      font-size: 10px;
+    }
+
+    .org-column-card.apps .stack,
+    .org-column-card.other .stack,
+    .org-column-card.life .stack {
+      gap: 6px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr; }
+      .card { grid-column: span 6; }
+      .card.wide { grid-column: span 12; }
+      .card.slim { grid-column: span 6; }
+      .pm-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .shell { width: min(100% - 20px, 1280px); padding-top: 14px; }
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .brand { align-items: flex-start; gap: 12px; }
+      .crest { width: 46px; height: 46px; font-size: 24px; border-radius: 14px; }
+      .brand-copy h1 { font-size: 2.2rem; }
+      .brand-copy p { max-width: none; font-size: 13px; line-height: 1.6; }
+      .meta, .filters { justify-content: flex-start; width: 100%; }
+      .badge { width: 100%; justify-content: center; }
+      .card, .card.slim, .card.wide { grid-column: span 12; min-height: unset; }
+      .hero-main, .hero-side, .section { padding: 16px; }
+      .hero-title { max-width: none; font-size: clamp(2rem, 10vw, 3rem); }
+      .hero-copy { font-size: 14px; line-height: 1.7; }
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .section-head h2 { font-size: 24px; }
+      .section-head p { max-width: none; font-size: 13px; line-height: 1.55; }
+      .top-strip, .mid-grid, .oversight-grid, .launch-cards, .field-grid, .pm-grid, .expert-grid, .tower-grid, .tower-secondary, .kpi-grid, .org-level, .org-app-groups { grid-template-columns: 1fr; }
+      .work-head, .strip-head, .queue-top, .forecast-top, .audit-top, .agent-top, .ladder-top, .stream-top, .feed-top, .decision-top, .list li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .strip-head span, .queue-top span, .forecast-top span, .audit-top span, .agent-top span, .ladder-top span, .stream-top span, .feed-top span, .decision-top span, .list .right, .org-count {
+        white-space: normal;
+      }
+      .timeline-axis { grid-template-columns: 1fr; }
+      .org-level, .org-app-groups { gap: 12px; padding-top: 0; }
+      .org-level::before, .org-app-groups::before, .org-column::before, .org-person-block::before, .org-ceo::after { display: none; }
+      .org-column { padding-top: 0; }
+      .org-column-card { padding: 14px; }
+      .org-column-head { flex-direction: column; align-items: flex-start; }
+      .org-column-head span { white-space: normal; text-align: left; }
+      .org-column-note, .org-node.team .role, .org-node .role, .org-mini-group .mini-role { font-size: 12px; line-height: 1.5; }
+      .expert-mini-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .expert-mini-grid .mini-card .mini-name { white-space: normal; }
+      .org-mini-group { padding: 14px 12px 12px; }
+      .org-node, .mini-card, .org-column-card, .org-mini-group, .panel-box, .kpi, .field, .strip-card, .work-card, .launch-card { border-radius: 14px; }
+      .field { min-height: unset; }
+      .field .value { font-size: 12px; }
+      .field-grid { gap: 8px; }
+      .tags, .agent-tags, .hero-actions { gap: 8px; }
+      .pill, .mini-chip, .tag, .status-chip, .work-pill { white-space: normal; }
+      .list li { gap: 6px; }
+      .two-up { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 420px) {
+      .shell { width: min(100% - 16px, 1280px); }
+      .hero-main, .hero-side, .section { padding: 14px; }
+      .brand-copy h1 { font-size: 2rem; }
+      .hero-title { font-size: 2.2rem; }
+      .section-head h2 { font-size: 22px; }
+      .kpi .value { font-size: 24px; }
+      .pm-grid, .expert-grid, .field-grid, .launch-cards, .top-strip, .org-level, .org-app-groups { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="app">
-    <header class="shell topbar">
-      <div class="headline">
-        <div class="eyebrow">Hermes / The Rainy Day Company Org Chart</div>
-        <h1>The Rainy Day Company team structure</h1>
-        <p class="sub">Stefon routes company work, Phillip manages the Libations app, and focused specialist teams stay narrow so the org does not get mushy. Telegram is the front door; the dashboard is the source of truth.</p>
-      </div>
-      <div class="stats">
-        <div class="stat">
-          <div class="label">Open work</div>
-          <div class="value">12</div>
-          <div class="note">5 active · 3 waiting · 4 queued</div>
-        </div>
-        <div class="stat">
-          <div class="label">Completed today</div>
-          <div class="value">7</div>
-          <div class="note">including 2 routed replies</div>
-        </div>
-        <div class="stat">
-          <div class="label">Blocked</div>
-          <div class="value">2</div>
-          <div class="note">needs your input or approval</div>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="crest">☂</div>
+        <div class="brand-copy">
+          <div class="eyebrow">The Rainy Day Company</div>
+          <h1>Agents</h1>
+
         </div>
       </div>
-      <div class="actions">
-        <button class="primary" id="sendBtn">Send selected route</button>
-        <button id="toggleBtn">Mode: live</button>
+      <div class="meta">
+
+        <div class="badge">Last sync: <strong>2026-05-20 12:20 EDT</strong></div>
       </div>
     </header>
 
-    <main class="workspace">
-      <aside class="shell panel">
-        <div class="hd">
-          <h2>Org / inbox</h2>
-          <span class="badge good" id="leftBadge">active</span>
+    <section class="panel section ops-section">
+      <div class="section-head">
+        <div>
+          <h2>Project management</h2>
+          <p>Control surface for active work, plus the org chart for who owns what.</p>
         </div>
-        <div class="body left-stack">
-          <input class="search" id="search" placeholder="Filter departments, tasks, or messages…" />
+        <div class="status-chip good">mode: supervised</div>
+      </div>
 
-          <div class="section">
-            <h3>Direct routes</h3>
-            <div class="list" id="routeList"></div>
+      <div class="top-strip">
+        <article class="strip-card attention">
+          <div class="strip-head">
+            <strong>What needs attention now</strong>
+            <span>red / yellow queue</span>
           </div>
+          <ul class="strip-list">
+            <li>
+              <b>Approve the Libations release window</b>
+              <span>Owner: Greg · due: Fri · confidence: high</span>
+            </li>
+            <li>
+              <b>Unblock Libations Android auth</b>
+              <span>Owner: Phillip · due: today · confidence: medium</span>
+            </li>
+            <li>
+              <b>Decide whether Libations Android waits or ships in the next window</b>
+              <span>Owner: Greg · due: next · confidence: medium</span>
+            </li>
+          </ul>
+        </article>
 
-          <div class="section">
-            <h3>Task states</h3>
-            <div class="progress-list">
-              <div class="progress">
-                <div class="top"><strong>In progress</strong><span>5</span></div>
-                <div class="bar"><i style="width:62%"></i></div>
-                <span>Work that is actively being edited, built, or reviewed.</span>
-              </div>
-              <div class="progress">
-                <div class="top"><strong>Waiting on you</strong><span>2</span></div>
-                <div class="bar"><i style="width:28%"></i></div>
-                <span>Items blocked because they need your approval or decision.</span>
-              </div>
-              <div class="progress">
-                <div class="top"><strong>Done</strong><span>7</span></div>
-                <div class="bar"><i style="width:78%"></i></div>
-                <span>Completed work visible in the dashboard and activity feed.</span>
-              </div>
+        <article class="strip-card risk">
+          <div class="strip-head">
+            <strong>What's at risk</strong>
+            <span>watch list</span>
+          </div>
+          <ul class="strip-list">
+            <li>
+              <b>Android parity slips past iOS</b>
+              <span>Risk band: yellow · dependency: auth fix and device verification</span>
+            </li>
+            <li>
+              <b>Release scope grows before the blocker clears</b>
+              <span>Risk band: red · trigger: any new auth or signing issue</span>
+            </li>
+            <li>
+              <b>Agent changes lose review discipline</b>
+              <span>Risk band: yellow · trigger: unreviewed autonomy change</span>
+            </li>
+          </ul>
+        </article>
+
+        <article class="strip-card launch">
+          <div class="strip-head">
+            <strong>Next launch</strong>
+            <span>launch window</span>
+          </div>
+          <ul class="strip-list">
+            <li>
+              <b>Libations iOS 2.2.2</b>
+              <span>Window: Fri · handoff: Phillip · risk: low</span>
+            </li>
+            <li>
+              <b>Libations Android login recovery</b>
+              <span>Window: today · handoff: device verification · risk: medium</span>
+            </li>
+            <li>
+              <b>Libations Android parity</b>
+              <span>Window: next week · handoff: Greg decision · risk: medium</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <div class="section-head">
+        <div>
+          <h2>Now</h2>
+          <p>Active workstreams with the fields you asked for: task, owner, due date, launch window, status, and confidence.</p>
+        </div>
+        <div class="status-chip good">4 workstreams</div>
+      </div>
+
+      <div class="now-rail">
+        <article class="work-card top-priority">
+          <div class="work-head">
+            <div>
+              <div class="work-owner">Phillip · established apps</div>
+              <h3 class="work-name">Libations — iOS 2.2.2 launch</h3>
+            </div>
+            <div class="work-pill good">ready</div>
+          </div>
+          <div class="field-grid">
+            <div class="field"><div class="kicker">task name</div><div class="value">Libations — iOS 2.2.2 launch</div></div>
+            <div class="field"><div class="kicker">owner</div><div class="value">Phillip</div></div>
+            <div class="field"><div class="kicker">due date</div><div class="value">Friday</div></div>
+            <div class="field"><div class="kicker">launch window</div><div class="value">Fri AM</div></div>
+            <div class="field"><div class="kicker">confidence</div><div class="value">High</div></div>
+          </div>
+          <p class="work-note">Ready to ship once the release window is approved.</p>
+        </article>
+
+        <article class="work-card">
+          <div class="work-head">
+            <div>
+              <div class="work-owner">Phillip · established apps</div>
+              <h3 class="work-name">Libations — Android login recovery</h3>
+            </div>
+            <div class="work-pill warn">blocked</div>
+          </div>
+          <div class="field-grid">
+            <div class="field"><div class="kicker">task name</div><div class="value">Libations — fix auth path</div></div>
+            <div class="field"><div class="kicker">owner</div><div class="value">Phillip</div></div>
+            <div class="field"><div class="kicker">due date</div><div class="value">Today</div></div>
+            <div class="field"><div class="kicker">launch window</div><div class="value">Today PM</div></div>
+            <div class="field"><div class="kicker">confidence</div><div class="value">Medium</div></div>
+          </div>
+          <p class="work-note">Blocked until auth is fixed and verified on device.</p>
+        </article>
+
+        <article class="work-card">
+          <div class="work-head">
+            <div>
+              <div class="work-owner">Monica · new apps</div>
+              <h3 class="work-name">Libations — Android parity</h3>
+            </div>
+            <div class="work-pill warn">in motion</div>
+          </div>
+          <div class="field-grid">
+            <div class="field"><div class="kicker">task name</div><div class="value">Libations — align Android with iOS</div></div>
+            <div class="field"><div class="kicker">owner</div><div class="value">Monica</div></div>
+            <div class="field"><div class="kicker">due date</div><div class="value">Next week</div></div>
+            <div class="field"><div class="kicker">launch window</div><div class="value">Week of next release</div></div>
+            <div class="field"><div class="kicker">confidence</div><div class="value">Medium</div></div>
+          </div>
+          <p class="work-note">Can ship with iOS if the login fix holds, otherwise it waits for the next window.</p>
+        </article>
+
+        <article class="work-card">
+          <div class="work-head">
+            <div>
+              <div class="work-owner">Stefon · ops</div>
+              <h3 class="work-name">Workflows and agents</h3>
+            </div>
+            <div class="work-pill good">steady</div>
+          </div>
+          <div class="field-grid">
+            <div class="field"><div class="kicker">task name</div><div class="value">The Rainy Day Company — keep the system legible</div></div>
+            <div class="field"><div class="kicker">owner</div><div class="value">Stefon</div></div>
+            <div class="field"><div class="kicker">due date</div><div class="value">Ongoing</div></div>
+            <div class="field"><div class="kicker">launch window</div><div class="value">Continuous</div></div>
+            <div class="field"><div class="kicker">confidence</div><div class="value">High</div></div>
+          </div>
+          <p class="work-note">Tracks the dashboard, review loop, and operating discipline.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="panel hero-main">
+        <h2 class="hero-title">Team structure</h2>
+        <div class="org-tree">
+          <div class="org-ceo">
+            <div class="org-ceo-card">
+              <div class="org-ceo-kicker">Top level</div>
+              <div class="org-ceo-name">Greg</div>
+              <div class="org-ceo-role">Direct oversight</div>
             </div>
           </div>
 
-          <div class="section">
-            <h3>Recent activity</h3>
-            <div class="feed" id="feed"></div>
-          </div>
-        </div>
-      </aside>
-
-      <section class="shell center">
-        <div class="shell hero">
-          <div>
-            <h2 class="hero-title" id="heroTitle">Current focus: route clarity and visible completion</h2>
-            <p class="hero-copy" id="heroCopy">You should be able to see who owns each request, where it is in the workflow, and whether it needs your input. Messages can go direct to a department or through Stefon depending on the type of request.</p>
-          </div>
-          <div class="mini-row">
-            <span class="pill">Telegram intake</span>
-            <span class="pill">Dashboard truth</span>
-            <span class="pill">Org chart + Kanban</span>
-            <span class="pill">Shared context</span>
-          </div>
-        </div>
-
-        <div class="shell canvas">
-          <div class="canvas-grid" aria-hidden="true"></div>
-          <div class="board" id="board">
-            <div class="lane one"><div class="lane-head">Entry points <span class="badge good">visible</span></div><div class="lane-sub">Messages and commands enter here.</div></div>
-            <div class="lane two"><div class="lane-head">Leadership <span class="badge warn">router + PM</span></div><div class="lane-sub">Stefon routes cross-team work; Phillip runs the Libations app day to day.</div></div>
-            <div class="lane three"><div class="lane-head">Company teams <span class="badge good">specialized</span></div><div class="lane-sub">Small focused teams keep roles narrow so the org stays sharp instead of mushy.</div></div>
-
-            <article class="org first active" data-key="telegram">
-              <div class="top"><div class="role">Ingress</div><div class="state">Direct</div></div>
-              <div class="name">Telegram</div>
-              <div class="desc">Fast front door for quick commands, approvals, updates, and urgent handoffs.</div>
-              <div class="foot"><span class="meta">home channel</span><span class="ctl">dm / topic</span></div>
-            </article>
-
-            <article class="org" data-key="cli">
-              <div class="top"><div class="role">Ingress</div><div class="state">Direct</div></div>
-              <div class="name">Hermes CLI</div>
-              <div class="desc">Direct conversation with any profile outside Telegram for focused work and debugging.</div>
-              <div class="foot"><span class="meta">local</span><span class="ctl">hermes chat</span></div>
-            </article>
-
-            <article class="org" data-key="dashboard">
-              <div class="top"><div class="role">Visibility</div><div class="state">Source</div></div>
-              <div class="name">Dashboard</div>
-              <div class="desc">Shows org chart, tasks, blockers, completed work, and recent activity in one place.</div>
-              <div class="foot"><span class="meta">source of truth</span><span class="ctl">view / approve</span></div>
-            </article>
-
-            <article class="flow active" data-key="stefon">
-              <div class="top"><div class="role">Router</div><div class="state">Hub</div></div>
-              <div class="name">Stefon</div>
-              <div class="desc">Chief-of-staff router. Triage requests, route to departments, summarize back to you, and keep cross-team context moving.</div>
-              <div class="foot"><span class="meta">routing brain</span><span class="ctl">route / summarize</span></div>
-            </article>
-
-            <article class="flow pm active" data-key="phillip">
-              <div class="top"><div class="role">PM</div><div class="state">Libations</div></div>
-              <div class="name">Phillip</div>
-              <div class="desc">Project manager for Libations. Breaks work into focused streams, assigns specialists, tracks blockers, and keeps release pressure moving.</div>
-              <div class="foot"><span class="meta">project manager</span><span class="ctl">plan / assign</span></div>
-            </article>
-
-            <article class="dept e1" data-key="design-ux">
-              <div class="top"><div class="role">Team</div><div class="state">Focused</div></div>
-              <div class="name">Design / UX Team</div>
-              <div class="desc">Flow, layout, interaction, visual polish, and making the app feel obvious to use.</div>
-              <div class="foot"><span class="meta">design review</span><span class="ctl">flow / polish</span></div>
-            </article>
-
-            <article class="dept e2" data-key="security-team">
-              <div class="top"><div class="role">Team</div><div class="state">Guardrails</div></div>
-              <div class="name">Security Team</div>
-              <div class="desc">Auth, privacy, access control, threat modeling, and keeping the release safe.</div>
-              <div class="foot"><span class="meta">risk review</span><span class="ctl">secure / audit</span></div>
-            </article>
-
-            <article class="dept e3" data-key="coding-dev">
-              <div class="top"><div class="role">Team</div><div class="state">Build</div></div>
-              <div class="name">Coding / Development Team</div>
-              <div class="desc">Implementation, refactors, architecture, and turning approved work into code.</div>
-              <div class="foot"><span class="meta">build lane</span><span class="ctl">ship / iterate</span></div>
-            </article>
-
-            <article class="dept e4" data-key="database-team">
-              <div class="top"><div class="role">Team</div><div class="state">Data</div></div>
-              <div class="name">Database Team</div>
-              <div class="desc">Schema, queries, migrations, sync, and the data model behind the product.</div>
-              <div class="foot"><span class="meta">data layer</span><span class="ctl">schema / query</span></div>
-            </article>
-
-            <article class="dept e5" data-key="functional-experts">
-              <div class="top"><div class="role">Team</div><div class="state">Domain</div></div>
-              <div class="name">Functional Experts</div>
-              <div class="desc">Craft beer, sommelier, wine, whisky, cocktails, and other deep domain knowledge.</div>
-              <div class="foot"><span class="meta">truth source</span><span class="ctl">expert input</span></div>
-            </article>
-
-            <article class="dept e6" data-key="qa-testing">
-              <div class="top"><div class="role">Team</div><div class="state">Verify</div></div>
-              <div class="name">QA &amp; Testing</div>
-              <div class="desc">Simulator runs, regressions, release checks, and verifying the build actually does what we said.</div>
-              <div class="foot"><span class="meta">quality gate</span><span class="ctl">test / verify</span></div>
-            </article>
-
-            <article class="dept e7" data-key="platform-specialists">
-              <div class="top"><div class="role">Team</div><div class="state">Platform</div></div>
-              <div class="name">Platform Specialists</div>
-              <div class="desc">Apple and Android specialists who handle platform-specific release details and store workflows.</div>
-              <div class="foot"><span class="meta">apple / android</span><span class="ctl">release / deploy</span></div>
-            </article>
-          </div>
-        </div>
-
-        <div class="shell lower">
-          <div class="mini">
-            <h3>Current decision model</h3>
-            <p class="large" id="decisionTitle">Mostly automatic</p>
-            <p class="copy" id="decisionCopy">Work should route automatically by default, with review at key points rather than constant manual intervention.</p>
-          </div>
-          <div class="mini">
-            <h3>What the dashboard should show</h3>
-            <p class="large">All four states</p>
-            <div class="progress-list">
-              <div class="progress">
-                <div class="top"><strong>Open</strong><span>12</span></div>
-                <div class="bar"><i style="width:72%"></i></div>
+          <div class="org-level">
+            <div class="org-column">
+              <div class="org-column-card coat">
+                <div class="org-column-head">
+                  <h3>Cross-Functional</h3>
+                  <span>shared leadership</span>
+                </div>
+                <div class="stack">
+                  <div class="mini-card">
+                    <span class="mini-kicker">Routing / Telegram</span>
+                    <span class="mini-name">Stefon</span>
+                    <p class="mini-role">Routes company work, keeps the command layer moving, and hands off to the right team.</p>
+                  </div>
+                  <div class="mini-card">
+                    <span class="mini-kicker">Company Source of Truth</span>
+                    <span class="mini-name">Shared Dashboard</span>
+                    <p class="mini-role">Shows tasks, blockers, recent activity, and the current org chart without losing context.</p>
+                  </div>
+                </div>
               </div>
-              <div class="progress">
-                <div class="top"><strong>Blocked</strong><span>2</span></div>
-                <div class="bar"><i style="width:24%"></i></div>
+            </div>
+
+            <div class="org-column">
+              <div class="org-column-card apps">
+                <div class="org-column-head">
+                  <h3>App Team</h3>
+                  <span>reports to Greg</span>
+                </div>
+                <div class="stack">
+                  <div class="mini-card">
+                    <span class="mini-kicker">New Apps</span>
+                    <span class="mini-name">Monica</span>
+                    <p class="mini-role">Launches new apps, early product direction, and positioning.</p>
+                  </div>
+                  <div class="mini-card">
+                    <span class="mini-kicker">Libations PM</span>
+                    <span class="mini-name">Phillip</span>
+                    <p class="mini-role">Owns Libations planning, priorities, release readiness, and app stewardship.</p>
+                  </div>
+                </div>
+                <div class="org-mini-group">
+                  <strong>Shared Resources</strong>
+                  <div class="expert-mini-grid">
+                    <div class="mini-card"><span class="mini-name">Design / UX Team</span></div>
+                    <div class="mini-card"><span class="mini-name">Security Team</span></div>
+                    <div class="mini-card"><span class="mini-name">Coding / Development Team</span></div>
+                    <div class="mini-card"><span class="mini-name">Database Team</span></div>
+                    <div class="mini-card"><span class="mini-name">QA / Testing</span></div>
+                    <div class="mini-card"><span class="mini-name">Platform Specialists</span></div>
+                  </div>
+                </div>
               </div>
-              <div class="progress">
-                <div class="top"><strong>Done</strong><span>7</span></div>
-                <div class="bar"><i style="width:84%"></i></div>
+            </div>
+
+            <div class="org-column">
+              <div class="org-column-card func">
+                <div class="org-column-head">
+                  <h3>Functional Experts</h3>
+                  <span>shared bench</span>
+                </div>
+                <div class="org-mini-group">
+                  <strong>On Call Experts</strong>
+                  <div class="expert-mini-grid">
+                    <div class="mini-card"><span class="mini-name">Design / UX</span></div>
+                    <div class="mini-card"><span class="mini-name">Security</span></div>
+                    <div class="mini-card"><span class="mini-name">Coding / Development</span></div>
+                    <div class="mini-card"><span class="mini-name">Database</span></div>
+                    <div class="mini-card"><span class="mini-name">QA / Testing</span></div>
+                    <div class="mini-card"><span class="mini-name">Platform Specialists</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="org-column">
+              <div class="org-column-card other">
+                <div class="org-column-head">
+                  <h3>Direct Access</h3>
+                  <span>agents</span>
+                </div>
+                <p class="org-column-note">Directly reachable lanes for the work that should not get buried in the middle layer.</p>
+                <div class="stack">
+                  <div class="mini-card">
+                    <span class="mini-kicker">Existing Apps</span>
+                    <span class="mini-name">Direct line</span>
+                    <p class="mini-role">Established app work routes through Phillip and the shared dashboard.</p>
+                  </div>
+                  <div class="mini-card">
+                    <span class="mini-kicker">Fitness</span>
+                    <span class="mini-name">Direct line</span>
+                    <p class="mini-role">Training, recovery, and athletic planning can be reached without detours.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="org-column">
+              <div class="org-column-card life">
+                <div class="org-column-head">
+                  <h3>Life Team</h3>
+                  <span>reports to Greg</span>
+                </div>
+                <p class="org-column-note">Arnold, Tim, and Socrates sit directly beneath Greg.</p>
+                <div class="stack">
+                  <div class="mini-card">
+                    <span class="mini-kicker">Fitness</span>
+                    <span class="mini-name">Arnold</span>
+                    <p class="mini-role">Training, recovery, and athletic planning.</p>
+                  </div>
+                  <div class="mini-card">
+                    <span class="mini-kicker">Entrepreneurship</span>
+                    <span class="mini-name">Tim</span>
+                    <p class="mini-role">High-agency experiments, goals, and practical focus.</p>
+                  </div>
+                  <div class="mini-card">
+                    <span class="mini-kicker">Philosophy</span>
+                    <span class="mini-name">Socrates</span>
+                    <p class="mini-role">Reflection, perspective, discipline, and non-religious philosophy.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="mini">
-            <h3>Selected item</h3>
-            <p class="large" id="selectedTitle">Telegram</p>
-            <p class="copy" id="selectedCopy">Fast front door for quick commands, approvals, updates, and urgent handoffs.</p>
-            <div class="mini-row">
-              <span class="pill" id="selectedPill1">home channel</span>
-              <span class="pill" id="selectedPill2">dm / topic</span>
-            </div>
-          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <aside class="shell panel">
-        <div class="hd">
-          <h2>Inspector / controls</h2>
-          <span class="badge good" id="rightBadge">ready</span>
-        </div>
-        <div class="body right-stack">
-          <div class="section">
-            <h3>Selected node</h3>
-            <div class="selectlist" id="selectList"></div>
-          </div>
-
-          <div class="section">
-            <h3>Action controls</h3>
-            <div class="action-row">
-              <button id="approveBtn">Approve</button>
-              <button id="blockBtn">Block</button>
-              <button id="routeBtn">Route direct</button>
-              <button id="summarizeBtn">Summarize</button>
-            </div>
-          </div>
-
-          <div class="section">
-            <h3>Message composer</h3>
-            <textarea class="textarea" id="messageBox" placeholder="Write a command, approval, or handoff note…"></textarea>
-          </div>
-
-          <div class="section">
-            <h3>Communication rules</h3>
-            <div class="list">
-              <div class="select"><div><strong>You + Stefon</strong><span>Can send commands or routed requests.</span></div><span class="badge good">allowed</span></div>
-              <div class="select"><div><strong>Libations app PM</strong><span>Phillip owns planning, priority, and assignment for Libations.</span></div><span class="badge warn">pm</span></div>
-              <div class="select"><div><strong>Specialist teams</strong><span>Design, security, coding, database, QA, and platform can be reached directly.</span></div><span class="badge good">allowed</span></div>
-              <div class="select"><div><strong>Cross-team context</strong><span>Shared summaries keep the org aligned without over-centralizing everything.</span></div><span class="badge warn">summary</span></div>
-            </div>
-          </div>
-
-          <div class="section">
-            <h3>Notes</h3>
-            <p>Next implementation step is to wire this to real message routing and a task store. This file is the user-reviewable dashboard prototype.</p>
-          </div>
-        </div>
-      </aside>
-    </main>
-
-    <footer class="shell footer">
-      <div>Prototype file: <code>agents-command-center.html</code></div>
-      <div>Goal: a complete, browsable dashboard the user can react to without more prompting.</div>
-    </footer>
   </div>
-
-  <script>
-    const ITEMS = {
-      telegram: {
-        title: 'Telegram',
-        copy: 'Fast front door for quick commands, approvals, updates, and urgent handoffs.',
-        pill1: 'home channel', pill2: 'dm / topic', badge: ['active', 'good'], hero: 'Telegram-first intake', decision: 'Mostly automatic'
-      },
-      cli: {
-        title: 'Hermes CLI',
-        copy: 'Direct conversation with any profile outside Telegram for focused work and debugging.',
-        pill1: 'local', pill2: 'hermes chat', badge: ['direct', 'good'], hero: 'Direct agent access', decision: 'Mostly automatic'
-      },
-      dashboard: {
-        title: 'Dashboard',
-        copy: 'Shows org chart, tasks, blockers, completed work, and recent activity in one place.',
-        pill1: 'source of truth', pill2: 'view / approve', badge: ['visible', 'good'], hero: 'Visibility and control', decision: 'Mostly automatic'
-      },
-      stefon: {
-        title: 'Stefon',
-        copy: 'Chief-of-staff router. Triage requests, route to departments, summarize back to you, and keep cross-team context moving.',
-        pill1: 'routing brain', pill2: 'route / summarize', badge: ['hub', 'warn'], hero: 'Central router', decision: 'Mostly automatic'
-      },
-      phillip: {
-        title: 'Phillip',
-        copy: 'Project manager for Libations. Breaks work into focused streams, assigns specialists, tracks blockers, and keeps release pressure moving.',
-        pill1: 'project manager', pill2: 'plan / assign', badge: ['pm', 'warn'], hero: 'Libations PM', decision: 'Review at planning gates'
-      },
-      'design-ux': {
-        title: 'Design / UX Team',
-        copy: 'Flow, layout, interaction, visual polish, and making the app feel obvious to use.',
-        pill1: 'design review', pill2: 'flow / polish', badge: ['team', 'good'], hero: 'Design / UX Team', decision: 'Review at design gates'
-      },
-      'security-team': {
-        title: 'Security Team',
-        copy: 'Auth, privacy, access control, threat modeling, and keeping the release safe.',
-        pill1: 'risk review', pill2: 'secure / audit', badge: ['team', 'bad'], hero: 'Security Team', decision: 'Review at security gates'
-      },
-      'coding-dev': {
-        title: 'Coding / Development Team',
-        copy: 'Implementation, refactors, architecture, and turning approved work into code.',
-        pill1: 'build lane', pill2: 'ship / iterate', badge: ['team', 'good'], hero: 'Coding / Development Team', decision: 'Review at merge gates'
-      },
-      'database-team': {
-        title: 'Database Team',
-        copy: 'Schema, queries, migrations, sync, and the data model behind the product.',
-        pill1: 'data layer', pill2: 'schema / query', badge: ['team', 'warn'], hero: 'Database Team', decision: 'Review at schema gates'
-      },
-      'functional-experts': {
-        title: 'Functional Experts',
-        copy: 'Craft beer, sommelier, wine, whisky, cocktails, and other deep domain knowledge.',
-        pill1: 'truth source', pill2: 'expert input', badge: ['team', 'good'], hero: 'Functional Experts', decision: 'Review at domain gates'
-      },
-      'qa-testing': {
-        title: 'QA & Testing',
-        copy: 'Simulator runs, regressions, release checks, and verifying the build actually does what we said.',
-        pill1: 'quality gate', pill2: 'test / verify', badge: ['team', 'warn'], hero: 'QA & Testing', decision: 'Review at release gates'
-      },
-      'platform-specialists': {
-        title: 'Platform Specialists',
-        copy: 'Apple and Android specialists who handle platform-specific release details and store workflows.',
-        pill1: 'apple / android', pill2: 'release / deploy', badge: ['team', 'good'], hero: 'Platform Specialists', decision: 'Review at platform gates'
-      }
-    };
-
-    const selected = { key: 'telegram' };
-    const nodes = document.querySelectorAll('[data-key]');
-    const rightBadge = document.getElementById('rightBadge');
-    const leftBadge = document.getElementById('leftBadge');
-    const selectedTitle = document.getElementById('selectedTitle');
-    const selectedCopy = document.getElementById('selectedCopy');
-    const selectedPill1 = document.getElementById('selectedPill1');
-    const selectedPill2 = document.getElementById('selectedPill2');
-    const heroTitle = document.getElementById('heroTitle');
-    const heroCopy = document.getElementById('heroCopy');
-    const decisionTitle = document.getElementById('decisionTitle');
-    const decisionCopy = document.getElementById('decisionCopy');
-    const messageBox = document.getElementById('messageBox');
-    const selectList = document.getElementById('selectList');
-    const feed = document.getElementById('feed');
-    const search = document.getElementById('search');
-
-    const routes = [
-      ['Telegram → Stefon', 'Cross-team requests, ambiguity, and escalations.'],
-      ['Telegram → Phillip', 'Libations planning, priorities, and project management.'],
-      ['Telegram → Specialist team', 'Direct requests to design, security, code, database, QA, or platform.'],
-      ['Dashboard → All', 'Status, blockers, done, and activity visibility.'],
-      ['CLI → Agent', 'Focused work outside Telegram.']
-    ];
-    const feedItems = [
-      ['You', '09:14', 'Asked for the Rainy Day Company org chart to be narrowed and clarified.'],
-      ['Stefon', '09:16', 'Routed the update to Phillip and the specialist teams.'],
-      ['Phillip', '10:02', 'Split the work into design, security, coding, database, QA, and platform lanes.'],
-      ['Database Team', '10:40', 'Flagged a schema dependency before the next build.'],
-      ['Dashboard', '11:12', 'Updated the org chart and task counts.'],
-      ['QA', '11:25', 'Confirmed the latest release gate is ready for verification.']
-    ];
-    const selectItems = [
-      'telegram', 'cli', 'dashboard', 'stefon', 'phillip', 'design-ux', 'security-team', 'coding-dev', 'database-team', 'functional-experts', 'qa-testing', 'platform-specialists'
-    ];
-
-    function setSelected(key) {
-      selected.key = key;
-      const item = ITEMS[key];
-      nodes.forEach(n => n.classList.toggle('active', n.dataset.key === key));
-      selectedTitle.textContent = item.title;
-      selectedCopy.textContent = item.copy;
-      selectedPill1.textContent = item.pill1;
-      selectedPill2.textContent = item.pill2;
-      heroTitle.textContent = `Current focus: ${item.hero}`;
-      heroCopy.textContent = item.copy;
-      decisionTitle.textContent = item.decision;
-      decisionCopy.textContent = key === 'stefon'
-        ? 'Cross-functional work should route through Stefon first, then be delegated to the relevant department.'
-        : 'Work should move quickly, with review only at the meaningful gates.';
-      rightBadge.textContent = item.badge[0];
-      rightBadge.className = `badge ${item.badge[1]}`;
-      leftBadge.textContent = item.badge[0];
-      leftBadge.className = `badge ${item.badge[1]}`;
-      messageBox.value = `To ${item.title}: `;
-      selectList.innerHTML = selectItems.map(k => {
-        const x = ITEMS[k];
-        const active = k === key ? 'active' : '';
-        return `<div class="select ${active}" data-select="${k}"><div><strong>${x.title}</strong><span>${x.copy}</span></div><span class="badge ${x.badge[1]}">${x.badge[0]}</span></div>`;
-      }).join('');
-      selectList.querySelectorAll('[data-select]').forEach(el => el.addEventListener('click', () => setSelected(el.dataset.select)));
-    }
-
-    function renderRoutes(filter = '') {
-      const q = filter.trim().toLowerCase();
-      const rows = routes.filter(([a, b]) => `${a} ${b}`.toLowerCase().includes(q));
-      document.getElementById('routeList').innerHTML = rows.map(([a, b]) => `
-        <div class="select" data-route="${a}">
-          <div><strong>${a}</strong><span>${b}</span></div>
-          <span class="badge good">route</span>
-        </div>
-      `).join('') || '<div class="select"><div><strong>No matches</strong><span>Try a different search term.</span></div><span class="badge warn">filter</span></div>';
-    }
-
-    function renderFeed() {
-      feed.innerHTML = feedItems.map(([who, time, msg]) => `
-        <div class="event">
-          <div class="top"><div class="who">${who}</div><div class="time">${time}</div></div>
-          <div class="msg">${msg}</div>
-        </div>
-      `).join('');
-    }
-
-    document.querySelectorAll('[data-key]').forEach(el => {
-      el.addEventListener('click', () => setSelected(el.dataset.key));
-    });
-
-    document.getElementById('approveBtn').addEventListener('click', () => {
-      messageBox.value = `Approved: ${ITEMS[selected.key].title} can proceed to the next gate.`;
-      rightBadge.textContent = 'approved';
-      rightBadge.className = 'badge good';
-    });
-    document.getElementById('blockBtn').addEventListener('click', () => {
-      messageBox.value = `Blocked: ${ITEMS[selected.key].title} needs a clearer gate or more information before moving on.`;
-      rightBadge.textContent = 'blocked';
-      rightBadge.className = 'badge bad';
-    });
-    document.getElementById('routeBtn').addEventListener('click', () => {
-      messageBox.value = `Route directly to ${ITEMS[selected.key].title}.`;
-      rightBadge.textContent = 'routed';
-      rightBadge.className = 'badge good';
-    });
-    document.getElementById('summarizeBtn').addEventListener('click', () => {
-      messageBox.value = `Summarize the current state for ${ITEMS[selected.key].title}: what is done, what is blocked, and what needs my input.`;
-      rightBadge.textContent = 'summary';
-      rightBadge.className = 'badge warn';
-    });
-    document.getElementById('sendBtn').addEventListener('click', () => {
-      heroTitle.textContent = `Message prepared for ${ITEMS[selected.key].title}`;
-      heroCopy.textContent = messageBox.value || 'No message drafted yet.';
-    });
-    document.getElementById('toggleBtn').addEventListener('click', (e) => {
-      const on = e.target.textContent.includes('live');
-      e.target.textContent = on ? 'Mode: review' : 'Mode: live';
-      leftBadge.textContent = on ? 'review' : 'active';
-      leftBadge.className = on ? 'badge warn' : 'badge good';
-    });
-    search.addEventListener('input', e => renderRoutes(e.target.value));
-
-    setSelected('phillip');
-    renderRoutes();
-    renderFeed();
-  </script>
 </body>
 </html>
+
