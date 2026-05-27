@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agents — The Rainy Day Company</title>
-  <meta name="description" content="Control surface for Greg, Monica, Phillip, Arnold, Tim, Socrates, and Stefon at The Rainy Day Company." />
+  <meta name="description" content="The Rainy Day Agent Operating System: roles, source-of-truth rules, handoffs, QA gates, and operating boundaries for Greg's AI company." />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,18 +15,18 @@
       --bg2: #101720;
       --surface: #161e28;
       --surface2: #1c2533;
-      --surface3: #202a39;
-      --border: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.09);
       --text: #ece4d8;
-      --muted: #8d847b;
+      --muted: #9b9288;
+      --soft: #c7beb2;
       --amber: #c8913a;
       --amber-2: #e2bb66;
       --gold: #f0d79a;
-      --green: #64d68a;
-      --blue: #7fb5ff;
-      --red: #ff8a8a;
+      --green: #8ce8ae;
+      --blue: #8abaff;
+      --red: #ff9b9b;
       --shadow: 0 24px 60px rgba(0,0,0,0.28);
-      --radius: 20px;
+      --radius: 22px;
     }
 
     * { box-sizing: border-box; }
@@ -37,7 +37,7 @@
       color: var(--text);
       font-family: 'DM Sans', sans-serif;
       background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(200,145,58,0.14), transparent 55%),
+        radial-gradient(1200px 700px at 18% -10%, rgba(200,145,58,0.14), transparent 55%),
         radial-gradient(900px 600px at 100% 10%, rgba(127,181,255,0.09), transparent 45%),
         linear-gradient(180deg, var(--bg), var(--bg2));
       -webkit-font-smoothing: antialiased;
@@ -45,17 +45,18 @@
     }
 
     a { color: inherit; }
+    strong { color: var(--text); }
 
     .shell {
-      width: min(1280px, calc(100% - 40px));
+      width: min(1240px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 28px 0 40px;
+      padding: 28px 0 44px;
     }
 
     .topbar {
       display: flex;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
       align-items: center;
       margin-bottom: 24px;
     }
@@ -76,9 +77,10 @@
       color: #111;
       font-size: 28px;
       box-shadow: 0 10px 30px rgba(200,145,58,0.25);
+      flex: none;
     }
 
-    .brand-copy .eyebrow {
+    .eyebrow {
       font-size: 11px;
       letter-spacing: 0.28em;
       text-transform: uppercase;
@@ -86,21 +88,15 @@
       margin-bottom: 4px;
     }
 
-    .brand-copy h1 {
+    h1, h2, h3, p { margin-top: 0; }
+
+    .brand h1 {
       margin: 0;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 500;
       letter-spacing: 0.01em;
       font-size: clamp(2rem, 4vw, 3.1rem);
       line-height: 1;
-    }
-
-    .brand-copy p {
-      margin: 8px 0 0;
-      color: var(--muted);
-      max-width: 54ch;
-      font-size: 14px;
-      line-height: 1.7;
     }
 
     .meta {
@@ -110,17 +106,20 @@
       justify-content: flex-end;
     }
 
-    .badge {
+    .badge, .status-chip, .mini-chip {
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 10px 14px;
       background: rgba(255,255,255,0.03);
-      color: var(--text);
-      font-size: 13px;
+      color: var(--soft);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       backdrop-filter: blur(8px);
+      white-space: nowrap;
     }
 
     .dot {
@@ -128,48 +127,44 @@
       height: 8px;
       border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 0 4px rgba(100,214,138,0.12);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      margin-bottom: 18px;
+      box-shadow: 0 0 0 4px rgba(140,232,174,0.12);
     }
 
     .panel {
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    .hero-main {
-      padding: 28px;
+    .hero {
+      padding: 34px;
+      margin-bottom: 18px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: end;
       position: relative;
     }
 
-    .hero-main::after {
-      display: none;
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(700px 300px at 85% 5%, rgba(240,215,154,0.10), transparent 60%);
     }
 
-    .hero-label {
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--amber-2);
-      margin-bottom: 16px;
-    }
+    .hero > * { position: relative; z-index: 1; }
 
     .hero-title {
-      margin: 0 0 12px;
+      margin: 0 0 14px;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 500;
-      font-size: clamp(2.3rem, 5vw, 4.6rem);
-      line-height: 0.96;
-      letter-spacing: -0.02em;
+      font-size: clamp(2.7rem, 6vw, 5.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.035em;
       max-width: 11ch;
     }
 
@@ -180,1067 +175,63 @@
 
     .hero-copy {
       margin: 0;
-      max-width: 66ch;
-      font-size: 15px;
+      max-width: 74ch;
+      font-size: 16px;
       line-height: 1.8;
-      color: #b9b2a9;
+      color: var(--soft);
     }
 
-    .pm-dashboard {
-      margin-bottom: 18px;
-      padding: 22px;
-    }
-
-    .pm-grid {
+    .principle-box {
+      border-radius: 20px;
+      border: 1px solid rgba(240,215,154,0.18);
+      background: rgba(240,215,154,0.055);
+      padding: 20px;
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 18px;
     }
 
-    .pm-card {
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 16px;
-      min-height: 132px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .pm-card h3 {
+    .principle-box h2 {
       margin: 0;
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--amber-2);
     }
 
-    .pm-card p {
+    .principle-box p {
       margin: 0;
-      color: #c6bfb5;
-      font-size: 14px;
+      color: #dfd5c7;
       line-height: 1.7;
-    }
-
-    .pm-list {
-      margin: 0;
-      padding-left: 18px;
-      color: #d6cec0;
-      display: grid;
-      gap: 8px;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .pm-list li strong {
-      color: var(--text);
-    }
-
-    .pm-note {
-      margin-top: 2px;
-      color: #b7afa5;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    .pm-owners {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: auto;
-    }
-
-    .pm-owner {
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #e5d8c3;
-    }
-
-    .org-func-team {
-      display: grid;
-      gap: 12px;
-      margin-top: 12px;
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.025);
-    }
-
-    .org-func-team-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: start;
-      flex-wrap: wrap;
-    }
-
-    .org-func-team-head strong {
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--amber-2);
-    }
-
-    .org-func-team-head span {
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .expert-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .expert-card {
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.02);
-      padding: 10px 12px;
-    }
-
-    .expert-card .mini-name {
-      display: block;
-      font-weight: 700;
-      color: var(--text);
-      font-size: 14px;
-      line-height: 1.2;
-    }
-
-    .expert-card .mini-role {
-      margin: 4px 0 0;
-      color: #c8bfaf;
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .org-tree {
-      margin-top: 22px;
-      display: grid;
-      gap: 18px;
-      overflow-x: auto;
-      overflow-y: visible;
-      padding-bottom: 8px;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .org-ceo {
-      display: grid;
-      justify-items: center;
-      gap: 12px;
-      position: relative;
-      padding-bottom: 18px;
-    }
-
-    .org-ceo::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      width: 1px;
-      height: 18px;
-      background: var(--border);
-    }
-
-    .org-ceo-card {
-      width: min(100%, 360px);
-      padding: 18px 20px;
-      border-radius: 22px;
-      border: 1px solid rgba(240,215,154,0.22);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      box-shadow: 0 18px 50px rgba(0,0,0,0.22);
-      text-align: center;
-    }
-
-    .org-ceo-kicker {
-      font-size: 11px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--amber-2);
-      margin-bottom: 8px;
-    }
-
-    .org-ceo-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4.8vw, 3rem);
-      line-height: 0.96;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .org-ceo-role {
-      margin-top: 8px;
-      color: var(--gold);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .org-ceo-note {
-      margin: 0;
-      text-align: center;
-      color: #b8b1a8;
-      font-size: 14px;
-      line-height: 1.75;
-      max-width: 64ch;
-    }
-
-    .org-level {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      align-items: start;
-      position: relative;
-      padding-top: 24px;
-      margin-top: 8px;
-    }
-
-    .org-level::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 7%;
-      right: 7%;
-      height: 2px;
-      background: rgba(255,255,255,0.12);
-    }
-
-    .org-branch {
-      position: relative;
-      padding-top: 24px;
-      display: grid;
-      gap: 0;
-    }
-
-    .org-branch::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 24px;
-      background: rgba(255,255,255,0.12);
-    }
-
-    .org-branch-card {
-      min-height: 100%;
-      padding: 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04);
-      display: grid;
-      gap: 12px;
-      position: relative;
-    }
-
-    .org-branch-card.life { background: rgba(100,214,138,0.04); }
-    .org-branch-card.ops { background: rgba(244,202,160,0.05); }
-
-    .org-branch-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: start;
-    }
-
-    .org-branch-head h3 {
-      margin: 0;
-      font-size: 16px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-
-    .org-count {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .org-branch-note {
-      margin: 0;
-      color: #bfb7ac;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .org-subgrid {
-      display: grid;
-      gap: 12px;
-      margin-top: 4px;
-      position: relative;
-    }
-
-    .org-subgrid::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 12%;
-      right: 12%;
-      height: 1px;
-      background: rgba(255,255,255,0.06);
-    }
-
-    .org-subgrid.app {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .org-subgrid.life {
-      grid-template-columns: 1fr;
-    }
-
-    .org-app-groups {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 4px;
-      position: relative;
-      padding-top: 18px;
-      align-items: start;
-    }
-
-    .org-app-groups::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 10%;
-      right: 10%;
-      height: 2px;
-      background: rgba(255,255,255,0.10);
-    }
-
-    .org-app-team {
-      display: grid;
-      gap: 10px;
-      position: relative;
-      padding-top: 14px;
-    }
-
-    .org-app-team::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 14px;
-      background: rgba(255,255,255,0.10);
-    }
-
-    .org-app-team .org-node.team {
-      text-align: left;
-      padding: 12px 12px 11px;
-    }
-
-    .org-app-team .org-node.team .name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 21px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-    }
-
-    .org-app-team .org-node.team .role {
-      color: #d7cdbd;
-      max-width: 42ch;
-      font-size: 12px;
-    }
-
-    .org-app-team .org-subgrid.app-people {
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    }
-
-    .org-app-team .org-node.person {
-      padding: 12px 12px 11px;
-    }
-
-    .org-app-team .org-node.person .kicker {
-      font-size: 9px;
-    }
-
-    .org-app-team .org-node.person .name {
       font-size: 15px;
     }
 
-    .org-app-team .org-node.person .role {
-      font-size: 12px;
-      line-height: 1.45;
-    }
-
-    .org-mini-group {
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 12px 10px 10px;
-      display: grid;
-      gap: 6px;
-      position: relative;
-    }
-
-    .org-mini-group strong {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--amber-2);
-    }
-
-    .org-mini-group .mini-name {
-      font-weight: 700;
-      color: var(--text);
-      font-size: 13px;
-      line-height: 1.1;
-    }
-
-    .org-mini-group .mini-role {
-      margin: 0;
-      color: #c8bfaf;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .org-person-block {
-      position: relative;
-      padding-top: 18px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .org-person-block::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 1px;
-      height: 18px;
-      background: var(--border);
-    }
-
-    .org-node {
-      border-radius: 16px;
-      padding: 14px 14px 13px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    }
-
-    .org-node.team {
-      text-align: center;
-      border-color: rgba(240,215,154,0.18);
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-    }
-
-    .org-node.team .kicker {
-      font-size: 11px;
-      letter-spacing: 0.24em;
-      color: var(--amber-2);
-      margin-bottom: 8px;
-    }
-
-    .org-node.team .name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 21px;
-      font-weight: 500;
-      line-height: 0.98;
-      letter-spacing: 0.01em;
-    }
-
-    .org-node.team .role {
-      color: #d7cdbd;
-      font-size: 12px;
-      line-height: 1.55;
-      max-width: 42ch;
-      margin-top: 8px;
-    }
-
-    .org-node.person {
-      text-align: center;
-      background: rgba(255,255,255,0.025);
-    }
-
-    .org-node .kicker {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--amber-2);
-      margin-bottom: 7px;
-    }
-
-    .org-node .name {
-      display: block;
-      margin: 0;
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1.1;
-      color: var(--text);
-    }
-
-    .org-node .role {
-      display: block;
-      margin-top: 6px;
-      color: #c8bfaf;
-      font-size: 13px;
-      line-height: 1.55;
-      text-transform: none;
-      letter-spacing: 0;
-    }
-
-    .org-bench {
-      border-radius: 14px;
-      padding: 12px;
-      border: 1px solid rgba(255,255,255,0.05);
-      background: rgba(255,255,255,0.02);
-      color: #d6cec0;
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .org-bench strong {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .btn {
-      appearance: none;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 12px 16px;
-      font: inherit;
-      font-size: 13px;
-      cursor: pointer;
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
-    }
-
-    .btn:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.16); }
-    .btn.primary {
-      background: linear-gradient(135deg, var(--amber), #9b6a26);
-      color: #130f07;
-      font-weight: 700;
-      border-color: transparent;
-    }
-
-    .hero-side {
-      padding: 20px;
-      display: grid;
-      gap: 12px;
-      align-content: start;
-    }
-
-    .mini-stat {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-    }
-
-    .mini-stat .kicker {
-      color: var(--muted);
-      font-size: 12px;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .mini-stat .value {
-      font-size: 28px;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .mini-stat .note {
-      margin: 0;
-      color: #b6afa6;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
     .section {
+      padding: 24px;
       margin-top: 18px;
-      padding: 22px;
     }
 
     .section-head {
       display: flex;
       justify-content: space-between;
       gap: 14px;
-      align-items: end;
+      align-items: flex-end;
       margin-bottom: 18px;
     }
 
     .section-head h2 {
       margin: 0;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 30px;
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
       font-weight: 500;
       line-height: 1;
     }
 
     .section-head p {
-      margin: 6px 0 0;
+      margin: 8px 0 0;
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.6;
-      max-width: 70ch;
-    }
-
-    .ops-section {
-      display: grid;
-      gap: 18px;
-    }
-
-    .top-strip {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .strip-card {
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 16px;
-      display: grid;
-      gap: 12px;
-      min-height: 180px;
-    }
-
-    .strip-card.attention { border-color: rgba(248,113,113,0.18); background: linear-gradient(180deg, rgba(248,113,113,0.08), rgba(255,255,255,0.02)); }
-    .strip-card.risk { border-color: rgba(251,191,36,0.16); background: linear-gradient(180deg, rgba(251,191,36,0.08), rgba(255,255,255,0.02)); }
-    .strip-card.launch { border-color: rgba(96,165,250,0.16); background: linear-gradient(180deg, rgba(96,165,250,0.08), rgba(255,255,255,0.02)); }
-
-    .strip-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: baseline;
-    }
-
-    .strip-head strong {
-      font-size: 13px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--amber-2);
-    }
-
-    .strip-head span {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .strip-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .strip-list li {
-      display: grid;
-      gap: 4px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .strip-list li:first-child {
-      padding-top: 0;
-      border-top: 0;
-    }
-
-    .strip-list b {
-      color: var(--text);
-      font-size: 14px;
-    }
-
-    .strip-list span {
-      color: #c6bfb5;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .now-rail {
-      display: grid;
-      gap: 14px;
-    }
-
-    .work-grid {
-      display: grid;
-      gap: 12px;
-    }
-
-    .work-card {
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 16px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .work-card.top-priority { border-color: rgba(248,113,113,0.18); background: linear-gradient(180deg, rgba(248,113,113,0.05), rgba(255,255,255,0.02)); }
-
-    .work-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .work-name {
-      margin: 0;
-      font-size: 20px;
-      line-height: 1.05;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .work-owner {
-      margin-top: 4px;
-      color: var(--amber-2);
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .work-pill {
-      border-radius: 999px;
-      padding: 8px 10px;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--muted);
-      white-space: nowrap;
-      align-self: start;
-    }
-
-    .work-pill.good { color: #09150d; background: #97efb9; border-color: transparent; font-weight: 700; }
-    .work-pill.warn { color: #1b1205; background: #f0d79a; border-color: transparent; font-weight: 700; }
-    .work-pill.bad { color: #1c0909; background: #ffb0b0; border-color: transparent; font-weight: 700; }
-
-    .field-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .field {
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.02);
-      padding: 10px 12px;
-      display: grid;
-      gap: 4px;
-      min-height: 64px;
-    }
-
-    .field .kicker {
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .field .value {
-      font-size: 13px;
-      line-height: 1.35;
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    .field .value.small { font-weight: 500; color: #d8d0c3; }
-
-    .work-note {
-      margin: 0;
-      color: #c6bfb5;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .mid-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .queue-list, .forecast-list, .audit-list, .agent-list, .ladder-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .queue-item, .forecast-item, .audit-item, .agent-item, .ladder-item {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 10px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .queue-item:first-child, .forecast-item:first-child, .audit-item:first-child, .agent-item:first-child, .ladder-item:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .queue-top, .forecast-top, .audit-top, .agent-top, .ladder-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: baseline;
-    }
-
-    .queue-top strong, .forecast-top strong, .audit-top strong, .agent-top strong, .ladder-top strong {
-      color: var(--text);
-      font-size: 14px;
-    }
-
-    .queue-top span, .forecast-top span, .audit-top span, .agent-top span, .ladder-top span {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .queue-copy, .forecast-copy, .audit-copy, .agent-copy, .ladder-copy {
-      margin: 0;
-      color: #c6bfb5;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .timeline {
-      display: grid;
-      gap: 12px;
-    }
-
-    .timeline-axis {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .timeline-chip {
-      border-radius: 999px;
-      padding: 9px 12px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      align-items: center;
-      font-size: 12px;
-      color: #d6cec0;
-    }
-
-    .timeline-chip strong {
-      color: var(--text);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 11px;
-    }
-
-    .timeline-bar {
-      height: 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .timeline-bar i {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, rgba(96,165,250,0.85), rgba(200,145,58,0.95));
-    }
-
-    .launch-cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .launch-card {
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 12px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .launch-card .launch-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .launch-meta {
-      color: #c6bfb5;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .launch-meta .risk { color: var(--amber-2); }
-
-    .oversight-grid {
-      display: grid;
-      grid-template-columns: 0.95fr 1.2fr 0.95fr 0.95fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .ladder-step {
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.02);
-      padding: 10px 12px;
-      display: grid;
-      gap: 4px;
-    }
-
-    .ladder-step .lvl {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      align-items: baseline;
-    }
-
-    .ladder-step .lvl span {
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .ladder-step .lvl strong {
-      font-size: 12px;
-      color: var(--text);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .agent-card {
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 12px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .agent-grid {
-      display: grid;
-      gap: 10px;
-    }
-
-    .agent-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .mini-chip {
-      border-radius: 999px;
-      padding: 6px 8px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      color: #d6cec0;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .mini-chip.good { color: #09150d; background: #97efb9; border-color: transparent; font-weight: 700; }
-    .mini-chip.warn { color: #1b1205; background: #f0d79a; border-color: transparent; font-weight: 700; }
-
-    .exception-list .queue-item { border-top-color: rgba(248,113,113,0.14); }
-
-    .audit-timeline {
-      display: grid;
-      gap: 10px;
-    }
-
-    .audit-item time {
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      justify-content: flex-end;
-    }
-
-    .filters input {
-      width: min(320px, 100%);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 12px 16px;
-      font: inherit;
-      font-size: 13px;
-      outline: none;
-    }
-
-    .filters input::placeholder { color: #7c7369; }
-
-    .chip {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      color: var(--muted);
-      border-radius: 999px;
-      padding: 10px 14px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 160ms ease;
-    }
-
-    .chip[aria-pressed="true"] {
-      color: #130f07;
-      background: var(--gold);
-      border-color: transparent;
-      font-weight: 700;
+      line-height: 1.65;
+      max-width: 76ch;
     }
 
     .grid {
@@ -1251,24 +242,21 @@
 
     .card {
       grid-column: span 4;
-      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
       border: 1px solid var(--border);
       border-radius: 18px;
+      background: rgba(255,255,255,0.03);
       padding: 18px;
-      min-height: 180px;
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 12px;
-      transition: transform 180ms ease, border-color 180ms ease;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.16);
+      min-height: 170px;
     }
 
     .card.wide { grid-column: span 6; }
+    .card.full { grid-column: span 12; }
     .card.slim { grid-column: span 3; }
+    .card.gold { border-color: rgba(240,215,154,0.18); background: linear-gradient(180deg, rgba(240,215,154,0.07), rgba(255,255,255,0.02)); }
+    .card.blue { border-color: rgba(138,186,255,0.18); background: linear-gradient(180deg, rgba(138,186,255,0.06), rgba(255,255,255,0.02)); }
+    .card.green { border-color: rgba(140,232,174,0.18); background: linear-gradient(180deg, rgba(140,232,174,0.05), rgba(255,255,255,0.02)); }
 
     .card-top {
       display: flex;
@@ -1285,32 +273,17 @@
     }
 
     .role {
-      margin: 4px 0 0;
+      margin: 5px 0 0;
       color: var(--amber-2);
-      font-size: 13px;
-      letter-spacing: 0.08em;
+      font-size: 12px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      line-height: 1.45;
     }
 
-    .pill {
-      border-radius: 999px;
-      padding: 8px 10px;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .pill.shared { color: #1a1608; background: var(--gold); border-color: transparent; font-weight: 700; }
-    .pill.testing { color: #0d1a12; background: #9cf0bf; border-color: transparent; font-weight: 700; }
-    .pill.standalone { color: #08111a; background: #a7c6ff; border-color: transparent; font-weight: 700; }
-    .pill.ops { color: #241307; background: #f4caa0; border-color: transparent; font-weight: 700; }
-
-    .card p {
+    .card p, .copy {
       margin: 0;
-      color: #c6bfb5;
+      color: #c9c0b4;
       line-height: 1.7;
       font-size: 14px;
     }
@@ -1327,30 +300,64 @@
       padding: 7px 10px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      color: #d0c7ba;
+      color: #d6cec0;
       background: rgba(255,255,255,0.02);
     }
 
-    .two-up {
+    .org-map {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .ceo-card {
+      width: min(100%, 420px);
+      margin: 0 auto;
+      text-align: center;
+      padding: 22px;
+      border: 1px solid rgba(240,215,154,0.24);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025));
+    }
+
+    .ceo-card .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 500;
+    }
+
+    .lane-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
-      margin-top: 14px;
+      position: relative;
+      padding-top: 18px;
     }
 
-    .list {
-      padding: 18px;
+    .lane {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.028);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
     }
 
-    .list h3 {
-      margin: 0 0 14px;
-      font-size: 16px;
-      letter-spacing: 0.1em;
+    .lane h3 {
+      margin: 0;
+      font-size: 13px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--amber-2);
     }
 
-    .list ul {
+    .lane .owner {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 29px;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .list {
       list-style: none;
       margin: 0;
       padding: 0;
@@ -1359,240 +366,98 @@
     }
 
     .list li {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 12px 0;
       border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 10px;
+      color: #c9c0b4;
+      line-height: 1.6;
+      font-size: 14px;
     }
 
     .list li:first-child { border-top: 0; padding-top: 0; }
-    .list .left strong { display: block; margin-bottom: 4px; }
-    .list .left span { color: #b6afa6; font-size: 13px; line-height: 1.55; }
-    .list .right { color: var(--muted); font-size: 12px; white-space: nowrap; }
+    .list b { color: var(--text); display: block; margin-bottom: 3px; }
 
-    .control-tower {
-      margin-top: 18px;
-      padding: 22px;
-    }
-
-    .tower-grid {
+    .flow {
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 16px;
-      align-items: start;
-    }
-
-    .tower-summary {
-      padding: 20px;
-      border-radius: 20px;
-      border: 1px solid rgba(240,215,154,0.14);
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      display: grid;
-      gap: 14px;
-    }
-
-    .tower-status {
-      display: flex;
-      flex-wrap: wrap;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 10px;
-      align-items: center;
+      counter-reset: step;
     }
 
-    .status-chip {
-      border-radius: 999px;
-      padding: 8px 12px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      color: #d6cec0;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .status-chip.good { color: #09150d; background: #97efb9; border-color: transparent; font-weight: 700; }
-    .status-chip.warn { color: #1b1205; background: #f0d79a; border-color: transparent; font-weight: 700; }
-    .status-chip.bad { color: #1c0909; background: #ffb0b0; border-color: transparent; font-weight: 700; }
-
-    .tower-headline {
-      margin: 0;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.9rem, 3vw, 2.7rem);
-      font-weight: 500;
-      line-height: 1.02;
-      letter-spacing: -0.02em;
-      max-width: 16ch;
-    }
-
-    .tower-copy {
-      margin: 0;
-      max-width: 68ch;
-      color: #c1b7ab;
-      font-size: 15px;
-      line-height: 1.75;
-    }
-
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .kpi {
-      border-radius: 18px;
+    .step {
       border: 1px solid var(--border);
+      border-radius: 16px;
       background: rgba(255,255,255,0.03);
       padding: 14px;
       display: grid;
       gap: 8px;
+      counter-increment: step;
     }
 
-    .kpi .label {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--amber-2);
-    }
-
-    .kpi .value {
-      font-size: 30px;
+    .step::before {
+      content: counter(step);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--gold);
+      color: #171006;
       font-weight: 700;
-      line-height: 1;
-      color: var(--text);
-    }
-
-    .kpi .sub {
-      margin: 0;
-      color: #b6afa6;
       font-size: 13px;
-      line-height: 1.55;
     }
 
-    .tower-secondary {
-      margin-top: 16px;
-      display: grid;
-      grid-template-columns: 1.15fr 1fr 0.95fr;
-      gap: 16px;
-    }
-
-    .panel-box {
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 16px;
-      display: grid;
-      gap: 12px;
-      min-height: 100%;
-    }
-
-    .panel-box h3 {
-      margin: 0;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--amber-2);
-    }
-
-    .stream-list, .feed-list, .decision-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .stream-item, .feed-item, .decision-item {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 10px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .stream-item:first-child,
-    .feed-item:first-child,
-    .decision-item:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .stream-top, .feed-top, .decision-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: baseline;
-    }
-
-    .stream-top strong, .feed-top strong, .decision-top strong {
+    .step strong {
       font-size: 14px;
-      color: var(--text);
+      line-height: 1.2;
     }
 
-    .stream-top span, .feed-top span, .decision-top span {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .stream-meta, .feed-copy, .decision-copy {
-      margin: 0;
-      color: #c6bfb5;
+    .step span {
+      color: #c9c0b4;
       font-size: 13px;
       line-height: 1.55;
     }
 
-    .progress {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      overflow: hidden;
-    }
-
-    .progress > i {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--amber), var(--gold));
-    }
-
-    .bar-set {
+    .rule-grid {
       display: grid;
-      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .bar-row {
+    .rule {
+      border-left: 3px solid var(--amber-2);
+      padding: 4px 0 4px 14px;
+      color: #c9c0b4;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .rule.danger { border-left-color: var(--red); }
+    .rule.good { border-left-color: var(--green); }
+    .rule.blue { border-left-color: var(--blue); }
+    .rule b { color: var(--text); }
+
+    .handoff {
       display: grid;
-      gap: 6px;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 16px;
+      align-items: start;
     }
 
-    .bar-row .bar-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
+    .template {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      background: rgba(0,0,0,0.18);
+      padding: 18px;
+      overflow-x: auto;
+    }
+
+    pre {
+      margin: 0;
+      color: #efe4d2;
       font-size: 13px;
-      color: #d6cec0;
-    }
-
-    .bar-row .bar-head span:last-child {
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .bar {
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      overflow: hidden;
-    }
-
-    .bar > i {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, rgba(127,181,255,0.85), rgba(200,145,58,0.95));
+      line-height: 1.65;
+      white-space: pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
 
     .footer {
@@ -1606,225 +471,28 @@
       flex-wrap: wrap;
     }
 
-    .hidden { display: none !important; }
-
-    /* Compact org chart override */
-    .org-level {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 12px;
-      align-items: start;
-      position: relative;
-      padding-top: 24px;
-      margin-top: 8px;
-      min-width: 0;
-    }
-
-    .org-level::before {
-      left: 3%;
-      right: 3%;
-      height: 1px;
-      background: rgba(255,255,255,0.10);
-    }
-
-    .org-column {
-      position: relative;
-      padding-top: 14px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .org-column::before {
-      height: 14px;
-      width: 1px;
-      background: rgba(255,255,255,0.10);
-    }
-
-    .org-column-card {
-      min-height: 100%;
-      padding: 10px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      display: grid;
-      gap: 6px;
-    }
-
-    .org-column-card.coat { background: rgba(244,202,160,0.05); }
-    .org-column-card.apps { background: rgba(255,255,255,0.035); }
-    .org-column-card.func { background: rgba(127,181,255,0.05); }
-    .org-column-card.other { background: rgba(100,214,138,0.05); }
-    .org-column-card.life { background: rgba(100,214,138,0.04); }
-
-    .org-column-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      align-items: start;
-    }
-
-    .org-column-head h3 {
-      margin: 0;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-
-    .org-column-head span {
-      color: var(--muted);
-      font-size: 9px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    .org-column-note {
-      margin: 0;
-      color: #c8bfaf;
-      font-size: 10px;
-      line-height: 1.45;
-    }
-
-    .stack {
-      display: grid;
-      gap: 6px;
-    }
-
-    .mini-card {
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.02);
-      padding: 8px 9px;
-    }
-
-    .mini-card .mini-kicker {
-      display: block;
-      font-size: 9px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--amber-2);
-      margin-bottom: 4px;
-    }
-
-    .mini-card .mini-name {
-      display: block;
-      font-weight: 700;
-      color: var(--text);
-      font-size: 12px;
-      line-height: 1.1;
-    }
-
-    .mini-card .mini-role {
-      margin: 3px 0 0;
-      color: #c8bfaf;
-      font-size: 10px;
-      line-height: 1.35;
-    }
-
-    .expert-mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 6px;
-    }
-
-    .expert-mini-grid .mini-card {
-      white-space: normal;
-    }
-
-    .expert-mini-grid .mini-card .mini-name,
-    .org-column-card.apps .mini-card .mini-name {
-      font-size: 12px;
-    }
-
-    .expert-mini-grid .mini-card .mini-role,
-    .org-column-card.apps .mini-card .mini-role,
-    .org-column-card.other .mini-card .mini-role,
-    .org-column-card.life .mini-card .mini-role {
-      font-size: 10px;
-    }
-
-    .org-column-card.apps .stack,
-    .org-column-card.other .stack,
-    .org-column-card.life .stack {
-      gap: 6px;
-    }
-
-    @media (max-width: 1100px) {
-      .hero { grid-template-columns: 1fr; }
-      .card { grid-column: span 6; }
-      .card.wide { grid-column: span 12; }
-      .card.slim { grid-column: span 6; }
-      .pm-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 1060px) {
+      .hero, .handoff { grid-template-columns: 1fr; }
+      .lane-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card, .card.wide, .card.slim { grid-column: span 6; }
+      .flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     @media (max-width: 720px) {
-      .shell { width: min(100% - 20px, 1280px); padding-top: 14px; }
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        margin-bottom: 18px;
-      }
-      .brand { align-items: flex-start; gap: 12px; }
+      .shell { width: min(100% - 20px, 1240px); padding-top: 14px; }
+      .topbar, .section-head { flex-direction: column; align-items: flex-start; }
+      .brand { align-items: flex-start; }
       .crest { width: 46px; height: 46px; font-size: 24px; border-radius: 14px; }
-      .brand-copy h1 { font-size: 2.2rem; }
-      .brand-copy p { max-width: none; font-size: 13px; line-height: 1.6; }
-      .meta, .filters { justify-content: flex-start; width: 100%; }
-      .badge { width: 100%; justify-content: center; }
-      .card, .card.slim, .card.wide { grid-column: span 12; min-height: unset; }
-      .hero-main, .hero-side, .section { padding: 16px; }
-      .hero-title { max-width: none; font-size: clamp(2rem, 10vw, 3rem); }
+      .meta { justify-content: flex-start; width: 100%; }
+      .badge { white-space: normal; }
+      .hero, .section { padding: 16px; }
+      .hero-title { max-width: none; font-size: clamp(2.35rem, 12vw, 3.4rem); }
       .hero-copy { font-size: 14px; line-height: 1.7; }
-      .section-head {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-        margin-bottom: 14px;
-      }
-      .section-head h2 { font-size: 24px; }
-      .section-head p { max-width: none; font-size: 13px; line-height: 1.55; }
-      .top-strip, .mid-grid, .oversight-grid, .launch-cards, .field-grid, .pm-grid, .expert-grid, .tower-grid, .tower-secondary, .kpi-grid, .org-level, .org-app-groups { grid-template-columns: 1fr; }
-      .work-head, .strip-head, .queue-top, .forecast-top, .audit-top, .agent-top, .ladder-top, .stream-top, .feed-top, .decision-top, .list li {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .strip-head span, .queue-top span, .forecast-top span, .audit-top span, .agent-top span, .ladder-top span, .stream-top span, .feed-top span, .decision-top span, .list .right, .org-count {
-        white-space: normal;
-      }
-      .timeline-axis { grid-template-columns: 1fr; }
-      .org-level, .org-app-groups { gap: 12px; padding-top: 0; }
-      .org-level::before, .org-app-groups::before, .org-column::before, .org-person-block::before, .org-ceo::after { display: none; }
-      .org-column { padding-top: 0; }
-      .org-column-card { padding: 14px; }
-      .org-column-head { flex-direction: column; align-items: flex-start; }
-      .org-column-head span { white-space: normal; text-align: left; }
-      .org-column-note, .org-node.team .role, .org-node .role, .org-mini-group .mini-role { font-size: 12px; line-height: 1.5; }
-      .expert-mini-grid {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-      .expert-mini-grid .mini-card .mini-name { white-space: normal; }
-      .org-mini-group { padding: 14px 12px 12px; }
-      .org-node, .mini-card, .org-column-card, .org-mini-group, .panel-box, .kpi, .field, .strip-card, .work-card, .launch-card { border-radius: 14px; }
-      .field { min-height: unset; }
-      .field .value { font-size: 12px; }
-      .field-grid { gap: 8px; }
-      .tags, .agent-tags, .hero-actions { gap: 8px; }
-      .pill, .mini-chip, .tag, .status-chip, .work-pill { white-space: normal; }
-      .list li { gap: 6px; }
-      .two-up { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 420px) {
-      .shell { width: min(100% - 16px, 1280px); }
-      .hero-main, .hero-side, .section { padding: 14px; }
-      .brand-copy h1 { font-size: 2rem; }
-      .hero-title { font-size: 2.2rem; }
-      .section-head h2 { font-size: 22px; }
-      .kpi .value { font-size: 24px; }
-      .pm-grid, .expert-grid, .field-grid, .launch-cards, .top-strip, .org-level, .org-app-groups { grid-template-columns: 1fr; }
+      .lane-grid, .rule-grid, .flow { grid-template-columns: 1fr; }
+      .card, .card.wide, .card.slim, .card.full { grid-column: span 12; min-height: unset; }
+      .card-top { flex-direction: column; }
+      .lane .owner { font-size: 26px; }
+      .template { padding: 14px; }
     }
   </style>
 </head>
@@ -1833,294 +501,246 @@
     <header class="topbar">
       <div class="brand">
         <div class="crest">☂</div>
-        <div class="brand-copy">
+        <div>
           <div class="eyebrow">The Rainy Day Company</div>
           <h1>Agents</h1>
-
         </div>
       </div>
       <div class="meta">
-
-        <div class="badge">Last sync: <strong>2026-05-20 12:20 EDT</strong></div>
+        <div class="badge"><span class="dot"></span>Operating model: active</div>
+        <div class="badge">Last sync: <strong>2026-05-27 16:54 EDT</strong></div>
       </div>
     </header>
 
-    <section class="panel section ops-section">
-      <div class="section-head">
+    <main>
+      <section class="panel hero">
         <div>
-          <h2>Project management</h2>
-          <p>Control surface for active work, plus the org chart for who owns what.</p>
+          <div class="eyebrow">Rainy Day Agent Operating System</div>
+          <h2 class="hero-title">Run the work like a <em>company</em>.</h2>
+          <p class="hero-copy">This is the operating surface for Greg's AI workforce. Stefon is the front door and chief-of-staff. Phillip owns established apps. Monica owns new and developing apps. Arnold owns fitness. Specialists support the mission. GitHub is the durable source of truth for code; Telegram is the human interface; QA gates define when work is ready for Greg.</p>
         </div>
-        <div class="status-chip good">mode: supervised</div>
-      </div>
-
-      <div class="top-strip">
-        <article class="strip-card attention">
-          <div class="strip-head">
-            <strong>What needs attention now</strong>
-            <span>red / yellow queue</span>
+        <aside class="principle-box">
+          <h2>Core rule</h2>
+          <p><strong>Local machines are working copies, not the archive.</strong> App work must resolve to a repo, branch, commits, PR, tests/CI, QA review, and a plain-English handoff.</p>
+          <div class="tags">
+            <span class="tag">GitHub first</span>
+            <span class="tag">Telegram first</span>
+            <span class="tag">QA before Greg</span>
+            <span class="tag">No hidden local-only work</span>
           </div>
-          <ul class="strip-list">
-            <li>
-              <b>Confirm the App Development grouping after the agents org chart refactor</b>
-              <span>Owner: Stefon · due: today · confidence: medium</span>
-            </li>
-            <li>
-              <b>Approve the Libations release window</b>
-              <span>Owner: Greg · due: Fri · confidence: high</span>
-            </li>
-            <li>
-              <b>Unblock Libations Android auth</b>
-              <span>Owner: Phillip · due: today · confidence: medium</span>
-            </li>
-          </ul>
-        </article>
+        </aside>
+      </section>
 
-        <article class="strip-card risk">
-          <div class="strip-head">
-            <strong>What's at risk</strong>
-            <span>watch list</span>
+      <section class="panel section">
+        <div class="section-head">
+          <div>
+            <h2>Org chart</h2>
+            <p>A simple chain of accountability: Greg gives direction; Stefon clarifies and routes; owners coordinate specialists and bring back work only when the standard is met.</p>
           </div>
-          <ul class="strip-list">
-            <li>
-              <b>Android parity slips past iOS</b>
-              <span>Risk band: yellow · dependency: auth fix and device verification</span>
-            </li>
-            <li>
-              <b>Release scope grows before the blocker clears</b>
-              <span>Risk band: red · trigger: any new auth or signing issue</span>
-            </li>
-            <li>
-              <b>App Development roles drift again before review</b>
-              <span>Risk band: yellow · trigger: a new org-chart change lands without sign-off</span>
-            </li>
-          </ul>
-        </article>
-
-        <article class="strip-card launch">
-          <div class="strip-head">
-            <strong>Next launch</strong>
-            <span>launch window</span>
-          </div>
-          <ul class="strip-list">
-            <li>
-              <b>Libations iOS 2.2.2</b>
-              <span>Window: Fri · handoff: Phillip · risk: low</span>
-            </li>
-            <li>
-              <b>Libations Android login recovery</b>
-              <span>Window: today · handoff: device verification · risk: medium</span>
-            </li>
-            <li>
-              <b>Libations Android parity</b>
-              <span>Window: next week · handoff: Greg decision · risk: medium</span>
-            </li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="panel section">
-      <div class="section-head">
-        <div>
-          <h2>Now</h2>
-          <p>Active workstreams with the fields you asked for: task, owner, due date, launch window, status, and confidence.</p>
+          <div class="status-chip">CEO → chief of staff → PMs → specialists</div>
         </div>
-        <div class="status-chip good">4 workstreams</div>
-      </div>
 
-      <div class="now-rail">
-        <article class="work-card top-priority">
-          <div class="work-head">
-            <div>
-              <div class="work-owner">Phillip · established apps</div>
-              <h3 class="work-name">Libations — iOS 2.2.2 launch</h3>
-            </div>
-            <div class="work-pill good">ready</div>
-          </div>
-          <div class="field-grid">
-            <div class="field"><div class="kicker">task name</div><div class="value">Libations — iOS 2.2.2 launch</div></div>
-            <div class="field"><div class="kicker">owner</div><div class="value">Phillip</div></div>
-            <div class="field"><div class="kicker">due date</div><div class="value">Friday</div></div>
-            <div class="field"><div class="kicker">launch window</div><div class="value">Fri AM</div></div>
-            <div class="field"><div class="kicker">confidence</div><div class="value">High</div></div>
-          </div>
-          <p class="work-note">Ready to ship once the release window is approved.</p>
-        </article>
+        <div class="org-map">
+          <article class="ceo-card">
+            <div class="eyebrow">CEO / decision maker</div>
+            <div class="name">Greg</div>
+            <p class="copy">Sets priorities, approves sensitive moves, and reviews work when it has passed the right gates.</p>
+          </article>
 
-        <article class="work-card">
-          <div class="work-head">
-            <div>
-              <div class="work-owner">Phillip · established apps</div>
-              <h3 class="work-name">Libations — Android login recovery</h3>
-            </div>
-            <div class="work-pill warn">blocked</div>
-          </div>
-          <div class="field-grid">
-            <div class="field"><div class="kicker">task name</div><div class="value">Libations — fix auth path</div></div>
-            <div class="field"><div class="kicker">owner</div><div class="value">Phillip</div></div>
-            <div class="field"><div class="kicker">due date</div><div class="value">Today</div></div>
-            <div class="field"><div class="kicker">launch window</div><div class="value">Today PM</div></div>
-            <div class="field"><div class="kicker">confidence</div><div class="value">Medium</div></div>
-          </div>
-          <p class="work-note">Blocked until auth is fixed and verified on device.</p>
-        </article>
-
-        <article class="work-card">
-          <div class="work-head">
-            <div>
-              <div class="work-owner">Monica · new apps</div>
-              <h3 class="work-name">Libations — Android parity</h3>
-            </div>
-            <div class="work-pill warn">in motion</div>
-          </div>
-          <div class="field-grid">
-            <div class="field"><div class="kicker">task name</div><div class="value">Libations — align Android with iOS</div></div>
-            <div class="field"><div class="kicker">owner</div><div class="value">Monica</div></div>
-            <div class="field"><div class="kicker">due date</div><div class="value">Next week</div></div>
-            <div class="field"><div class="kicker">launch window</div><div class="value">Week of next release</div></div>
-            <div class="field"><div class="kicker">confidence</div><div class="value">Medium</div></div>
-          </div>
-          <p class="work-note">Can ship with iOS if the login fix holds, otherwise it waits for the next window.</p>
-        </article>
-
-        <article class="work-card">
-          <div class="work-head">
-            <div>
-              <div class="work-owner">Stefon · ops</div>
-              <h3 class="work-name">Workflows and agents</h3>
-            </div>
-            <div class="work-pill good">steady</div>
-          </div>
-          <div class="field-grid">
-            <div class="field"><div class="kicker">task name</div><div class="value">The Rainy Day Company — keep the system legible</div></div>
-            <div class="field"><div class="kicker">owner</div><div class="value">Stefon</div></div>
-            <div class="field"><div class="kicker">due date</div><div class="value">Ongoing</div></div>
-            <div class="field"><div class="kicker">launch window</div><div class="value">Continuous</div></div>
-            <div class="field"><div class="kicker">confidence</div><div class="value">High</div></div>
-          </div>
-          <p class="work-note">Tracks the dashboard, review loop, and operating discipline.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="hero">
-      <div class="panel hero-main">
-        <h2 class="hero-title">Team structure</h2>
-        <div class="org-tree">
-          <div class="org-ceo">
-            <div class="org-ceo-card">
-              <div class="org-ceo-kicker">Top level</div>
-              <div class="org-ceo-name">Greg</div>
-              <div class="org-ceo-role">Direct oversight</div>
-            </div>
-          </div>
-
-          <div class="org-level">
-            <div class="org-column">
-              <div class="org-column-card coat">
-                <div class="org-column-head">
-                  <h3>Cross-Functional</h3>
-                  <span>shared leadership</span>
-                </div>
-                <div class="stack">
-                  <div class="mini-card">
-                    <span class="mini-kicker">Routing / Telegram</span>
-                    <span class="mini-name">Stefon</span>
-                    <p class="mini-role">Routes company work, keeps the command layer moving, and hands off to the right team.</p>
-                  </div>
-                  <div class="mini-card">
-                    <span class="mini-kicker">Cross-Functional</span>
-                    <span class="mini-name">Monica</span>
-                    <p class="mini-role">Moves between teams to shape new-app direction and keep launches coordinated.</p>
-                  </div>
-                  <div class="mini-card">
-                    <span class="mini-kicker">Cross-Functional</span>
-                    <span class="mini-name">Phillip</span>
-                    <p class="mini-role">Moves between teams to steer Libations and keep existing app work aligned.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="org-column">
-              <div class="org-column-card apps">
-                <div class="org-column-head">
-                  <h3>App Development</h3>
-                  <span>reports to Greg</span>
-                </div>
-                <div class="org-mini-group">
-                  <strong>Core team</strong>
-                  <div class="expert-mini-grid">
-                    <div class="mini-card"><span class="mini-name">Design / UX</span></div>
-                    <div class="mini-card"><span class="mini-name">Security</span></div>
-                    <div class="mini-card"><span class="mini-name">Development / Coding</span></div>
-                    <div class="mini-card"><span class="mini-name">Database</span></div>
-                    <div class="mini-card"><span class="mini-name">QA / Testing</span></div>
-                  </div>
-                </div>
-                <div class="org-mini-group">
-                  <strong>Platform Specialists</strong>
-                  <div class="stack">
-                    <div class="mini-card"><span class="mini-name">Android Specialist</span></div>
-                    <div class="mini-card"><span class="mini-name">iOS Specialist</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="org-column">
-              <div class="org-column-card func">
-                <div class="org-column-head">
-                  <h3>Functional Experts</h3>
-                  <span>shared bench</span>
-                </div>
-                <div class="org-mini-group">
-                  <strong>On Call Experts</strong>
-                  <div class="expert-mini-grid">
-                    <div class="mini-card"><span class="mini-name">Craft Beer</span></div>
-                    <div class="mini-card"><span class="mini-name">Bourbon</span></div>
-                    <div class="mini-card"><span class="mini-name">Scotch</span></div>
-                    <div class="mini-card"><span class="mini-name">Sommelier</span></div>
-                    <div class="mini-card"><span class="mini-name">Mixologist</span></div>
-                    <div class="mini-card"><span class="mini-name">Travel</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="org-column">
-              <div class="org-column-card life">
-                <div class="org-column-head">
-                  <h3>Life Team</h3>
-                  <span>reports to Greg</span>
-                </div>
-                <p class="org-column-note">Arnold, Tim, and Socrates sit directly beneath Greg.</p>
-                <div class="stack">
-                  <div class="mini-card">
-                    <span class="mini-kicker">Fitness</span>
-                    <span class="mini-name">Arnold</span>
-                    <p class="mini-role">Training, recovery, and athletic planning.</p>
-                  </div>
-                  <div class="mini-card">
-                    <span class="mini-kicker">Entrepreneurship</span>
-                    <span class="mini-name">Tim</span>
-                    <p class="mini-role">High-agency experiments, goals, and practical focus.</p>
-                  </div>
-                  <div class="mini-card">
-                    <span class="mini-kicker">Philosophy</span>
-                    <span class="mini-name">Socrates</span>
-                    <p class="mini-role">Reflection, perspective, discipline, and non-religious philosophy.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="lane-grid">
+            <article class="lane">
+              <h3>Front door</h3>
+              <div class="owner">Stefon</div>
+              <p class="copy">Chief-of-staff, orchestrator, ambiguity resolver, routing layer, and keeper of the operating picture.</p>
+              <div class="tags"><span class="tag">Telegram hub</span><span class="tag">Handoffs</span><span class="tag">Decision prep</span></div>
+            </article>
+            <article class="lane">
+              <h3>Established apps</h3>
+              <div class="owner">Phillip</div>
+              <p class="copy">PM for established products, especially Libations. Owns GitHub hygiene, release readiness, and specialist coordination.</p>
+              <div class="tags"><span class="tag">Libations</span><span class="tag">PRs</span><span class="tag">CI / QA</span></div>
+            </article>
+            <article class="lane">
+              <h3>New apps</h3>
+              <div class="owner">Monica</div>
+              <p class="copy">PM for new and developing apps. Owns product shaping, prototypes, early QA, and transition to established-app ownership.</p>
+              <div class="tags"><span class="tag">Discovery</span><span class="tag">Prototypes</span><span class="tag">Product</span></div>
+            </article>
+            <article class="lane">
+              <h3>Fitness</h3>
+              <div class="owner">Arnold</div>
+              <p class="copy">Fitness and health support lane. Keeps training practical, sustainable, and aligned with Greg's life and family priorities.</p>
+              <div class="tags"><span class="tag">Training</span><span class="tag">Wellness</span><span class="tag">Habits</span></div>
+            </article>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
+      <section class="panel section">
+        <div class="section-head">
+          <div>
+            <h2>Operating standards</h2>
+            <p>These rules protect Greg's time, the Mac drive, GitHub history, credentials, production systems, and the quality of work that reaches review.</p>
+          </div>
+          <div class="status-chip">standing rules</div>
+        </div>
+
+        <div class="grid">
+          <article class="card gold">
+            <div class="card-top"><div><h3 class="name">GitHub is source of truth</h3><div class="role">for app/code work</div></div></div>
+            <p>Every meaningful code change should be committed and pushed. The Mac and external drives are working copies only.</p>
+            <div class="tags"><span class="tag">repo</span><span class="tag">branch</span><span class="tag">commit</span><span class="tag">PR</span></div>
+          </article>
+          <article class="card blue">
+            <div class="card-top"><div><h3 class="name">Use canonical folders</h3><div class="role">no duplicate project drift</div></div></div>
+            <p>Work only from the established repo/project folder. If the canonical folder is unclear, pause and ask Stefon before changing files.</p>
+            <div class="tags"><span class="tag">known path</span><span class="tag">no random Desktop copies</span></div>
+          </article>
+          <article class="card green">
+            <div class="card-top"><div><h3 class="name">Disk-safe by default</h3><div class="role">protect the Mac drive</div></div></div>
+            <p>Keep build artifacts, DerivedData, simulator dumps, archives, videos, logs, node_modules, and datasets out of repos and off the main drive unless needed.</p>
+            <div class="tags"><span class="tag">clean artifacts</span><span class="tag">no bloat</span></div>
+          </article>
+          <article class="card wide">
+            <div class="card-top"><div><h3 class="name">Definition of ready</h3><div class="role">before Greg reviews</div></div></div>
+            <ul class="list">
+              <li><b>Plain-English summary</b> What changed, why it matters, and what Greg should look at.</li>
+              <li><b>Test plan</b> Tests/checks run, results, known gaps, and what could not be verified.</li>
+              <li><b>Visual proof when UI changed</b> Screenshots or short video for screens, flows, and responsive states.</li>
+              <li><b>Known risks</b> Any tradeoffs, assumptions, blockers, or follow-up decisions.</li>
+            </ul>
+          </article>
+          <article class="card wide">
+            <div class="card-top"><div><h3 class="name">Approval boundaries</h3><div class="role">ask before sensitive moves</div></div></div>
+            <ul class="list">
+              <li><b>No spending or contracts</b> Do not buy, subscribe, start paid trials, sign, or accept legal terms without explicit approval.</li>
+              <li><b>No external communications</b> Draft first; ask before sending messages, comments, invites, forms, support tickets, or posts.</li>
+              <li><b>No production moves without discussion</b> App Store production, Supabase production, DNS, credentials, repo permissions, billing, and public launches require Greg/Stefon approval.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel section">
+        <div class="section-head">
+          <div>
+            <h2>App/code workflow</h2>
+            <p>The standard path for Phillip, Monica, and specialists when they touch product code.</p>
+          </div>
+          <div class="status-chip">task → PR → QA → review</div>
+        </div>
+        <div class="flow">
+          <div class="step"><strong>Clarify</strong><span>Confirm goal, constraints, owner, repo, and definition of ready.</span></div>
+          <div class="step"><strong>Sync</strong><span>Use the canonical repo/folder. Pull latest main/develop before editing.</span></div>
+          <div class="step"><strong>Branch</strong><span>Create a focused branch for the task. Keep scope tight.</span></div>
+          <div class="step"><strong>Commit</strong><span>Make small, understandable commits and push progress to GitHub.</span></div>
+          <div class="step"><strong>PR + checks</strong><span>Open a PR with summary, test plan, proof, and risks. Watch CI.</span></div>
+          <div class="step"><strong>QA + handoff</strong><span>Run the appropriate QA gates. Bring Greg only what is ready or what needs a decision.</span></div>
+        </div>
+      </section>
+
+      <section class="panel section">
+        <div class="section-head">
+          <div>
+            <h2>Agent lanes</h2>
+            <p>Who owns what, what they should return, and what they should not do without approval.</p>
+          </div>
+          <div class="status-chip">accountability map</div>
+        </div>
+        <div class="grid">
+          <article class="card slim gold">
+            <h3 class="name">Stefon</h3>
+            <div class="role">chief of staff</div>
+            <p>Clarifies broad requests, routes work, keeps Greg from managing the org chart, maintains this operating system, and stays in the loop on handoffs.</p>
+            <div class="tags"><span class="tag">front door</span><span class="tag">decisions</span></div>
+          </article>
+          <article class="card slim blue">
+            <h3 class="name">Phillip</h3>
+            <div class="role">established apps PM</div>
+            <p>Owns Libations and established app work end-to-end: repo hygiene, specialists, QA, release readiness, and final recommendation.</p>
+            <div class="tags"><span class="tag">Libations</span><span class="tag">GitHub</span></div>
+          </article>
+          <article class="card slim green">
+            <h3 class="name">Monica</h3>
+            <div class="role">new apps PM</div>
+            <p>Owns new/developing app ideas from concept through prototype, product shaping, early QA, and readiness to graduate.</p>
+            <div class="tags"><span class="tag">new apps</span><span class="tag">prototypes</span></div>
+          </article>
+          <article class="card slim">
+            <h3 class="name">Arnold</h3>
+            <div class="role">fitness lane</div>
+            <p>Supports durable fitness habits, strength, conditioning, wellness, and practical plans that fit Greg's real life.</p>
+            <div class="tags"><span class="tag">training</span><span class="tag">wellness</span></div>
+          </article>
+          <article class="card full">
+            <h3 class="name">Specialist bench</h3>
+            <p>UX, design, security, database, Apple app, Android, drinks, wine, beer, whisky, marketing, and research experts can be pulled in by Stefon, Phillip, or Monica. Specialists advise and execute, but the PM remains accountable for the handoff.</p>
+            <div class="tags">
+              <span class="tag">UX</span><span class="tag">Design</span><span class="tag">Security</span><span class="tag">Database</span><span class="tag">Apple apps</span><span class="tag">Android</span><span class="tag">Drinks experts</span><span class="tag">Marketing</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel section">
+        <div class="section-head">
+          <div>
+            <h2>Rules of engagement</h2>
+            <p>The non-negotiables that keep the system useful, safe, and recoverable.</p>
+          </div>
+          <div class="status-chip">protect trust</div>
+        </div>
+        <div class="rule-grid">
+          <div class="rule good"><b>Route ambiguity early.</b> If Greg says “done,” “good,” “make it better,” or “ship it,” clarify the standard before sending agents in the wrong direction.</div>
+          <div class="rule blue"><b>Keep Stefon in the loop.</b> Direct chats with specialists are fine, but meaningful handoffs, blockers, and decisions should route back through the operating picture.</div>
+          <div class="rule good"><b>Use GitHub appropriately.</b> Branches, commits, PRs, CI/checks, and review notes are part of the work—not cleanup after the work.</div>
+          <div class="rule"><b>Protect Libations product direction.</b> Clean, sparse UI. Manual entry supports all drink types. Known cocktails use canonical autofill while preserving exact label text. Custom recipes are user-created.</div>
+          <div class="rule danger"><b>Do not commit secrets.</b> No API keys, tokens, private keys, .env files, certificates, provisioning credentials, or customer/private data in GitHub.</div>
+          <div class="rule danger"><b>Do not touch production casually.</b> App Store production, Supabase production, billing, repo permissions, DNS, credentials, and public launches require discussion.</div>
+        </div>
+      </section>
+
+      <section class="panel section">
+        <div class="section-head">
+          <div>
+            <h2>Handoff template</h2>
+            <p>Use this format when work moves between Greg, Stefon, Phillip, Monica, Arnold, or a specialist.</p>
+          </div>
+          <div class="status-chip">copy / paste</div>
+        </div>
+        <div class="handoff">
+          <div class="card gold">
+            <h3 class="name">What every handoff should answer</h3>
+            <ul class="list">
+              <li><b>Owner</b> Who is accountable?</li>
+              <li><b>Repo/folder</b> What is canonical?</li>
+              <li><b>Branch/PR</b> Where is the durable work?</li>
+              <li><b>Tests/QA</b> What proved it?</li>
+              <li><b>Decision</b> What does Greg need to decide, if anything?</li>
+            </ul>
+          </div>
+          <div class="template">
+<pre>Task:
+Owner:
+Goal:
+Canonical repo/folder:
+Branch / PR:
+What changed:
+Tests / checks run:
+Screenshots or video, if UI changed:
+Known risks / assumptions:
+Blocked by:
+Decision needed from Greg:
+Recommended next step:</pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>The Rainy Day Company · Agent Operating System</span>
+      <span>GitHub is the source of truth. Telegram is the interface. QA is the gate.</span>
+    </footer>
   </div>
 </body>
 </html>
-
