@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090510" />
+  <meta name="description" content="A ridiculous, mobile-first nightlife guide to the hottest fake clubs in Philadelphia, Detroit, and Atlanta." />
+  <meta property="og:title" content="The Hottest Clubs in America" />
+  <meta property="og:description" content="Philadelphia. Detroit. Atlanta. Three cities. Three clubs. Too many tiny hats." />
+  <meta property="og:type" content="website" />
+  <title>The Hottest Clubs in America</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090510;
+      --ink: #fff7ec;
+      --muted: rgba(255, 247, 236, 0.68);
+      --quiet: rgba(255, 247, 236, 0.42);
+      --line: rgba(255, 255, 255, 0.14);
+      --hot: #ff3d81;
+      --gold: #ffcc66;
+      --acid: #b6ff59;
+      --cyan: #67e8f9;
+      --violet: #9f7aea;
+      --philly: #ff3d81;
+      --detroit: #67e8f9;
+      --atlanta: #ffcc66;
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --shadow-hot: 0 24px 80px rgba(255, 61, 129, 0.26), 0 0 120px rgba(103, 232, 249, 0.12);
+      --font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+      --mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100svh;
+      color: var(--ink);
+      font-family: var(--font);
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255, 61, 129, 0.28), transparent 34rem),
+        radial-gradient(circle at 90% 20%, rgba(103, 232, 249, 0.18), transparent 32rem),
+        radial-gradient(circle at 45% 95%, rgba(255, 204, 102, 0.16), transparent 30rem),
+        linear-gradient(160deg, #090510 0%, #160a21 52%, #05070d 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      mix-blend-mode: screen;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at 50% 20%, black, transparent 72%);
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 5px);
+      opacity: .34;
+      z-index: 3;
+    }
+
+    a { color: inherit; }
+    .page { position: relative; z-index: 1; }
+
+    .orb {
+      position: fixed;
+      width: 42vmax;
+      aspect-ratio: 1;
+      border-radius: 999px;
+      filter: blur(42px);
+      opacity: .2;
+      pointer-events: none;
+      animation: drift 18s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    .orb.one { left: -20vmax; top: 20vh; background: var(--hot); }
+    .orb.two { right: -22vmax; top: 8vh; background: var(--cyan); animation-delay: -7s; }
+    .orb.three { left: 22vw; bottom: -28vmax; background: var(--gold); animation-delay: -12s; }
+
+    @keyframes drift {
+      from { transform: translate3d(-2%, 1%, 0) scale(.96); }
+      to { transform: translate3d(5%, -4%, 0) scale(1.08); }
+    }
+
+    .hero {
+      min-height: 100svh;
+      padding: max(18px, env(safe-area-inset-top)) 18px 28px;
+      display: grid;
+      align-content: space-between;
+      gap: 28px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line);
+      background: rgba(11, 8, 20, .54);
+      backdrop-filter: blur(20px) saturate(140%);
+      border-radius: 999px;
+      padding: 10px 11px 10px 14px;
+      box-shadow: 0 18px 48px rgba(0,0,0,.22);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      white-space: nowrap;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background:
+        conic-gradient(from 210deg, var(--hot), var(--gold), var(--cyan), var(--violet), var(--hot));
+      box-shadow: 0 0 24px rgba(255,61,129,.5);
+      position: relative;
+      flex: 0 0 auto;
+    }
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      background: #100918;
+      border: 1px solid rgba(255,255,255,.22);
+    }
+
+    .nav-pill {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 750;
+      font-size: 13px;
+    }
+
+    .hero-copyblock {
+      display: grid;
+      gap: 18px;
+      padding-top: 8vh;
+    }
+
+    .kicker {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 9px;
+      color: var(--gold);
+      border: 1px solid rgba(255,204,102,.32);
+      background: rgba(255,204,102,.08);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--acid);
+      box-shadow: 0 0 0 0 rgba(182,255,89,.8);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      70% { box-shadow: 0 0 0 12px rgba(182,255,89,0); }
+      100% { box-shadow: 0 0 0 0 rgba(182,255,89,0); }
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 12ch;
+      font-size: clamp(54px, 17vw, 142px);
+      line-height: .82;
+      letter-spacing: -.085em;
+      text-wrap: balance;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: clamp(17px, 4.8vw, 23px);
+      line-height: 1.25;
+      letter-spacing: -.02em;
+    }
+
+    .hero p strong { color: var(--ink); font-weight: 850; }
+    .spark {
+      display: inline-block;
+      color: transparent;
+      background: linear-gradient(100deg, var(--hot), var(--gold), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(255,61,129,.35));
+    }
+
+    .city-picker {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+    }
+
+    .city-picker a {
+      min-height: 72px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.075);
+      color: var(--ink);
+      text-decoration: none;
+      display: grid;
+      align-content: center;
+      gap: 5px;
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 50px rgba(0,0,0,.18);
+    }
+    .city-picker a::before {
+      content: "";
+      position: absolute;
+      inset: auto -10px -20px;
+      height: 44px;
+      background: var(--accent);
+      filter: blur(24px);
+      opacity: .38;
+    }
+    .city-picker span:first-child {
+      font-size: 12px;
+      color: var(--quiet);
+      font-family: var(--mono);
+    }
+    .city-picker span:last-child {
+      font-size: clamp(15px, 4.2vw, 18px);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      position: relative;
+    }
+
+    main {
+      padding: 0 14px 34px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .club-card {
+      min-height: 100svh;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.045)),
+        radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--accent) 32%, transparent), transparent 28rem),
+        rgba(11, 8, 20, .76);
+      box-shadow: var(--shadow-hot);
+      overflow: hidden;
+      position: relative;
+      display: grid;
+      align-content: space-between;
+      padding: 18px;
+      isolation: isolate;
+    }
+
+    .club-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(110deg, transparent 0 20%, rgba(255,255,255,.12) 28%, transparent 36% 100%);
+      transform: translateX(-130%);
+      animation: scan 8s ease-in-out infinite;
+      z-index: -1;
+    }
+    .club-card:nth-child(2)::before { animation-delay: -2.7s; }
+    .club-card:nth-child(3)::before { animation-delay: -5.1s; }
+    @keyframes scan {
+      0%, 55% { transform: translateX(-130%); }
+      78%, 100% { transform: translateX(130%); }
+    }
+
+    .city-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--accent) 70%, white);
+    }
+
+    .heat {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--ink);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      border-radius: 999px;
+      padding: 8px 10px;
+      letter-spacing: 0;
+      text-transform: none;
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+    .meter {
+      width: 42px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), white);
+      box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 72%, transparent);
+    }
+
+    .club-name {
+      margin: 22px 0 10px;
+      font-size: clamp(42px, 13vw, 104px);
+      line-height: .86;
+      letter-spacing: -.08em;
+      text-wrap: balance;
+    }
+
+    .located {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.28;
+      letter-spacing: -.02em;
+    }
+
+    .everything {
+      display: grid;
+      gap: 11px;
+      margin: 20px 0;
+    }
+    .everything-title {
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .feature {
+      display: grid;
+      grid-template-columns: 33px 1fr;
+      align-items: start;
+      gap: 10px;
+      padding: 13px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-md);
+      background: rgba(0,0,0,.16);
+      backdrop-filter: blur(14px);
+    }
+    .icon {
+      width: 33px;
+      height: 33px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #090510;
+      background: var(--accent);
+      font-weight: 950;
+      box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 45%, transparent);
+    }
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.25;
+    }
+    .feature strong { color: var(--ink); }
+
+    .craze {
+      margin-top: 20px;
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      color: #0a0610;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,.72), transparent 18rem),
+        linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 56%, var(--gold)));
+      box-shadow: 0 20px 70px color-mix(in srgb, var(--accent) 28%, transparent);
+      transform: rotate(-1.2deg);
+    }
+    .club-card:nth-child(2) .craze { transform: rotate(1deg); }
+    .club-card:nth-child(3) .craze { transform: rotate(-.5deg); }
+    .craze-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      opacity: .74;
+      font-weight: 900;
+    }
+    .craze h3 {
+      margin: 8px 0 6px;
+      font-size: 30px;
+      line-height: .92;
+      letter-spacing: -.06em;
+    }
+    .craze p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.22;
+      font-weight: 720;
+      color: rgba(10,6,16,.82);
+    }
+
+    .secret {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 16px;
+      color: var(--quiet);
+      font-size: 13px;
+      line-height: 1.2;
+    }
+    .secret button {
+      appearance: none;
+      border: 0;
+      min-height: 44px;
+      border-radius: 999px;
+      padding: 0 14px;
+      background: rgba(255,255,255,.12);
+      color: var(--ink);
+      font-weight: 850;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .secret button:focus-visible,
+    .city-picker a:focus-visible,
+    .nav-pill:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .finale {
+      margin: 0 14px 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius-xl);
+      padding: 24px 18px;
+      background: rgba(255,255,255,.06);
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .finale h2 {
+      margin: 0 auto 10px;
+      max-width: 10ch;
+      font-size: clamp(38px, 12vw, 76px);
+      line-height: .9;
+      letter-spacing: -.075em;
+    }
+    .finale p {
+      margin: 0 auto;
+      max-width: 54ch;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .toast {
+      position: fixed;
+      left: 14px;
+      right: 14px;
+      bottom: calc(14px + env(safe-area-inset-bottom));
+      z-index: 10;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 22px;
+      padding: 14px 15px;
+      background: rgba(9, 5, 16, .82);
+      backdrop-filter: blur(20px) saturate(150%);
+      box-shadow: 0 24px 80px rgba(0,0,0,.38);
+      transform: translateY(140%);
+      transition: transform .38s cubic-bezier(.2,.9,.2,1);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.25;
+    }
+    .toast.show { transform: translateY(0); }
+
+    @media (min-width: 760px) {
+      .hero { padding: 26px 32px 36px; }
+      .topbar { max-width: 1180px; width: 100%; margin: 0 auto; }
+      .hero-copyblock { max-width: 1180px; width: 100%; margin: 0 auto; }
+      .city-picker { max-width: 760px; }
+      main { padding: 0 32px 48px; gap: 24px; max-width: 1244px; margin: 0 auto; }
+      .club-card { min-height: 760px; padding: 30px; }
+      .club-layout { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(320px, .98fr); gap: 30px; align-items: end; }
+      .everything { margin-top: 0; }
+      .feature p { font-size: 16px; }
+      .secret { grid-column: 1 / -1; }
+      .finale { max-width: 1180px; margin: 0 auto 30px; padding: 44px; }
+      .toast { left: 50%; right: auto; width: min(520px, calc(100vw - 28px)); transform: translate(-50%, 140%); }
+      .toast.show { transform: translate(-50%, 0); }
+    }
+
+    @media (min-width: 1120px) {
+      .club-card { position: sticky; top: 18px; }
+      .club-card + .club-card { margin-top: 20vh; }
+      .hero-copyblock { grid-template-columns: 1fr .72fr; align-items: end; }
+      .city-picker { justify-self: end; width: 100%; max-width: 520px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition: none !important; }
+      .orb { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+
+  <div class="page">
+    <header class="hero">
+      <nav class="topbar" aria-label="Page navigation">
+        <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>Rainy Day After Dark</span></div>
+        <a class="nav-pill" href="#philly">Enter the club</a>
+      </nav>
+
+      <section class="hero-copyblock" aria-labelledby="page-title">
+        <div>
+          <div class="kicker"><span class="pulse"></span> Nightlife intelligence briefing</div>
+          <h1 id="page-title">America’s <span class="spark">hottest</span> fake clubs.</h1>
+          <p>A mobile-first guide to three nightlife destinations that absolutely should not pass a fire inspection. Philadelphia, Detroit, and Atlanta: <strong>this place has everything.</strong></p>
+        </div>
+        <div class="city-picker" aria-label="Jump to a city">
+          <a href="#philly" style="--accent: var(--philly)"><span>01</span><span>Philadelphia</span></a>
+          <a href="#detroit" style="--accent: var(--detroit)"><span>02</span><span>Detroit</span></a>
+          <a href="#atlanta" style="--accent: var(--atlanta)"><span>03</span><span>Atlanta</span></a>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <article class="club-card" id="philly" style="--accent: var(--philly)">
+        <div>
+          <div class="city-label"><span>Philadelphia, PA</span><span class="heat"><span class="meter"></span> 98° weird</span></div>
+          <h2 class="club-name">Wit or Witout Witness Protection</h2>
+          <p class="located">Located underneath a discontinued Wawa ice machine in Fishtown, this club is accessible only by whispering “Go Birds” into a cheesesteak that has seen too much.</p>
+        </div>
+        <div class="club-layout">
+          <div class="everything">
+            <div class="everything-title">This place has everything</div>
+            <div class="feature"><div class="icon">1</div><p><strong>A DJ named Ben Franklin’s Ghost</strong> who remixes the Liberty Bell with Gritty breathing exercises.</p></div>
+            <div class="feature"><div class="icon">2</div><p><strong>Soft pretzel sommeliers</strong> pairing sidewalk mustard with emotional damage from the 700 level.</p></div>
+            <div class="feature"><div class="icon">3</div><p><strong>A VIP room called “The Schuylkill Express Lane”</strong> — no one moves, but everyone is honking.</p></div>
+          </div>
+          <aside class="craze">
+            <div class="craze-label">Newest party craze</div>
+            <h3>Rocky Karaoke</h3>
+            <p>It’s that thing where twelve people in gray sweats sprint up two stairs, lose their breath, and scream the chorus to “Motownphilly” at a statue that is legally disappointed.</p>
+          </aside>
+        </div>
+        <div class="secret"><span>Secret menu: the Broad Street Biscotti, served in a tiny traffic cone.</span><button data-secret="Ask the bartender for the ‘Jawn Wick.’ It’s a shot glass in a tiny Eagles hoodie.">Unlock</button></div>
+      </article>
+
+      <article class="club-card" id="detroit" style="--accent: var(--detroit)">
+        <div>
+          <div class="city-label"><span>Detroit, MI</span><span class="heat"><span class="meter"></span> 101° weird</span></div>
+          <h2 class="club-name">Motown & Order: SUV</h2>
+          <p class="located">Hidden inside a self-driving concept car that only makes left turns, this Motor City hotspot opens whenever someone says, “Actually, techno started here.”</p>
+        </div>
+        <div class="club-layout">
+          <div class="everything">
+            <div class="everything-title">This place has everything</div>
+            <div class="feature"><div class="icon">1</div><p><strong>Assembly-line bottle service</strong> where tiny robots install sparklers onto Faygo at terrifying speed.</p></div>
+            <div class="feature"><div class="icon">2</div><p><strong>A coat check run by retired goalie masks</strong> that judge your jacket and your childhood.</p></div>
+            <div class="feature"><div class="icon">3</div><p><strong>The Henry Ford Escape Room</strong> — you have 60 minutes to unionize a charcuterie board.</p></div>
+          </div>
+          <aside class="craze">
+            <div class="craze-label">Newest party craze</div>
+            <h3>Parallel Parkour</h3>
+            <p>It’s that thing where two guys named Big Mike vault over orange barrels while a techno DJ samples potholes and a coney dog whispers municipal policy.</p>
+          </aside>
+        </div>
+        <div class="secret"><span>Secret menu: the Belle Isle Boilermaker, garnished with a tiny traffic report.</span><button data-secret="Ask for ‘The Emineminem.’ It’s a cocktail inside another cocktail that keeps writing apology texts.">Unlock</button></div>
+      </article>
+
+      <article class="club-card" id="atlanta" style="--accent: var(--atlanta)">
+        <div>
+          <div class="city-label"><span>Atlanta, GA</span><span class="heat"><span class="meter"></span> 104° weird</span></div>
+          <h2 class="club-name">Peach, Please</h2>
+          <p class="located">In the basement of a brunch place that only serves reservations, this Atlanta fever dream is guarded by a valet who can smell if you used the correct airport terminal.</p>
+        </div>
+        <div class="club-layout">
+          <div class="everything">
+            <div class="everything-title">This place has everything</div>
+            <div class="feature"><div class="icon">1</div><p><strong>A trap choir in matching linen</strong> harmonizing over GPS instructions that keep rerouting through Buckhead.</p></div>
+            <div class="feature"><div class="icon">2</div><p><strong>Influencer confessional booths</strong> where you apologize to your ring light and receive a tiny lemon pepper wing.</p></div>
+            <div class="feature"><div class="icon">3</div><p><strong>A rooftop called “The Connector”</strong> — beautiful view, nobody gets home, everyone becomes a podcast guest.</p></div>
+          </div>
+          <aside class="craze">
+            <div class="craze-label">Newest party craze</div>
+            <h3>BeltLine Baptism</h3>
+            <p>It’s that thing where a real estate agent in roller skates mists you with cold brew while yelling “mixed-use development!” and Outkast’s flute player appears in a shrub.</p>
+          </aside>
+        </div>
+        <div class="secret"><span>Secret menu: the Hartsfield-Jackson Hot Pocket, available after a four-hour layover.</span><button data-secret="Ask for the ‘PeachTreeTreeTree.’ No one knows which one. That’s the drink.">Unlock</button></div>
+      </article>
+    </main>
+
+    <footer class="finale">
+      <h2>More cities. More nonsense.</h2>
+      <p>Built as a tiny love letter to absurd nightlife, regional jokes, and showing people that a phone screen can still feel like a stage.</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const toast = document.getElementById('toast');
+    let toastTimer;
+
+    document.querySelectorAll('[data-secret]').forEach((button) => {
+      button.addEventListener('click', () => {
+        toast.textContent = button.dataset.secret;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 4200);
+      });
+    });
+
+    const cards = [...document.querySelectorAll('.club-card')];
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.animate([
+            { transform: 'scale(.985)', filter: 'saturate(.9)' },
+            { transform: 'scale(1)', filter: 'saturate(1)' }
+          ], { duration: 420, easing: 'cubic-bezier(.2,.9,.2,1)', fill: 'both' });
+        }
+      });
+    }, { threshold: .4 });
+    cards.forEach((card) => observer.observe(card));
+  </script>
+</body>
+</html>
