@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Libations Operator Cockpit</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #100b08;
+      --panel: #1c140f;
+      --panel-2: #271a12;
+      --panel-3: #332215;
+      --line: rgba(246, 210, 157, 0.15);
+      --line-strong: rgba(246, 210, 157, 0.28);
+      --text: #f8ecdb;
+      --muted: #bfa485;
+      --soft: #8e755f;
+      --amber: #e7a83e;
+      --amber-2: #ffd28a;
+      --green: #82d98b;
+      --red: #ff927d;
+      --blue: #89b8ff;
+      --purple: #d9a7ff;
+      --shadow: 0 24px 78px rgba(0, 0, 0, 0.42);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text); }
+    body {
+      background:
+        radial-gradient(circle at 78% -10%, rgba(231, 168, 62, 0.2), transparent 28rem),
+        radial-gradient(circle at -12% 10%, rgba(151, 91, 45, 0.24), transparent 22rem),
+        linear-gradient(180deg, #17100c 0%, #0f0a08 100%);
+      padding: max(0.85rem, env(safe-area-inset-top)) 0.9rem calc(5.7rem + env(safe-area-inset-bottom));
+    }
+
+    button { font: inherit; }
+    .shell { width: min(100%, 760px); margin: 0 auto; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 4;
+      margin: -0.85rem -0.9rem 0.9rem;
+      padding: calc(0.9rem + env(safe-area-inset-top)) 0.9rem 0.75rem;
+      background: linear-gradient(180deg, rgba(16, 11, 8, 0.98), rgba(16, 11, 8, 0.9) 78%, rgba(16, 11, 8, 0));
+      backdrop-filter: blur(18px);
+    }
+    .brand-row { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
+    .eyebrow { color: var(--amber-2); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 800; }
+    .source-chip { border: 1px solid var(--line); color: var(--muted); background: rgba(255,255,255,0.04); border-radius: 999px; padding: 0.34rem 0.58rem; font-size: 0.72rem; font-weight: 780; white-space: nowrap; }
+    h1 { margin: 0.25rem 0 0.3rem; font-size: clamp(2.08rem, 10.2vw, 3.35rem); line-height: 0.95; letter-spacing: -0.075em; }
+    .subtitle { margin: 0; color: var(--muted); font-size: 0.96rem; line-height: 1.42; }
+
+    .attention { display: grid; gap: 0.74rem; margin: 0 0 1rem; }
+    .hero-card { border: 1px solid var(--line-strong); background: linear-gradient(180deg, rgba(46, 31, 20, 0.98), rgba(30, 20, 14, 0.98)); border-radius: 1.55rem; padding: 1rem; box-shadow: var(--shadow); overflow: hidden; }
+    .hero-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.9rem; }
+    .hero-card h2 { margin: 0; font-size: 1.28rem; letter-spacing: -0.04em; }
+    .hero-card p { margin: 0.36rem 0 0; color: var(--muted); line-height: 1.42; }
+    .badge-count { min-width: 3.25rem; min-height: 3.25rem; border-radius: 1.1rem; display: grid; place-items: center; background: rgba(231,168,62,0.14); color: var(--amber-2); border: 1px solid rgba(231,168,62,0.25); font-size: 1.55rem; font-weight: 860; }
+    .attention-list { display: grid; gap: 0.58rem; margin-top: 0.9rem; }
+    .attention-item { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.62rem; padding: 0.72rem; border: 1px solid var(--line); border-radius: 1rem; background: rgba(16,11,8,0.46); }
+    .dot { width: 0.62rem; height: 0.62rem; border-radius: 999px; background: var(--amber); box-shadow: 0 0 0 0.25rem rgba(231,168,62,0.12); }
+    .dot.red { background: var(--red); box-shadow: 0 0 0 0.25rem rgba(255,146,125,0.12); }
+    .dot.blue { background: var(--blue); box-shadow: 0 0 0 0.25rem rgba(137,184,255,0.12); }
+    .attention-item strong { display: block; font-size: 0.92rem; }
+    .attention-item span { color: var(--soft); font-size: 0.76rem; }
+    .chev { color: var(--soft); }
+
+    .tabs { position: fixed; left: 0.85rem; right: 0.85rem; bottom: max(0.7rem, env(safe-area-inset-bottom)); z-index: 8; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.38rem; padding: 0.38rem; border: 1px solid var(--line-strong); background: rgba(18, 12, 8, 0.92); border-radius: 999px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); backdrop-filter: blur(22px); }
+    .tab { appearance: none; border: 0; background: transparent; color: var(--muted); border-radius: 999px; padding: 0.75rem 0.35rem; font-size: 0.78rem; font-weight: 820; }
+    .tab[aria-selected="true"] { background: linear-gradient(180deg, #f1bd68, #d48a2a); color: #241307; box-shadow: 0 8px 22px rgba(231, 168, 62, 0.24); }
+
+    main { display: grid; gap: 1rem; }
+    .panel { display: none; animation: rise 180ms ease-out; }
+    .panel.active { display: grid; gap: 1rem; }
+    @keyframes rise { from { opacity: 0; transform: translateY(0.4rem); } to { opacity: 1; transform: none; } }
+
+    .card { border: 1px solid var(--line); border-radius: 1.35rem; background: linear-gradient(180deg, rgba(39, 27, 19, 0.96), rgba(28, 20, 15, 0.96)); box-shadow: var(--shadow); padding: 1rem; overflow: hidden; }
+    .card h2, .card h3 { margin: 0; letter-spacing: -0.035em; }
+    .card h2 { font-size: 1.25rem; }
+    .card h3 { font-size: 1.04rem; }
+    .card p { color: var(--muted); line-height: 1.45; margin: 0.35rem 0 0; }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.8rem; margin-bottom: 0.85rem; }
+    .source { color: var(--soft); font-size: 0.74rem; line-height: 1.35; text-align: right; }
+
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.72rem; margin-top: 0.9rem; }
+    .metric { background: rgba(18, 13, 10, 0.58); border: 1px solid var(--line); border-radius: 1rem; padding: 0.85rem; min-height: 7rem; }
+    .metric .label { color: var(--soft); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.11em; font-weight: 820; }
+    .metric .value { margin-top: 0.2rem; font-size: 1.55rem; font-weight: 860; letter-spacing: -0.055em; }
+    .metric .note { color: var(--muted); font-size: 0.78rem; margin-top: 0.25rem; line-height: 1.34; }
+    .metric .trend { display: inline-flex; align-items: center; gap: 0.22rem; margin-top: 0.42rem; color: var(--blue); font-size: 0.73rem; font-weight: 820; }
+    .metric.needs-data .value { color: var(--amber-2); }
+
+    .sparkline { display: flex; align-items: end; gap: 0.25rem; height: 3.8rem; margin-top: 0.8rem; padding-top: 0.6rem; border-top: 1px solid var(--line); }
+    .sparkline i { flex: 1; min-width: 0.42rem; height: var(--h); border-radius: 999px 999px 0.22rem 0.22rem; background: linear-gradient(180deg, var(--amber-2), rgba(231,168,62,0.42)); opacity: 0.92; }
+
+    .lane { display: grid; gap: 0.62rem; }
+    .lane-title { display: flex; align-items: center; justify-content: space-between; padding: 0.1rem 0.1rem 0; }
+    .lane-title h3 { margin: 0; font-size: 0.95rem; color: var(--amber-2); letter-spacing: 0.01em; }
+    .roadmap-item, .cleanup-item, .data-row { display: grid; gap: 0.5rem; padding: 0.86rem; border: 1px solid var(--line); border-radius: 1rem; background: rgba(16, 11, 8, 0.4); }
+    .roadmap-rank { display: inline-grid; place-items: center; width: 1.65rem; height: 1.65rem; border-radius: 0.65rem; background: rgba(231,168,62,0.14); color: var(--amber-2); border: 1px solid rgba(231,168,62,0.24); font-size: 0.78rem; font-weight: 880; }
+    .roadmap-title { display: flex; align-items: center; gap: 0.55rem; min-width: 0; }
+    .completed-roadmap { margin-top: 0.95rem; border: 1px solid var(--line); border-radius: 1rem; padding: 0.75rem; background: rgba(16, 11, 8, 0.35); }
+    .completed-roadmap summary { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; list-style: none; }
+    .completed-roadmap summary::-webkit-details-marker { display: none; }
+    .completed-list { display: grid; gap: 0.52rem; margin-top: 0.75rem; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+    .title { font-weight: 790; letter-spacing: -0.02em; }
+    .meta { color: var(--soft); font-size: 0.78rem; line-height: 1.35; }
+    .pill { flex: none; border: 1px solid rgba(246, 210, 157, 0.16); color: var(--amber-2); background: rgba(231, 168, 62, 0.1); border-radius: 999px; padding: 0.28rem 0.55rem; font-size: 0.7rem; font-weight: 840; white-space: nowrap; }
+    .pill.green { color: var(--green); background: rgba(130, 217, 139, 0.1); }
+    .pill.blue { color: var(--blue); background: rgba(137, 184, 255, 0.1); }
+    .pill.red { color: var(--red); background: rgba(255, 139, 115, 0.1); }
+    .pill.purple { color: var(--purple); background: rgba(217, 167, 255, 0.1); }
+
+    details { border-top: 1px solid var(--line); padding-top: 0.55rem; }
+    summary { cursor: pointer; color: var(--amber-2); font-size: 0.82rem; font-weight: 820; }
+    details p { margin-top: 0.42rem; }
+
+    .notice { border: 1px solid rgba(255, 139, 115, 0.3); background: rgba(255, 139, 115, 0.08); color: #ffd2c8; }
+    .notice strong { color: #fff0eb; }
+    .actions { display: grid; gap: 0.65rem; margin-top: 0.9rem; }
+    .button { border: 1px solid var(--line); background: rgba(255,255,255,0.06); color: var(--text); border-radius: 0.95rem; padding: 0.85rem 0.95rem; font-weight: 800; text-align: left; }
+    .button.primary { background: linear-gradient(180deg, #f1bd68, #d48a2a); color: #211206; border-color: transparent; text-align: center; }
+    .button:active { transform: translateY(1px); }
+    footer { margin-top: 1.25rem; color: var(--soft); font-size: 0.78rem; text-align: center; }
+
+    @media (min-width: 680px) {
+      body { padding-inline: 1.5rem; padding-bottom: 2rem; }
+      .tabs { position: sticky; bottom: auto; top: 6.4rem; margin: 1rem 0; }
+      .metric-grid { grid-template-columns: repeat(4, 1fr); }
+      .attention-list { grid-template-columns: repeat(3, 1fr); }
+      .desktop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand-row">
+        <div class="eyebrow">The Rainy Day Company</div>
+        <div class="source-chip">Target · /dashboard</div>
+      </div>
+      <h1>Libations command center</h1>
+      <p class="subtitle">What changed, what needs attention, and what can wait — with Firebase usage signals, roadmap lanes, and read-only Supabase cleanup alerts. Canonical target: www.therainyday.co/dashboard.</p>
+    </header>
+
+    <section class="attention" aria-label="Today and attention summary">
+      <article class="hero-card">
+        <div class="hero-row">
+          <div>
+            <h2>Today / Attention</h2>
+            <p>First-screen summary for Greg: Firebase changes, roadmap decisions, and Supabase cleanup alerts before any deep dive.</p>
+          </div>
+          <div class="badge-count" aria-label="three attention areas">3</div>
+        </div>
+        <div class="attention-list">
+          <button class="attention-item" type="button" data-open-tab="supabase">
+            <span class="dot red"></span>
+            <span><strong>New cleanup alerts</strong><span>Incomplete Master Drinks queue</span></span>
+            <span class="chev">›</span>
+          </button>
+          <button class="attention-item" type="button" data-open-tab="usage">
+            <span class="dot blue"></span>
+            <span><strong>Firebase usage shifts</strong><span>Active users, sessions, top events</span></span>
+            <span class="chev">›</span>
+          </button>
+          <button class="attention-item" type="button" data-open-tab="roadmap">
+            <span class="dot"></span>
+            <span><strong>Roadmap decisions</strong><span>Ranked daily work queue</span></span>
+            <span class="chev">›</span>
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <nav class="tabs" aria-label="Dashboard sections">
+      <button id="usage-tab" class="tab" aria-selected="true" data-tab="usage">Usage</button>
+      <button id="roadmap-tab" class="tab" aria-selected="false" data-tab="roadmap">Roadmap</button>
+      <button id="supabase-tab" class="tab" aria-selected="false" data-tab="supabase">Supabase</button>
+    </nav>
+
+    <main>
+      <section id="usage" class="panel active" aria-labelledby="usage-tab">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2>Usage Stats</h2>
+              <p>Firebase Analytics is the source of truth for in-app usage. App Store / Play downloads stay separate so we do not mix installs with behavior.</p>
+            </div>
+            <div class="source">Source<br><strong>Firebase / GA4</strong><br>Property 531273815 · 2026-06-29–2026-07-28</div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><div class="label">Active users</div><div class="value">53</div><div class="note">iOS 37 · Android 16. Prior 30 days: 61.</div><div class="trend">↓ 13% vs prior</div></div>
+            <div class="metric"><div class="label">Sessions</div><div class="value">184</div><div class="note">155 engaged sessions; 84% engagement rate.</div><div class="trend">↓ 35% vs prior</div></div>
+            <div class="metric"><div class="label">Returning proxy</div><div class="value">21</div><div class="note">Active users minus new users. Prior 30 days: 21.</div><div class="trend">flat vs prior</div></div>
+            <div class="metric"><div class="label">Top action</div><div class="value">57</div><div class="note">drink_added events from 8 users; drink_rated 48 from 2 users.</div><div class="trend">recommendations: 31</div></div>
+          </div>
+          <div class="sparkline" aria-label="example trend visualization placeholder">
+            <i style="--h: 38%"></i><i style="--h: 50%"></i><i style="--h: 44%"></i><i style="--h: 68%"></i><i style="--h: 58%"></i><i style="--h: 74%"></i><i style="--h: 66%"></i>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Firebase readout</h3>
+          <div class="data-row"><div class="row"><span class="title">Usage softened in the latest 30-day window</span><span class="pill blue">mobile</span></div><span class="meta">Current period: 53 active users, 32 new users, 184 sessions, 2,017 events. Prior period: 61 active users, 40 new users, 285 sessions, 3,630 events.</span></div>
+          <div class="data-row"><div class="row"><span class="title">Platform split is still iOS-led</span><span class="pill">platform</span></div><span class="meta">iOS: 37 active users, 18 new users, 154 sessions, 1,868 events. Android: 16 active users, 14 new users, 30 sessions, 149 events.</span></div>
+          <div class="data-row"><div class="row"><span class="title">Most useful product actions are visible</span><span class="pill green">events</span></div><span class="meta">Top non-system actions: drink_added 57, drink_rated 48, recommendation_request 31, onboarding_step 33. Source is read-only GA4 Data API; no Firebase or Supabase writes were made.</span></div>
+        </article>
+      </section>
+
+      <section id="roadmap" class="panel" aria-labelledby="roadmap-tab">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2>Product Roadmap</h2>
+              <p>Ranked active work for Stefon's daily scheduling. Completed items are collapsed so the live queue stays focused.</p>
+            </div>
+            <div class="source">Shape<br><strong>Priority queue / Completed</strong><br>Updated 2026-07-31</div>
+          </div>
+          <div class="desktop-grid">
+            <div class="lane">
+              <div class="lane-title"><h3>Top Priorities</h3><span class="pill green">schedule today</span></div>
+              <div class="roadmap-item"><div class="row"><span class="roadmap-title"><span class="roadmap-rank">1</span><span class="title">Android build and Google Play update</span></span><span class="pill red">release</span></div><span class="meta">Owner: Stefon/Bob/Greg · Priority: P0 · Finish Android build quality, verify on device, then prepare Google Play update. No production release without Greg's explicit approval.</span></div>
+              <div class="roadmap-item"><div class="row"><span class="roadmap-title"><span class="roadmap-rank">2</span><span class="title">Lynette review of Tasting Style and Tasting Notes</span></span><span class="pill blue">review</span></div><span class="meta">Owner: Lynette/Stefon · Priority: P0 · Review structure, wording, and product implications before locking the next recommendation/taste-profile pass.</span></div>
+              <div class="roadmap-item"><div class="row"><span class="roadmap-title"><span class="roadmap-rank">3</span><span class="title">Website sharing for saved drinks</span></span><span class="pill green">product</span></div><span class="meta">Owner: Stefon/Bob · Priority: P1 · Make saved drinks shareable on the web so recipients can view useful drink context outside the app.</span></div>
+              <div class="roadmap-item"><div class="row"><span class="roadmap-title"><span class="roadmap-rank">4</span><span class="title">Elegant sharing without repeated app-open prompts</span></span><span class="pill green">product</span></div><span class="meta">Owner: Stefon/Bob · Priority: P1 · Improve shared-drink link behavior so the website does not keep asking recipients to open the app every time.</span></div>
+            </div>
+            <div class="lane">
+              <div class="lane-title"><h3>Supporting Work</h3><span class="pill blue">keep warm</span></div>
+              <div class="roadmap-item"><div class="row"><span class="title">Supabase monitoring and systematic cleanup</span><span class="pill blue">ops</span></div><span class="meta">Build the read-only unfinished Master Drinks queue, alerts for newly flagged items, and a repeatable review workflow before any production mutations.</span></div>
+              <div class="roadmap-item"><div class="row"><span class="title">Editable roadmap backing store</span><span class="pill">later</span></div><span class="meta">Move the roadmap out of hardcoded HTML and into a file-backed, Buzz-backed, or Supabase-backed source once the daily scheduling shape is stable.</span></div>
+            </div>
+            <div class="lane">
+              <div class="lane-title"><h3>Marketing Ideas</h3><span class="pill purple">growth</span></div>
+              <div class="roadmap-item"><div class="row"><span class="title">Launch/update story bank</span><span class="pill purple">idea</span></div><span class="meta">Track content ideas tied to actual usage signals: popular features, recommendation moments, scan saves.</span></div>
+            </div>
+            <div class="lane">
+              <div class="lane-title"><h3>Scheduling Rule</h3><span class="pill">daily</span></div>
+              <div class="roadmap-item"><div class="row"><span class="title">Stefon daily planning input</span><span class="pill green">active</span></div><span class="meta">The visible roadmap should show only active priorities Stefon can schedule. Completed work moves into the collapsed completed section below after evidence is available.</span></div>
+            </div>
+          </div>
+          <details class="completed-roadmap">
+            <summary><span>Completed roadmap items</span><span class="pill green">4 checked off</span></summary>
+            <div class="completed-list">
+              <div class="roadmap-item"><div class="row"><span class="title">Files transferred to Greg's Mac profile</span><span class="pill green">complete</span></div><span class="meta">Marked complete from Greg's 2026-07-31 update.</span></div>
+              <div class="roadmap-item"><div class="row"><span class="title">Firebase Analytics connected</span><span class="pill green">complete</span></div><span class="meta">Marked complete from Greg's 2026-07-31 update and prior dashboard verification.</span></div>
+              <div class="roadmap-item"><div class="row"><span class="title">Liquid Labs contacted</span><span class="pill green">complete</span></div><span class="meta">Marked complete from Greg's 2026-07-31 update. No further outreach action is visible in the active queue.</span></div>
+              <div class="roadmap-item"><div class="row"><span class="title">Buzz setup</span><span class="pill green">complete enough</span></div><span class="meta">Marked complete enough from Greg's 2026-07-31 update. Keep only follow-up build/scheduling work active.</span></div>
+            </div>
+          </details>
+        </article>
+      </section>
+
+      <section id="supabase" class="panel" aria-labelledby="supabase-tab">
+        <article class="card notice">
+          <strong>Safety rule:</strong> this dashboard is read-only. It must not archive, delete, merge, update, trigger, deploy, or otherwise alter Supabase production data without Greg's explicit approval and a reviewable audit trail.
+        </article>
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2>Supabase cleanup inbox</h2>
+              <p>Operational queue for unfinished Master Drinks and new alerts. Each card shows why it was flagged, suggested next action, and review status.</p>
+            </div>
+            <div class="source">Scope<br><strong>master_drinks</strong><br>read-only queue</div>
+          </div>
+          <div class="cleanup-item"><div class="row"><span class="title">Missing category</span><span class="pill red">new</span></div><span class="meta">Reason: category blank/unknown. Suggested next action: review source context and assign only when supported.</span><details><summary>Review fields</summary><p>Show drink_name, producer, source_url/source_scope, updated_at, review status, and notes once the read-only query is connected.</p></details></div>
+          <div class="cleanup-item"><div class="row"><span class="title">Missing producer for category</span><span class="pill red">new</span></div><span class="meta">Reason: beer, wine, spirits, cider, mead, or seltzer row lacks maker identity. Suggested next action: source-backed enrichment only.</span><details><summary>Review fields</summary><p>Category-specific labels: brewery/cidery/winery/distillery/meadery/brand. Do not guess from style alone.</p></details></div>
+          <div class="cleanup-item"><div class="row"><span class="title">Missing tasting_notes/description</span><span class="pill">reviewing</span></div><span class="meta">Reason: row is meant to support recommendations but lacks useful descriptive context. Suggested next action: leave blank unless exact product is source-confirmed.</span></div>
+          <div class="cleanup-item"><div class="row"><span class="title">Duplicate/conflicting normalized identity</span><span class="pill">review</span></div><span class="meta">Reason: normalized name + producer + category candidates conflict. Suggested next action: prepare comparison, no merge until Greg approves.</span></div>
+          <div class="actions">
+            <button class="button primary" type="button" data-toast="Read-only preview only: no Supabase query or mutation was run by this static artifact.">Preview read-only report</button>
+            <button class="button" type="button" data-toast="Approval required before archive/delete/merge/update workflows are enabled.">Request approval workflow</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>Canonical target: www.therainyday.co/dashboard · local prototype served from Greg's Mac until hosted · daily refresh target 11:45pm America/New_York · Firebase updated 2026-07-29 11:10 UTC · Supabase remains read-only · zero production writes</footer>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.panel');
+
+    function selectTab(id) {
+      tabs.forEach((item) => item.setAttribute('aria-selected', String(item.dataset.tab === id)));
+      panels.forEach((panel) => panel.classList.toggle('active', panel.id === id));
+      document.querySelector('.topbar').scrollIntoView({ block: 'start' });
+    }
+
+    tabs.forEach((tab) => tab.addEventListener('click', () => selectTab(tab.dataset.tab)));
+    document.querySelectorAll('[data-open-tab]').forEach((button) => button.addEventListener('click', () => selectTab(button.dataset.openTab)));
+
+    document.querySelectorAll('[data-toast]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const old = document.querySelector('.toast');
+        if (old) old.remove();
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = button.dataset.toast;
+        Object.assign(toast.style, {
+          position: 'fixed', left: '1rem', right: '1rem', bottom: 'calc(5rem + env(safe-area-inset-bottom))',
+          padding: '0.9rem 1rem', borderRadius: '1rem', background: '#f1bd68', color: '#211206', fontWeight: '850',
+          boxShadow: '0 18px 50px rgba(0,0,0,.38)', zIndex: 10, textAlign: 'center'
+        });
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2800);
+      });
+    });
+  </script>
+</body>
+</html>
