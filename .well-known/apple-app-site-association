@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["YQ976WND74.co.therainyday.libations"],
+        "components": [
+          { "/": "/drink", "?": { "id": "?*" }, "comment": "Shared drink links" },
+          { "/": "/drink.html", "?": { "id": "?*" }, "comment": "Shared drink links (current app format)" }
+        ]
+      }
+    ]
+  }
+}

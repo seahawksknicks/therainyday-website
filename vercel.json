@@ -1,5 +1,11 @@
 {
   "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/.well-known/apple-app-site-association",
+      "headers": [{ "key": "Content-Type", "value": "application/json" }]
+    }
+  ],
   "redirects": [
     { "source": "/app", "destination": "/libations", "statusCode": 301 }
   ],
