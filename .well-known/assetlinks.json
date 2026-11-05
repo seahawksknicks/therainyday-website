@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "co.therainyday.libations",
+      "sha256_cert_fingerprints": [
+        "E6:FE:26:47:F2:16:51:25:75:67:32:3C:9B:0F:30:1F:4D:BE:7A:C9:41:4C:66:37:02:D6:4F:B4:14:00:5C:E5"
+      ]
+    }
+  }
+]
