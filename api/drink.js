@@ -80,7 +80,7 @@ export default async function handler(req, res) {
   <meta name="twitter:image" content="${ogImage}">
 
   <!-- App deep link -->
-  <meta name="apple-itunes-app" content="app-id=6740515498">
+  <meta name="apple-itunes-app" content="app-id=6760019038">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -160,7 +160,7 @@ export default async function handler(req, res) {
     <div class="drink-name">${escapeHtml(drinkName)}</div>
     <div class="detail">${escapeHtml(descParts.join(' \u00B7 '))}</div>
     <p class="message">Someone shared this drink with you.<br>Open it in Libations to save it to your library.</p>
-    <a class="cta" id="openApp" href="https://apps.apple.com/app/libations/id6740515498">Open in Libations</a>
+    <a class="cta" id="openApp" href="https://apps.apple.com/us/app/libations-curated-drinks/id6760019038">Open in Libations</a>
     <div class="footer">therainyday.co</div>
   </div>
 
@@ -168,7 +168,7 @@ export default async function handler(req, res) {
     var drinkPayload = '${encodedPayload}';
     if (drinkPayload) {
       var deepLink = 'libations://drink?d=' + drinkPayload;
-      var appStoreLink = 'https://apps.apple.com/app/libations/id6740515498';
+      var appStoreLink = 'https://apps.apple.com/us/app/libations-curated-drinks/id6760019038';
       if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
         document.getElementById('openApp').href = deepLink;
         document.getElementById('openApp').addEventListener('click', function() {
