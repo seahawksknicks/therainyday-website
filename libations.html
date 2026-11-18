@@ -144,15 +144,14 @@
     // Auto-redirect mobile users to the appropriate store
     (function() {
       var APP_STORE_URL = 'https://apps.apple.com/us/app/libations-personal-bartender/id6760019038';
-      // var PLAY_STORE_URL = ''; // Uncomment and set when Android is live
+      var PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=co.therainyday.libations';
       var ua = navigator.userAgent || '';
       if (/iPhone|iPad|iPod/.test(ua)) {
         window.location.href = APP_STORE_URL;
       }
-      // Uncomment when Android is live on Google Play:
-      // if (/Android/.test(ua) && PLAY_STORE_URL) {
-      //   window.location.href = PLAY_STORE_URL;
-      // }
+      if (/Android/.test(ua) && PLAY_STORE_URL) {
+        window.location.href = PLAY_STORE_URL;
+      }
     })();
   </script>
 </head>
@@ -166,13 +165,10 @@
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         Download on the App Store
       </a>
-      <!-- Uncomment when Android is live on Google Play:
-      <a href="PLAY_STORE_URL_HERE" class="store-button android">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.04L14.46 12 3.18.96C2.81 1.09 2.5 1.47 2.5 2.02v19.96c0 .55.31.93.68 1.06zm1.72.46l12.6-7.26-2.76-2.76L4.9 23.5zm14.54-8.38L6.92 7.38l2.76 2.76 12.52-7.24c-.24-.14-.54-.18-.84-.02L7.68 12l11.76 6.78c.3.16.6.12.84-.02l-1.84-1.64zm-14.54-.64L17.5 7.22l-2.76-2.76L4.9.5C4.66.36 4.38.32 4.12.48L14.46 12 4.9 23.5z"/></svg>
+      <a href="https://play.google.com/store/apps/details?id=co.therainyday.libations" class="store-button android">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3.2v17.6L20 12z"/></svg>
         Get it on Google Play
       </a>
-      -->
-      <p class="coming-soon">Android coming soon</p>
     </div>
     <p class="footer">By <a href="https://www.therainyday.co">The Rainy Day Company</a></p>
   </div>
