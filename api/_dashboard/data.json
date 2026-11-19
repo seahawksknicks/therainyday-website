@@ -1,12 +1,11 @@
 {
   "title": "Rainy Day Product Board",
-  "asOf": "Wed Nov 18, 2026, 8:25 PM ET",
+  "asOf": "Wed Nov 18, 2026, 8:30 PM ET",
   "needsDecision": [
     {
-      "title": "Type OK to apply the security fix",
-      "status": "Not applied",
-      "tone": "danger",
-      "owner": "Greg"
+      "title": "Quick phone check: sign in, library, save drink",
+      "status": "Waiting",
+      "tone": "warning"
     },
     {
       "title": "Check menu sharing on an Android phone",
@@ -16,8 +15,7 @@
     {
       "title": "Type OK for small database addition (syrup steps)",
       "status": "Waiting",
-      "tone": "warning",
-      "owner": "Greg"
+      "tone": "warning"
     },
     {
       "title": "Decide: do shared drink links carry syrup steps?",
@@ -53,8 +51,7 @@
     },
     {
       "title": "AI model test (costs money)",
-      "status": "On hold",
-      "owner": "Greg"
+      "status": "On hold"
     },
     {
       "title": "Marketing ad #1",
@@ -98,6 +95,12 @@
       "lead": "Nov 18",
       "title": "Syrup steps look approved by Rachael",
       "status": "Done",
+      "tone": "success"
+    },
+    {
+      "lead": "Nov 18",
+      "title": "Security fix applied (watching for issues)",
+      "status": "Applied",
       "tone": "success"
     }
   ],
