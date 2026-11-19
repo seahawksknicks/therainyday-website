@@ -71,10 +71,14 @@ function esc(v) {
 const TONES = new Set(['danger', 'warning', 'success']);
 
 function row(item) {
+  // The owner is shown only when someone has explicitly claimed the item.
+  const sub = [item.owner ? 'Owner: ' + esc(item.owner) : '', item.meta ? esc(item.meta) : '']
+    .filter(Boolean)
+    .join(' · ');
   const tone = TONES.has(item.tone) ? item.tone : 'plain';
   return `<li class="row">
       ${item.lead ? `<span class="lead">${esc(item.lead)}</span>` : ''}
-      <span class="main"><span class="title">${esc(item.title)}</span>${item.meta ? `<span class="meta">${esc(item.meta)}</span>` : ''}</span>
+      <span class="main"><span class="title">${esc(item.title)}</span>${sub ? `<span class="meta">${sub}</span>` : ''}</span>
       ${item.status ? `<span class="pill ${tone}">${esc(item.status)}</span>` : ''}
     </li>`;
 }
@@ -90,9 +94,9 @@ function section(heading, items, emptyText) {
 function render(d) {
   const count = (k) => (Array.isArray(d[k]) ? d[k].length : 0);
   const metrics = [
-    ['Waiting on Greg', count('waitingOnGreg'), count('waitingOnGreg') ? 'warning' : ''],
-    ['Waiting on Rachael', count('waitingOnRachael'), ''],
+    ['Needs a decision', count('needsDecision'), count('needsDecision') ? 'warning' : ''],
     ['In progress', count('inProgress'), ''],
+    ['On hold', count('onHold'), ''],
     ['Done this week', count('doneThisWeek'), 'success'],
   ];
   const approvals = Array.isArray(d.howApprovalsWork) ? d.howApprovalsWork : [];
@@ -159,8 +163,7 @@ function render(d) {
     <div class="metrics">
       ${metrics.map(([l, n, t]) => `<div class="metric ${t}"><div class="n">${n}</div><div class="l">${esc(l)}</div></div>`).join('')}
     </div>
-    ${section('Waiting on Greg', d.waitingOnGreg, 'Nothing right now.')}
-    ${section('Waiting on Rachael', d.waitingOnRachael, 'Nothing right now.')}
+    ${section('Needs a decision', d.needsDecision, 'Nothing right now.')}
     ${section('In progress', d.inProgress, 'Nothing right now.')}
     ${section('On hold', d.onHold, 'Nothing on hold.')}
     ${section('Done this week', d.doneThisWeek, 'Nothing yet this week.')}
