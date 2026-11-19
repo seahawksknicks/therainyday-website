@@ -1,0 +1,36 @@
+{
+  "title": "Rainy Day Product Board",
+  "asOf": "Wed Nov 18, 2026, 8:10 PM ET",
+  "waitingOnGreg": [
+    { "title": "Type OK to apply the security fix", "meta": "Greg", "status": "Not applied", "tone": "danger" },
+    { "title": "Check menu sharing on an Android phone", "meta": "Greg", "status": "Waiting", "tone": "warning" },
+    { "title": "Type OK for small database addition (syrup steps)", "meta": "Greg", "status": "Waiting", "tone": "warning" },
+    { "title": "Decide: do shared drink links carry syrup steps?", "meta": "Greg", "status": "Your call", "tone": "warning" },
+    { "title": "Try Recommend on live Android", "meta": "Greg", "status": "Waiting", "tone": "warning" }
+  ],
+  "waitingOnRachael": [],
+  "inProgress": [
+    { "title": "Syrup steps on drink cards (Rachael's idea)", "meta": "Look approved by Rachael", "status": "Starting", "tone": "success" }
+  ],
+  "onHold": [
+    { "title": "Accent and search fix", "status": "On hold" },
+    { "title": "Android share analytics", "status": "On hold" },
+    { "title": "Clean-tables migration plan", "status": "On hold" },
+    { "title": "AI model test (costs money)", "meta": "Greg", "status": "On hold" },
+    { "title": "Marketing ad #1", "status": "On hold" },
+    { "title": "Screenshot set pick", "status": "On hold" },
+    { "title": "Selling and subscriber focus", "status": "On hold" }
+  ],
+  "doneThisWeek": [
+    { "lead": "Nov 17", "title": "Menu sharing built for iPhone and Android", "status": "Done", "tone": "success" },
+    { "lead": "Nov 17", "title": "Test versions on iPhone and Android", "status": "Done", "tone": "success" },
+    { "lead": "Nov 18", "title": "iPhone menu sharing confirmed by Greg", "status": "Done", "tone": "success" },
+    { "lead": "Nov 18", "title": "Website: Android buttons, no Agents page", "status": "Live", "tone": "success" },
+    { "lead": "Nov 18", "title": "Syrup steps look approved by Rachael", "status": "Done", "tone": "success" }
+  ],
+  "howApprovalsWork": [
+    "Greg or Rachael can approve features, website and marketing.",
+    "Store releases, spending and live database changes are Greg's.",
+    "Stefon keeps one queue and flags anything that overlaps."
+  ]
+}

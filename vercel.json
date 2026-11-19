@@ -29,6 +29,14 @@
   ],
   "rewrites": [
     {
+      "source": "/dashboard",
+      "destination": "/api/dashboard"
+    },
+    {
+      "source": "/dashboard.html",
+      "destination": "/api/dashboard"
+    },
+    {
       "source": "/drink",
       "destination": "/api/drink"
     },
@@ -36,5 +44,10 @@
       "source": "/drink.html",
       "destination": "/api/drink"
     }
-  ]
+  ],
+  "functions": {
+    "api/dashboard.js": {
+      "includeFiles": "api/_dashboard/data.json"
+    }
+  }
 }
