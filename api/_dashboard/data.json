@@ -1,6 +1,6 @@
 {
   "title": "Rainy Day Product Board",
-  "asOf": "Wed Nov 18, 2026, 9:27 PM ET",
+  "asOf": "Thu Nov 19, 2026, 8:20 AM ET",
   "needsDecision": [
     {
       "title": "Check menu sharing on an Android phone",
@@ -11,19 +11,19 @@
       "title": "Try Recommend on live Android",
       "status": "Waiting",
       "tone": "warning"
+    },
+    {
+      "title": "OK the narrower syrup steps plan?",
+      "meta": "Show syrup steps only when the recipe page clearly marks them; otherwise leave blank. A plan is ready to read. Nothing gets built until you say yes.",
+      "status": "Waiting",
+      "tone": "warning"
     }
   ],
   "inProgress": [
     {
       "title": "Syrup steps on drink cards (Rachael's idea)",
-      "meta": "Built on both phones, in final review. Nothing in the stores. Android can show them but can't import yet.",
-      "status": "Final review",
-      "tone": "success"
-    },
-    {
-      "title": "Shared drink links carry syrup steps, only when the recipe has them",
-      "meta": "Greg decided: syrup steps travel inside the share link itself, with no database change. Being built, then review.",
-      "status": "Being built"
+      "meta": "Third review found drink mistakes, so Greg chose a narrower version. Plan is written; waiting on the OK above. Nothing in the stores. Shared links will carry syrup steps too.",
+      "status": "Plan ready"
     }
   ],
   "onHold": [
