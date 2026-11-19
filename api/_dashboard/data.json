@@ -1,6 +1,6 @@
 {
   "title": "Rainy Day Product Board",
-  "asOf": "Wed Nov 18, 2026, 9:07 PM ET",
+  "asOf": "Wed Nov 18, 2026, 9:27 PM ET",
   "needsDecision": [
     {
       "title": "Check menu sharing on an Android phone",
@@ -22,9 +22,8 @@
     },
     {
       "title": "Shared drink links carry syrup steps, only when the recipe has them",
-      "meta": "Greg decided: yes. Second database step is approved and waiting on the Reviewer's check.",
-      "status": "In review",
-      "tone": "warning"
+      "meta": "Greg decided: syrup steps travel inside the share link itself, with no database change. Being built, then review.",
+      "status": "Being built"
     }
   ],
   "onHold": [
@@ -54,6 +53,11 @@
     },
     {
       "title": "Selling and subscriber focus",
+      "status": "On hold"
+    },
+    {
+      "title": "Should shared drinks open only by link?",
+      "meta": "Today someone who knows how can list all shared drinks at once. Nothing is broken; this is a decision for later.",
       "status": "On hold"
     }
   ],
