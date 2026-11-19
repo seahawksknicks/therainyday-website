@@ -1,20 +1,10 @@
 {
   "title": "Rainy Day Product Board",
-  "asOf": "Wed Nov 18, 2026, 8:48 PM ET",
+  "asOf": "Wed Nov 18, 2026, 9:07 PM ET",
   "needsDecision": [
     {
       "title": "Check menu sharing on an Android phone",
       "status": "Waiting",
-      "tone": "warning"
-    },
-    {
-      "title": "Type OK for small database addition (syrup steps)",
-      "status": "Waiting",
-      "tone": "warning"
-    },
-    {
-      "title": "Decide: do shared drink links carry syrup steps?",
-      "status": "Decision",
       "tone": "warning"
     },
     {
@@ -26,9 +16,15 @@
   "inProgress": [
     {
       "title": "Syrup steps on drink cards (Rachael's idea)",
-      "meta": "Look approved by Rachael",
-      "status": "Starting",
+      "meta": "Built on both phones, in final review. Nothing in the stores. Android can show them but can't import yet.",
+      "status": "Final review",
       "tone": "success"
+    },
+    {
+      "title": "Shared drink links carry syrup steps, only when the recipe has them",
+      "meta": "Greg decided: yes. Second database step is approved and waiting on the Reviewer's check.",
+      "status": "In review",
+      "tone": "warning"
     }
   ],
   "onHold": [
@@ -101,6 +97,12 @@
     {
       "lead": "Nov 18",
       "title": "Phone check after security fix passed",
+      "status": "Done",
+      "tone": "success"
+    },
+    {
+      "lead": "Nov 18",
+      "title": "Syrup steps can now be saved (live database, Nov 18)",
       "status": "Done",
       "tone": "success"
     }
