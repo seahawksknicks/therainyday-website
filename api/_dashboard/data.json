@@ -1,12 +1,7 @@
 {
   "title": "Rainy Day Product Board",
-  "asOf": "Wed Nov 18, 2026, 8:30 PM ET",
+  "asOf": "Wed Nov 18, 2026, 8:48 PM ET",
   "needsDecision": [
-    {
-      "title": "Quick phone check: sign in, library, save drink",
-      "status": "Waiting",
-      "tone": "warning"
-    },
     {
       "title": "Check menu sharing on an Android phone",
       "status": "Waiting",
@@ -101,6 +96,12 @@
       "lead": "Nov 18",
       "title": "Security fix applied (watching for issues)",
       "status": "Applied",
+      "tone": "success"
+    },
+    {
+      "lead": "Nov 18",
+      "title": "Phone check after security fix passed",
+      "status": "Done",
       "tone": "success"
     }
   ],
