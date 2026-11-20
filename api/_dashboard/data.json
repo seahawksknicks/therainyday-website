@@ -1,6 +1,6 @@
 {
   "title": "Rainy Day Product Board",
-  "asOf": "Thu Nov 19, 2026, 8:20 AM ET",
+  "asOf": "Fri Nov 20, 2026, 8:20 AM ET",
   "needsDecision": [
     {
       "title": "Check menu sharing on an Android phone",
@@ -13,8 +13,14 @@
       "tone": "warning"
     },
     {
-      "title": "OK the narrower syrup steps plan?",
-      "meta": "Show syrup steps only when the recipe page clearly marks them; otherwise leave blank. A plan is ready to read. Nothing gets built until you say yes.",
+      "title": "Syrup steps: last round found 2 small iPhone problems",
+      "meta": "Drink lines were never removed. Two small fixes remain. Building is paused until you say go.",
+      "status": "Waiting",
+      "tone": "warning"
+    },
+    {
+      "title": "AI-first syrup import: preview is ready",
+      "meta": "A cost estimate is ready to read: about 2 cents per import, a few tens of cents per user per month. Nothing built yet.",
       "status": "Waiting",
       "tone": "warning"
     }
@@ -22,8 +28,8 @@
   "inProgress": [
     {
       "title": "Syrup steps on drink cards (Rachael's idea)",
-      "meta": "Third review found drink mistakes, so Greg chose a narrower version. Plan is written; waiting on the OK above. Nothing in the stores. Shared links will carry syrup steps too.",
-      "status": "Plan ready"
+      "meta": "Round 4 passed the key rule (a drink's own lines are never removed) but still has 2 small iPhone fixes. Paused for your OK. Nothing in the stores.",
+      "status": "Paused"
     }
   ],
   "onHold": [
