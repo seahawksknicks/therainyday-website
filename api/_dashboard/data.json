@@ -1,38 +1,58 @@
 {
   "title": "Rainy Day Product Board",
-  "asOf": "Fri Nov 20, 2026, 8:20 AM ET",
+  "asOf": "Sun Nov 22, 2026, 4:40 PM ET",
   "needsDecision": [
     {
-      "title": "Check menu sharing on an Android phone",
+      "title": "Host menu cards still list a syrup's parts",
+      "meta": "Not decided.",
       "status": "Waiting",
       "tone": "warning"
     },
     {
-      "title": "Try Recommend on live Android",
-      "status": "Waiting",
-      "tone": "warning"
-    },
-    {
-      "title": "Syrup steps: last round found 2 small iPhone problems",
-      "meta": "Drink lines were never removed. Two small fixes remain. Building is paused until you say go.",
-      "status": "Waiting",
-      "tone": "warning"
-    },
-    {
-      "title": "AI-first syrup import: preview is ready",
-      "meta": "A cost estimate is ready to read: about 2 cents per import, a few tens of cents per user per month. Nothing built yet.",
+      "title": "A metric copy of a syrup with different amounts only partly comes off",
+      "meta": "Not decided.",
       "status": "Waiting",
       "tone": "warning"
     }
   ],
   "inProgress": [
     {
-      "title": "Syrup steps on drink cards (Rachael's idea)",
-      "meta": "Round 4 passed the key rule (a drink's own lines are never removed) but still has 2 small iPhone fixes. Paused for your OK. Nothing in the stores.",
-      "status": "Paused"
+      "title": "Bee's Knees: switch the main listing to honey syrup",
+      "meta": "Greg approved the classic recipe: 2 oz gin, 0.75 oz lemon, and 0.75 oz honey syrup. The live listings already have no orange juice. The change is being made now.",
+      "status": "In progress"
     }
   ],
   "onHold": [
+    {
+      "title": "Single AI reader",
+      "meta": "Approved, but parked until the syrup feature ships. The spend cap is part of this.",
+      "status": "On hold"
+    },
+    {
+      "title": "Check menu sharing on an Android phone",
+      "status": "On hold"
+    },
+    {
+      "title": "Try Recommend on live Android",
+      "status": "On hold"
+    },
+    {
+      "title": "Font scaling",
+      "status": "On hold"
+    },
+    {
+      "title": "History cleanup",
+      "status": "On hold"
+    },
+    {
+      "title": "Direct-save",
+      "status": "On hold"
+    },
+    {
+      "title": "Website and marketing",
+      "meta": "Includes screenshots and selling focus. The latest cut of the Guests at Eight video ad was emailed to Sas; it has not been posted or run.",
+      "status": "On hold"
+    },
     {
       "title": "Accent and search fix",
       "status": "On hold"
@@ -46,28 +66,26 @@
       "status": "On hold"
     },
     {
-      "title": "AI model test (costs money)",
-      "status": "On hold"
-    },
-    {
-      "title": "Marketing ad #1",
-      "status": "On hold"
-    },
-    {
-      "title": "Screenshot set pick",
-      "status": "On hold"
-    },
-    {
-      "title": "Selling and subscriber focus",
-      "status": "On hold"
-    },
-    {
       "title": "Should shared drinks open only by link?",
       "meta": "Today someone who knows how can list all shared drinks at once. Nothing is broken; this is a decision for later.",
       "status": "On hold"
     }
   ],
   "doneThisWeek": [
+    {
+      "lead": "Nov 22",
+      "title": "Rachael's syrup feature and the host menu maker are in iPhone TestFlight for testers",
+      "meta": "Version 3.0.1 (4). The syrup shows as one line; its parts stay out of the drink list; the syrup recipe sits under Instructions. Rachael said it looks great. Testers only: no public release, and not on Android yet.",
+      "status": "Done",
+      "tone": "success"
+    },
+    {
+      "lead": "Nov 22",
+      "title": "Guests at Eight video ad emailed to Sas",
+      "meta": "Latest cut. Not posted or run anywhere.",
+      "status": "Done",
+      "tone": "success"
+    },
     {
       "lead": "Nov 17",
       "title": "Menu sharing built for iPhone and Android",
