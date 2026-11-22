@@ -1,6 +1,6 @@
 {
   "title": "Rainy Day Product Board",
-  "asOf": "Sun Nov 22, 2026, 4:40 PM ET",
+  "asOf": "Sun Nov 22, 2026, 4:45 PM ET",
   "needsDecision": [
     {
       "title": "Host menu cards still list a syrup's parts",
@@ -15,13 +15,7 @@
       "tone": "warning"
     }
   ],
-  "inProgress": [
-    {
-      "title": "Bee's Knees: switch the main listing to honey syrup",
-      "meta": "Greg approved the classic recipe: 2 oz gin, 0.75 oz lemon, and 0.75 oz honey syrup. The live listings already have no orange juice. The change is being made now.",
-      "status": "In progress"
-    }
-  ],
+  "inProgress": [],
   "onHold": [
     {
       "title": "Single AI reader",
@@ -72,6 +66,13 @@
     }
   ],
   "doneThisWeek": [
+    {
+      "lead": "Nov 22",
+      "title": "Bee's Knees main listing now uses honey syrup",
+      "meta": "Confirmed live: 2 oz gin, 0.75 oz fresh lemon juice, 0.75 oz honey syrup.",
+      "status": "Done",
+      "tone": "success"
+    },
     {
       "lead": "Nov 22",
       "title": "Rachael's syrup feature and the host menu maker are in iPhone TestFlight for testers",
