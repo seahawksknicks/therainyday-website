@@ -1,6 +1,6 @@
 {
   "title": "Rainy Day Product Board",
-  "asOf": "Sun Nov 22, 2026, 4:45 PM ET",
+  "asOf": "Tue Nov 24, 2026, 8:10 AM ET",
   "needsDecision": [
     {
       "title": "Host menu cards still list a syrup's parts",
@@ -13,9 +13,21 @@
       "meta": "Not decided.",
       "status": "Waiting",
       "tone": "warning"
+    },
+    {
+      "title": "Host menu drink picker: a Scotch like Lagavulin shows as \"Whisky\" on iPhone but \"Scotch\" on Android",
+      "meta": "The menus would differ. Matching them means changing the iPhone label.",
+      "status": "Waiting",
+      "tone": "warning"
     }
   ],
-  "inProgress": [],
+  "inProgress": [
+    {
+      "title": "Host menu category filter (iPhone and Android)",
+      "meta": "Built and tested. Greg said go Nov 24. Waiting on the independent review. Nothing uploaded or released.",
+      "status": "In review"
+    }
+  ],
   "onHold": [
     {
       "title": "Single AI reader",
@@ -84,18 +96,6 @@
       "lead": "Nov 22",
       "title": "Guests at Eight video ad emailed to Sas",
       "meta": "Latest cut. Not posted or run anywhere.",
-      "status": "Done",
-      "tone": "success"
-    },
-    {
-      "lead": "Nov 17",
-      "title": "Menu sharing built for iPhone and Android",
-      "status": "Done",
-      "tone": "success"
-    },
-    {
-      "lead": "Nov 17",
-      "title": "Test versions on iPhone and Android",
       "status": "Done",
       "tone": "success"
     },
