@@ -1,6 +1,6 @@
 {
   "title": "Rainy Day Product Board",
-  "asOf": "Tue Nov 24, 2026, 8:10 AM ET",
+  "asOf": "Wed Nov 25, 2026, 8:15 AM ET",
   "needsDecision": [
     {
       "title": "Host menu cards still list a syrup's parts",
@@ -13,19 +13,18 @@
       "meta": "Not decided.",
       "status": "Waiting",
       "tone": "warning"
-    },
-    {
-      "title": "Host menu drink picker: a Scotch like Lagavulin shows as \"Whisky\" on iPhone but \"Scotch\" on Android",
-      "meta": "The menus would differ. Matching them means changing the iPhone label.",
-      "status": "Waiting",
-      "tone": "warning"
     }
   ],
   "inProgress": [
     {
-      "title": "Host menu category filter (iPhone and Android)",
-      "meta": "Built and tested. Greg said go Nov 24. Waiting on the independent review. Nothing uploaded or released.",
-      "status": "In review"
+      "title": "Android catch-up to iPhone build 6",
+      "meta": "Greg wants Android to match iPhone. Nothing new has been uploaded for Android yet; style-line fixes and a few other iPhone changes still need to be copied over.",
+      "status": "Not started"
+    },
+    {
+      "title": "Six small edit-screen edge cases (iPhone)",
+      "meta": "Greg chose to ship now and fix these in the next build.",
+      "status": "Next build"
     }
   ],
   "onHold": [
@@ -79,6 +78,27 @@
   ],
   "doneThisWeek": [
     {
+      "lead": "Nov 25",
+      "title": "iPhone TestFlight build 6 is uploaded for testers",
+      "meta": "Version 3.0.1 (6). Includes the host menu changes and the beer style fix (a beer's style always shows in the list). Testers only: no public release.",
+      "status": "Done",
+      "tone": "success"
+    },
+    {
+      "lead": "Nov 25",
+      "title": "Greg chose to ship the beer style fix as-is",
+      "meta": "Six small edit-screen edge cases move to the next build.",
+      "status": "Done",
+      "tone": "success"
+    },
+    {
+      "lead": "Nov 24",
+      "title": "Scotch or Whisky label follows the user's own categories",
+      "meta": "Greg decided this; iPhone and Android should match.",
+      "status": "Decided",
+      "tone": "success"
+    },
+    {
       "lead": "Nov 22",
       "title": "Bee's Knees main listing now uses honey syrup",
       "meta": "Confirmed live: 2 oz gin, 0.75 oz fresh lemon juice, 0.75 oz honey syrup.",
@@ -88,7 +108,7 @@
     {
       "lead": "Nov 22",
       "title": "Rachael's syrup feature and the host menu maker are in iPhone TestFlight for testers",
-      "meta": "Version 3.0.1 (4). The syrup shows as one line; its parts stay out of the drink list; the syrup recipe sits under Instructions. Rachael said it looks great. Testers only: no public release, and not on Android yet.",
+      "meta": "The syrup shows as one line; its parts stay out of the drink list; the syrup recipe sits under Instructions. Rachael said it looks great. Testers only: no public release, and not on Android yet.",
       "status": "Done",
       "tone": "success"
     },
@@ -96,42 +116,6 @@
       "lead": "Nov 22",
       "title": "Guests at Eight video ad emailed to Sas",
       "meta": "Latest cut. Not posted or run anywhere.",
-      "status": "Done",
-      "tone": "success"
-    },
-    {
-      "lead": "Nov 18",
-      "title": "iPhone menu sharing confirmed by Greg",
-      "status": "Done",
-      "tone": "success"
-    },
-    {
-      "lead": "Nov 18",
-      "title": "Website: Android buttons, no Agents page",
-      "status": "Live",
-      "tone": "success"
-    },
-    {
-      "lead": "Nov 18",
-      "title": "Syrup steps look approved by Rachael",
-      "status": "Done",
-      "tone": "success"
-    },
-    {
-      "lead": "Nov 18",
-      "title": "Security fix applied (watching for issues)",
-      "status": "Applied",
-      "tone": "success"
-    },
-    {
-      "lead": "Nov 18",
-      "title": "Phone check after security fix passed",
-      "status": "Done",
-      "tone": "success"
-    },
-    {
-      "lead": "Nov 18",
-      "title": "Syrup steps can now be saved (live database, Nov 18)",
       "status": "Done",
       "tone": "success"
     }
