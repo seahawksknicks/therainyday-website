@@ -1,6 +1,6 @@
 {
   "title": "Rainy Day Product Board",
-  "asOf": "Wed Nov 25, 2026, 8:15 AM ET",
+  "asOf": "Thu Nov 26, 2026, 8:10 AM ET",
   "needsDecision": [
     {
       "title": "Host menu cards still list a syrup's parts",
@@ -16,6 +16,11 @@
     }
   ],
   "inProgress": [
+    {
+      "title": "Drink-amount fix round (iPhone and Android)",
+      "meta": "Built on both phones and tested; waiting for the independent review. Not uploaded anywhere.",
+      "status": "In review"
+    },
     {
       "title": "Android catch-up to iPhone build 6",
       "meta": "Greg wants Android to match iPhone. Nothing new has been uploaded for Android yet; style-line fixes and a few other iPhone changes still need to be copied over.",
